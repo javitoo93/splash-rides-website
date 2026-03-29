@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splash — Rent a Boat. List Your Boat. Nationwide.</title>
+<meta name="description" content="Splash connects boat renters with verified owners and USCG-licensed captains across the U.S. Download the Splash app to rent or the Splash Pro app to earn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0b1d3a;--azure:#1b6ca8;--splash:#00b4d8;--aqua:#90e0ef;
+  --sun:#ffb703;--coral:#fb5607;--sand:#fdf6ec;--foam:#f0f9ff;
+  --dark:#060e1f;--text:#1c2541;--muted:#5a6a85;--light:#f8fafc;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:.4s}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(24px);box-shadow:0 2px 40px rgba(0,0,0,.06);padding:12px 48px}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:800;color:#fff;text-decoration:none;transition:.4s;letter-spacing:-.5px}
+nav.scrolled .nav-logo{color:var(--navy)}
+.nav-logo i{font-style:normal;color:var(--splash)}
+.nav-right{display:flex;gap:28px;align-items:center}
+.nav-right a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;font-weight:500;transition:.25s}
+nav.scrolled .nav-right a{color:var(--muted)}
+.nav-right a:hover{color:#fff}
+nav.scrolled .nav-right a:hover{color:var(--azure)}
+.nav-cta{background:var(--splash)!important;color:#fff!important;padding:9px 22px;border-radius:50px;font-weight:600}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;transition:.3s}
+nav.scrolled .hamburger span{background:var(--navy)}
+
+/* HERO — split screen */
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(155deg,var(--dark) 0%,var(--navy) 35%,var(--azure) 70%,var(--splash) 100%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-wave{position:absolute;bottom:-2px;left:0;width:100%;z-index:2}
+.hero-wave svg{display:block;width:100%}
+.hero-inner{position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:140px 48px 100px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 20px;border-radius:50px;color:rgba(255,255,255,.9);font-size:.78rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(12px);margin-bottom:32px}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--splash);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,6.5vw,5rem);color:#fff;line-height:1.08;margin-bottom:20px;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--splash),var(--aqua));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.7);max-width:580px;margin:0 auto 48px;line-height:1.7;font-weight:300}
+
+/* Two-path cards */
+.path-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto}
+.path-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:40px 32px;backdrop-filter:blur(20px);text-align:left;transition:.4s;cursor:pointer;position:relative;overflow:hidden}
+.path-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+.path-card::after{content:'';position:absolute;top:-60px;right:-60px;width:140px;height:140px;border-radius:50%;opacity:.08}
+.path-card.renter::after{background:var(--splash)}
+.path-card.owner::after{background:var(--sun)}
+.path-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px}
+.path-card.renter .path-icon{background:rgba(0,180,216,.2)}
+.path-card.owner .path-icon{background:rgba(255,183,3,.2)}
+.path-card h3{font-family:'Fraunces',serif;font-size:1.35rem;color:#fff;margin-bottom:8px;font-weight:700}
+.path-card p{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.6;margin-bottom:20px}
+.path-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;font-size:.85rem;font-weight:600;text-decoration:none;transition:.3s}
+.path-card.renter .path-btn{background:var(--splash);color:#fff}
+.path-card.owner .path-btn{background:var(--sun);color:var(--navy)}
+.path-btn:hover{transform:translateX(4px)}
+.path-btn svg{width:16px;height:16px;transition:transform .3s}
+.path-btn:hover svg{transform:translateX(4px)}
+
+/* SECTIONS */
+section{padding:100px 48px}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.section-label.blue{color:var(--splash)}
+.section-label.gold{color:var(--coral)}
+.s-header{max-width:600px;margin-bottom:56px}
+.s-header h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:14px}
+.s-header p{color:var(--muted);font-size:1rem;line-height:1.7}
+.s-header.center{text-align:center;margin-left:auto;margin-right:auto}
+
+/* ──────── FOR RENTERS SECTION ──────── */
+.renters-section{background:var(--foam)}
+.renters-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto}
+.steps-list{display:flex;flex-direction:column;gap:28px}
+.step-item{display:flex;gap:18px;align-items:flex-start}
+.step-num{width:44px;height:44px;min-width:44px;border-radius:50%;background:linear-gradient(135deg,var(--azure),var(--splash));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;margin-top:2px}
+.step-item h4{font-size:1.05rem;font-weight:600;margin-bottom:4px}
+.step-item p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.phone-mockup{background:linear-gradient(145deg,var(--navy),var(--azure));border-radius:32px;padding:48px 32px;text-align:center;position:relative;overflow:hidden}
+.phone-mockup::before{content:'';position:absolute;top:50%;left:50%;width:200%;height:200%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,180,216,.15) 0%,transparent 60%)}
+.phone-mockup .app-name{font-family:'Fraunces',serif;font-size:2rem;font-weight:800;color:#fff;margin-bottom:8px;position:relative}
+.phone-mockup .app-name i{font-style:normal;color:var(--splash)}
+.phone-mockup .tagline{color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:32px;position:relative}
+.feature-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;position:relative}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.85);padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:500}
+
+/* Feature grid for renters */
+.renter-features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:48px auto 0}
+.rf{padding:28px;border-radius:16px;background:#fff;border:1px solid #e8eef5;transition:.3s}
+.rf:hover{border-color:var(--splash);box-shadow:0 8px 28px rgba(0,180,216,.08);transform:translateY(-3px)}
+.rf-icon{font-size:1.5rem;margin-bottom:12px}
+.rf h4{font-size:.95rem;font-weight:600;margin-bottom:6px}
+.rf p{color:var(--muted);font-size:.83rem;line-height:1.55}
+
+/* ──────── FOR OWNERS SECTION ──────── */
+.owners-section{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.owners-section::before{content:'';position:absolute;top:-300px;right:-200px;width:600px;height:600px;border-radius:50%;background:rgba(255,183,3,.06)}
+.owners-section::after{content:'';position:absolute;bottom:-200px;left:-150px;width:500px;height:500px;border-radius:50%;background:rgba(0,180,216,.05)}
+.owners-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.earn-points{list-style:none;display:flex;flex-direction:column;gap:18px;margin-bottom:32px}
+.earn-points li{display:flex;align-items:flex-start;gap:14px;font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.5}
+.earn-points li::before{content:'✓';background:var(--sun);color:var(--navy);width:26px;height:26px;min-width:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;margin-top:1px}
+.earnings-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:36px;backdrop-filter:blur(12px)}
+.earnings-box h4{color:rgba(255,255,255,.5);font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+.e-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.e-row:last-child{border:none}
+.e-label{font-size:.88rem;color:rgba(255,255,255,.6)}
+.e-val{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600}
+.e-total{border-top:2px solid rgba(255,255,255,.15)!important;padding-top:18px!important;margin-top:4px}
+.e-total .e-label{font-weight:600;color:#fff}
+.e-total .e-val{color:var(--sun);font-size:1.5rem}
+.pro-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:var(--navy);padding:12px 28px;border-radius:50px;font-weight:700;font-size:.92rem;text-decoration:none;transition:.3s;margin-top:8px}
+.pro-badge:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,183,3,.3)}
+
+/* ──────── SAFETY ──────── */
+.safety-section{background:var(--sand)}
+.safety-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.sf{background:#fff;padding:28px;border-radius:16px;border-left:4px solid var(--splash)}
+.sf h4{font-size:.95rem;font-weight:600;margin-bottom:6px;color:var(--navy)}
+.sf p{color:var(--muted);font-size:.85rem;line-height:1.6}
+
+/* ──────── TESTIMONIALS ──────── */
+.reviews-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.review{background:#fff;padding:30px;border-radius:16px;border:1px solid #e8eef5}
+.review-stars{color:var(--sun);font-size:.9rem;letter-spacing:2px;margin-bottom:10px}
+.review q{display:block;font-size:.92rem;color:var(--muted);line-height:1.65;margin-bottom:14px;font-style:italic}
+.review cite{font-style:normal;font-weight:600;font-size:.85rem;color:var(--navy)}
+.review cite span{font-weight:400;color:var(--muted)}
+
+/* ──────── DOWNLOAD CTA ──────── */
+.cta-section{background:linear-gradient(135deg,var(--navy),var(--azure));text-align:center;color:#fff;padding:100px 48px;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-120px;left:-120px;width:400px;height:400px;border-radius:50%;background:rgba(0,180,216,.08)}
+.cta-section::after{content:'';position:absolute;bottom:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,183,3,.06)}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-inner h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
+.cta-inner p{color:rgba(255,255,255,.7);font-size:1.05rem;margin-bottom:40px}
+.store-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.store-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;text-decoration:none;font-weight:500;transition:.3s;border:1px solid rgba(255,255,255,.15)}
+.store-btn.splash-dl{background:rgba(0,180,216,.2);color:#fff}
+.store-btn.pro-dl{background:rgba(255,183,3,.15);color:#fff}
+.store-btn:hover{transform:translateY(-2px)}
+.store-btn svg{width:22px;height:22px;fill:#fff}
+.store-btn .sl{text-align:left;line-height:1.2}
+.store-btn .sm{font-size:.6rem;font-weight:400;opacity:.7;display:block}
+.store-btn .lg{font-size:.95rem;font-weight:700}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.5);padding:60px 48px 28px}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .nav-logo{font-size:1.3rem;color:#fff}
+.footer-brand p{margin-top:10px;font-size:.84rem;line-height:1.6;max-width:280px}
+.fcol h5{color:#fff;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;font-weight:600}
+.fcol a{display:block;color:rgba(255,255,255,.45);text-decoration:none;font-size:.84rem;margin-bottom:9px;transition:.2s}
+.fcol a:hover{color:var(--splash)}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:8px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .path-cards{grid-template-columns:1fr}
+  .renters-grid,.owners-grid{grid-template-columns:1fr;gap:40px}
+  .renter-features{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav{padding:14px 20px}
+  nav.scrolled{padding:10px 20px}
+  .nav-right a:not(.nav-cta){display:none}
+  .hamburger{display:flex}
+  section{padding:64px 20px}
+  .renter-features{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .store-row{flex-direction:column;align-items:center}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .75s ease-out both}
+.hero-badge{animation-delay:.1s}
+.hero h1{animation-delay:.2s}
+.hero-sub{animation-delay:.33s}
+.path-cards{animation-delay:.48s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo"><i>S</i>plash</a>
+  <div class="nav-right">
+    <a href="#renters">Rent a Boat</a>
+    <a href="#owners">List Your Boat</a>
+    <a href="#safety">Safety</a>
+    <a href="#download" class="nav-cta">Get the App</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C480,100 960,20 1440,60 L1440,100 L0,100 Z" fill="var(--foam)"/></svg></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Now available nationwide</div>
+    <h1>The easiest way to get on the <em>water</em></h1>
+    <p class="hero-sub">Splash connects you with boats and USCG-licensed captains across the country. Rent a boat in minutes — or list yours and start earning.</p>
+
+    <div class="path-cards">
+      <a href="#renters" class="path-card renter" style="text-decoration:none">
+        <div class="path-icon">🚤</div>
+        <h3>I want to rent a boat</h3>
+        <p>Browse boats near you, pick a date, and we'll match you with a licensed captain. No experience needed.</p>
+        <span class="path-btn">Explore Splash <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"/></svg></span>
+      </a>
+      <a href="#owners" class="path-card owner" style="text-decoration:none">
+        <div class="path-icon">💰</div>
+        <h3>I want to list my boat</h3>
+        <p>Turn your boat into a business. Set your rates, manage bookings, and get paid — we handle the rest.</p>
+        <span class="path-btn">Explore Splash Pro <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- FOR RENTERS                     -->
+<!-- ═══════════════════════════════ -->
+<section class="renters-section" id="renters">
+  <div class="renters-grid">
+    <div>
+      <div class="s-header">
+        <div class="section-label blue">For Renters</div>
+        <h2>On the water in three taps</h2>
+        <p>No phone calls, no paperwork, no boating license required when you book with a captain.</p>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div><h4>Browse boats near you</h4><p>Filter by type, size, price, and amenities. See real photos, ratings, and reviews from other renters.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div><h4>Pick a date &amp; book instantly</h4><p>Choose your day, time, and duration. Your card is held — you're only charged 24 hours before the trip.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div><h4>Show up &amp; enjoy</h4><p>Meet your USCG-licensed captain at the marina. They handle the driving — you just relax and have fun.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-mockup">
+      <div class="app-name"><i>S</i>plash</div>
+      <div class="tagline">Download free on iOS &amp; Android</div>
+      <div class="feature-pills">
+        <span class="pill">⚓ Verified Captains</span>
+        <span class="pill">💳 Secure Payments</span>
+        <span class="pill">⭐ Real Reviews</span>
+        <span class="pill">💬 In-App Chat</span>
+        <span class="pill">📍 Live Trip Tracking</span>
+        <span class="pill">🛡️ Insured Boats</span>
+        <span class="pill">🌊 50+ Cities</span>
+        <span class="pill">❌ Free Cancellation*</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="renter-features">
+    <div class="rf"><div class="rf-icon">⚓</div><h4>Licensed Captains Only</h4><p>Every captain is verified with a valid U.S. Coast Guard license and government ID before they can accept any booking.</p></div>
+    <div class="rf"><div class="rf-icon">💳</div><h4>Pay Only When It's Real</h4><p>Your card is authorized at booking but only charged 24 hours before departure. Cancel before that — full refund.</p></div>
+    <div class="rf"><div class="rf-icon">🛡️</div><h4>Every Boat Insured</h4><p>All boats must carry liability insurance that meets their state's requirements before going live on Splash.</p></div>
+    <div class="rf"><div class="rf-icon">💬</div><h4>Chat in the App</h4><p>Message your captain or boat owner directly. Ask questions, coordinate pickup details — all in one place.</p></div>
+    <div class="rf"><div class="rf-icon">⭐</div><h4>Honest Reviews</h4><p>Every review is from a real renter who completed a real trip. No fakes, no paid reviews.</p></div>
+    <div class="rf"><div class="rf-icon">📍</div><h4>Coast to Coast</h4><p>From Miami to Seattle, the Great Lakes to the Gulf — find boats wherever your next trip takes you.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- FOR OWNERS                      -->
+<!-- ═══════════════════════════════ -->
+<section class="owners-section" id="owners">
+  <div class="owners-grid">
+    <div>
+      <div class="s-header">
+        <div class="section-label gold">For Boat Owners &amp; Captains</div>
+        <h2 style="color:#fff">Your boat. Your schedule. Your income.</h2>
+        <p style="color:rgba(255,255,255,.6)">List your boat on Splash Pro and start earning. We handle bookings, payments, and customer support so you can focus on the water.</p>
+      </div>
+      <ul class="earn-points">
+        <li>Set your own hourly/daily rates and availability</li>
+        <li>Get paid within 2–3 days — or instantly for a small fee</li>
+        <li>Captain your own boat or assign verified captains</li>
+        <li>Full earnings dashboard, payout tracking, and tax reports</li>
+        <li>We handle payment processing, disputes, and support</li>
+        <li>List from any state — Splash Pro works nationwide</li>
+      </ul>
+      <a href="#download" class="pro-badge">Download Splash Pro →</a>
+    </div>
+    <div>
+      <div class="earnings-box">
+        <h4>Estimated Monthly Earnings</h4>
+        <div class="e-row"><span class="e-label">Weekday trips (8×)</span><span class="e-val">$2,400</span></div>
+        <div class="e-row"><span class="e-label">Weekend trips (8×)</span><span class="e-val">$3,200</span></div>
+        <div class="e-row"><span class="e-label">Platform fee (20%)</span><span class="e-val">−$1,120</span></div>
+        <div class="e-row e-total"><span class="e-label">Your take-home</span><span class="e-val">$4,480</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="safety-section" id="safety">
+  <div class="s-header center">
+    <div class="section-label blue">Safety First</div>
+    <h2>We take safety seriously</h2>
+    <p>Every boat and captain on Splash is verified before they can accept a single booking.</p>
+  </div>
+  <div class="safety-grid">
+    <div class="sf"><h4>Captain Verification</h4><p>USCG license and government ID reviewed and approved by our team before any captain goes live.</p></div>
+    <div class="sf"><h4>Vessel Requirements</h4><p>Current registration, required safety equipment, and adequate liability insurance — verified before listing.</p></div>
+    <div class="sf"><h4>Safety Briefings</h4><p>Captains conduct a mandatory pre-departure briefing covering emergency procedures and safety equipment.</p></div>
+    <div class="sf"><h4>Weather Monitoring</h4><p>Real-time weather alerts. Captains have full authority to cancel or postpone any trip for safety.</p></div>
+    <div class="sf"><h4>Secure Messaging</h4><p>All communication is in-app. Personal contact sharing is blocked to protect everyone involved.</p></div>
+    <div class="sf"><h4>State Compliance</h4><p>Owners must meet their state's insurance and permit requirements. We verify documentation before going live.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <div class="s-header center">
+    <h2>What people are saying</h2>
+  </div>
+  <div class="reviews-row">
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <q>So much easier than calling marinas. Found a pontoon, booked in under a minute, captain was amazing. Best sunset cruise ever.</q>
+      <cite>Jessica M. <span>· St. Petersburg, FL</span></cite>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <q>I list my 28-footer on weekends with Splash Pro. The extra income covers my slip fees and maintenance. Painless.</q>
+      <cite>Captain Tony R. <span>· San Diego, CA</span></cite>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <q>Family fishing trip on Lake Michigan. Captain knew exactly where to go, kids had a blast. Already booked our next one.</q>
+      <cite>David L. <span>· Chicago, IL</span></cite>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="cta-section" id="download">
+  <div class="cta-inner">
+    <h2>Ready to make a splash?</h2>
+    <p>Download Splash to rent a boat — or Splash Pro to list yours and start earning.</p>
+    <div class="store-row">
+      <a href="#" class="store-btn splash-dl">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="sl"><span class="sm">Download</span><span class="lg">Splash</span></span>
+      </a>
+      <a href="#" class="store-btn pro-dl">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="sl"><span class="sm">Download</span><span class="lg">Splash Pro</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo"><i>S</i>plash</a>
+      <p>The easiest way to rent a boat or list yours in the United States. Browse, book, and earn — all from your phone.</p>
+    </div>
+    <div class="fcol">
+      <h5>Renters</h5>
+      <a href="#renters">How It Works</a>
+      <a href="#renters">Browse Boats</a>
+      <a href="#safety">Safety</a>
+      <a href="#download">Download Splash</a>
+    </div>
+    <div class="fcol">
+      <h5>Owners</h5>
+      <a href="#owners">List Your Boat</a>
+      <a href="#owners">Earnings</a>
+      <a href="#download">Download Splash Pro</a>
+    </div>
+    <div class="fcol">
+      <h5>Legal</h5>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="mailto:support@splashboats.app">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Splash Inc. All rights reserved.</span>
+    <span>Made with 🌊 for the boating community</span>
+  </div>
+</footer>
+
+<script>
+const n=document.getElementById('nav');
+window.addEventListener('scroll',()=>n.classList.toggle('scrolled',scrollY>50));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:'smooth',block:'start'})}));
+</script>
+</body>
+</html>
