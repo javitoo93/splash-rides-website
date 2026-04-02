@@ -9,7 +9,7 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1a1a2e;line-height:1.7;background:#fafafa}
 .container{max-width:800px;margin:0 auto;padding:40px 20px}
 h1{font-size:2rem;margin-bottom:8px}
-.date{color:#666;margin-bottom:40px;font-size:0.9rem}
+.date{color:#666;margin-bottom:16px;font-size:0.9rem}
 h2{font-size:1.3rem;margin-top:36px;margin-bottom:12px;color:#0a2463}
 h3{font-size:1.1rem;margin-top:24px;margin-bottom:8px}
 p,li{margin-bottom:12px;color:#333}
@@ -19,133 +19,294 @@ ol,ul{padding-left:24px}
 strong{color:#1a1a2e}
 .highlight{background:#fff3cd;padding:16px;border-left:4px solid #ffc107;border-radius:4px;margin:20px 0}
 .red-highlight{background:#fde8e8;padding:16px;border-left:4px solid #dc3545;border-radius:4px;margin:20px 0}
+.blue-highlight{background:#e8f0fe;padding:16px;border-left:4px solid #1a73e8;border-radius:4px;margin:20px 0}
+.jurisdiction-badge{display:inline-block;background:#0a2463;color:#fff;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+
+/* Region selector */
+.region-bar{background:#0a2463;color:#fff;padding:12px 20px;border-radius:8px;margin-bottom:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.region-bar label{font-size:0.85rem;font-weight:600;white-space:nowrap}
+.region-bar select{padding:6px 12px;border-radius:6px;border:none;font-size:0.85rem;cursor:pointer;background:#fff;color:#0a2463;font-weight:600}
+
+/* Hide jurisdiction sections by default */
+.jurisdiction{display:none}
+.jurisdiction.active{display:block}
 </style>
 </head>
 <body>
 <div class="container">
 <a href="/" class="back">&larr; Back to Splash Rides</a>
 <h1>Terms of Service</h1>
-<p class="date">Version 2.1 &nbsp;|&nbsp; Effective Date: March 28, 2026 &nbsp;|&nbsp; Last Updated: March 28, 2026</p>
-<div class="red-highlight"><strong>PLEASE READ THESE TERMS CAREFULLY.</strong> By creating an account or using Splash Rides, you agree to these Terms of Service, including: (i) the binding arbitration clause and class action waiver in Section 17; (ii) the limitation of liability in Section 10; and (iii) the assumption of risk and release of claims in Section 11. If you do not agree, do not use the Platform.</div>
+<p class="date">Version 3.0 &nbsp;|&nbsp; Effective Date: April 2, 2026 &nbsp;|&nbsp; Last Updated: April 2, 2026</p>
+
+<!-- Region selector -->
+<div class="region-bar">
+  <label>📍 Select your region for applicable terms:</label>
+  <select id="regionSelect" onchange="switchJurisdiction(this.value)">
+    <option value="us">🇺🇸 United States</option>
+    <option value="eu">🇪🇺 European Union / Spain</option>
+    <option value="uk">🇬🇧 United Kingdom</option>
+    <option value="latam">🌎 Latin America</option>
+  </select>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     US TERMS
+════════════════════════════════════════════════ -->
+<div class="jurisdiction active" id="terms-us">
+<div class="jurisdiction-badge">🇺🇸 United States</div>
+<div class="red-highlight"><strong>PLEASE READ THESE TERMS CAREFULLY.</strong> By creating an account or using Splash Rides, you agree to these Terms, including: (i) the binding arbitration clause and class action waiver in Section 17; (ii) the limitation of liability in Section 10; and (iii) the assumption of risk and release of claims in Section 11.</div>
+
 <h2>1. Agreement to Terms</h2>
-<p>These Terms of Service (&ldquo;Terms&rdquo;) constitute a legally binding agreement between you (&ldquo;User,&rdquo; &ldquo;you&rdquo;) and Splash Rides, Inc., a Delaware corporation (&ldquo;Splash Rides,&rdquo; &ldquo;Company,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) governing your use of the Splash Rides mobile applications, website, and related services (collectively, the &ldquo;Platform&rdquo;). By accessing or using the Platform, creating an account, or clicking &ldquo;I Agree,&rdquo; you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree, you may not use the Platform.</p>
-<h2>2. Platform Description &mdash; Marketplace Only</h2>
-<div class="highlight"><p><strong>Splash Rides is a technology marketplace platform only.</strong> Splash Rides connects Users who wish to rent boats (&ldquo;Renters&rdquo;) with independent third-party boat owners (&ldquo;Owners&rdquo;) and independently licensed captains (&ldquo;Captains,&rdquo; and together with Owners, &ldquo;Service Providers&rdquo;). <strong>Splash Rides does not own, operate, maintain, inspect, captain, or control any vessels listed on the Platform.</strong></p></div>
-<p>Splash Rides does not provide boating services, transportation services, maritime services, charter services, or act as a common carrier. Splash Rides is not a boat rental company, a charter company, or a maritime service provider. Splash Rides&rsquo;s role is limited to providing technology that facilitates connections between Renters and Service Providers. All boat rental and captain services are provided solely by independent third-party Service Providers, who are solely responsible for the condition, safety, and operation of their vessels and the quality of their services.</p>
-<p>Splash Rides does not supervise, direct, or control Service Providers or their services. Splash Rides does not assess the suitability, seaworthiness, or safety of any vessel, nor does it verify the accuracy of any listing beyond the initial credential review process. Splash Rides&rsquo;s verification of Service Provider credentials (licenses, insurance, registration) is limited to reviewing documents submitted by Service Providers and does not constitute a guarantee, warranty, or endorsement of any Service Provider, vessel, or service.</p>
-<h2>3. Eligibility and Age Requirement</h2>
-<p>You must be at least 18 years old and legally able to enter into binding agreements. By using the Platform, you represent and warrant that: (a) you are at least 18 years of age; (b) you have the legal capacity to enter into a binding contract; (c) you are not barred from using the Platform under any applicable law; (d) all information you provide is truthful, accurate, and complete; and (e) you will maintain the accuracy of such information. Splash Rides reserves the right to terminate accounts found to belong to users under the age of 18.</p>
-<h2>4. User Accounts</h2>
-<p>You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. You must notify us immediately of any unauthorized access. Splash Rides reserves the right to suspend or terminate accounts at our sole discretion for violation of these Terms or for any reason with or without notice.</p>
-<h2>5. Renter Responsibilities and Acknowledgments</h2>
-<p>As a Renter, you acknowledge, agree, and represent that:</p>
+<p>These Terms of Service ("Terms") constitute a legally binding agreement between you and Splash Rides, Inc., a Delaware corporation ("Splash Rides," "we," "us") governing your use of our mobile applications, website, and services (the "Platform"). By using the Platform you agree to be bound by these Terms.</p>
+
+<h2>2. Platform Description — Marketplace Only</h2>
+<div class="highlight"><p><strong>Splash Rides is a technology marketplace only.</strong> We connect Renters with independent Owners and Captains. We do not own, operate, or control any vessels. All boat rental and captain services are provided solely by independent third-party Service Providers.</p></div>
+
+<h2>3. Eligibility</h2>
+<p>You must be at least 18 years old and legally able to enter into binding agreements in your state of residence.</p>
+
+<h2>4. Bookings, Payments, and Cancellations</h2>
+<h3>4.1 Pricing and Currency</h3>
+<p>All prices are displayed and charged in <strong>US Dollars (USD)</strong>. Platform fee: 20% of boat rental amount.</p>
+<h3>4.2 Payment Processing</h3>
+<p>Payments are processed through Stripe. Your card is authorized at booking and charged 24 hours before the trip.</p>
+<h3>4.3 Cancellation Policy</h3>
 <ul>
-<li><strong>Inherent Risks:</strong> Boating and water-based activities are inherently and extremely dangerous. Risks include but are not limited to: drowning, serious bodily injury, death, hypothermia, sun exposure, dehydration, property damage and total loss, vessel sinking or capsizing, collision with other vessels, fixed objects, or marine life, equipment or mechanical failure, exposure to adverse weather, acts or omissions of other persons on or near the water, and exposure to hazardous marine conditions.</li>
-<li><strong>Voluntary Assumption of Risk:</strong> You voluntarily and knowingly assume all risks, both known and unknown, associated with boating and water-based activities, including those arising from the negligence of others.</li>
-<li><strong>Compliance with All Applicable Laws:</strong> You will comply with all applicable federal, state, and local laws, regulations, and ordinances, including but not limited to U.S. Coast Guard regulations, state-specific boating safety education requirements, and all state and local boating laws. <strong>It is your sole responsibility to determine and comply with the laws of the state(s) in which you operate a vessel.</strong></li>
-<li><strong>Boating Safety Education:</strong> Many states require completion of an approved boating safety course and possession of a boating education card to operate motorized vessels. You are solely responsible for determining whether such requirements apply to you and for obtaining any required certifications before operating any vessel.</li>
-<li><strong>Sobriety:</strong> You will not operate or allow the operation of any vessel while under the influence of alcohol, drugs, or any impairing substance. Operating a vessel while impaired is a federal and state crime.</li>
-<li><strong>Passenger Safety:</strong> You are responsible for the safety and conduct of all passengers aboard the vessel during your rental period, including ensuring appropriate personal flotation devices are available and worn as required by law.</li>
-<li><strong>Weather and Conditions:</strong> You are solely responsible for monitoring weather conditions, water conditions, and tides, and for making prudent decisions regarding whether to proceed with or continue a trip.</li>
-<li><strong>Vessel Inspection:</strong> You are responsible for inspecting the vessel before departure. By departing on a trip, you acknowledge that the vessel appeared to be in acceptable condition at the time of departure.</li>
-<li><strong>Damage Liability:</strong> You are financially responsible for any damage to the vessel, equipment, or third-party property caused by your negligence, misuse, recklessness, or violation of these Terms, the rental agreement, or applicable law.</li>
-<li><strong>Insurance:</strong> You acknowledge that your personal insurance may not cover incidents occurring during a boat rental. You are strongly encouraged to obtain appropriate marine insurance coverage.</li>
-<li><strong>No Reliance on Splash Rides:</strong> You have not relied on any representation, warranty, or statement made by Splash Rides regarding the safety, condition, seaworthiness, or suitability of any vessel or the qualifications of any Service Provider, other than their listing on the Platform.</li>
-</ul>
-<h2>6. Service Provider Responsibilities</h2>
-<p>Owners and Captains using the Platform agree, represent, and warrant that:</p>
-<ul>
-<li><strong>Independent Contractor Status:</strong> Service Providers are independent contractors, not employees, agents, joint venturers, partners, or representatives of Splash Rides. Splash Rides does not direct, supervise, or control Service Providers&rsquo; work, methods, schedule, or manner of performance. Service Providers are solely responsible for all tax obligations, insurance, licensing, and compliance with all applicable laws.</li>
-<li><strong>Licensing and Certification:</strong> Captains must maintain a valid U.S. Coast Guard Captain&rsquo;s License and all required endorsements and certifications at all times. Any lapse, suspension, or revocation must be reported to Splash Rides immediately.</li>
-<li><strong>Vessel Condition and Safety &mdash; Sole Responsibility:</strong> Owners are solely and exclusively responsible for maintaining their vessels in safe, seaworthy condition in full compliance with all applicable federal, state, and local regulations, including all USCG requirements for safety equipment. <strong>Splash Rides has no duty to inspect, maintain, repair, or assess the condition of any vessel.</strong></li>
-<li><strong>Insurance:</strong> Owners must maintain commercial marine liability insurance adequate for their jurisdiction. In states that require minimum coverage for livery or charter operations, Owners must meet or exceed those requirements. <strong>It is the Owner&rsquo;s sole responsibility to determine and comply with the insurance requirements of their state.</strong></li>
-<li><strong>Registration and Permits:</strong> All vessels must have current state registration. Owners are solely responsible for obtaining any required livery permits, charter licenses, or other permits required by the state(s) in which they operate.</li>
-<li><strong>Truthful Information:</strong> All credentials, licenses, insurance certificates, photos, descriptions, and other information submitted must be genuine, current, and accurate. Submission of false, expired, or misleading information is grounds for immediate and permanent account termination and may result in legal action.</li>
-<li><strong>Safety Briefings:</strong> Captains must conduct comprehensive pre-departure safety briefings for all passengers, covering vessel safety equipment locations, emergency procedures, man-overboard procedures, and all applicable rules and regulations.</li>
-<li><strong>Premises Liability:</strong> Owners acknowledge that they, not Splash Rides, are responsible for the safety of their vessel as a premises. Owners accept full responsibility for any injuries, damages, or losses arising from conditions aboard their vessel. Splash Rides shall have no liability for any premises-liability claims related to any vessel.</li>
-<li><strong>Background and Fitness:</strong> Service Providers represent that they have no criminal history or pending charges that would make them unfit to provide services to the public and that they will immediately notify Splash Rides of any such developments.</li>
-</ul>
-<h2>7. Bookings, Payments, and Cancellations</h2>
-<h3>7.1 Payment Processing</h3>
-<p>Payments are processed through Stripe, a third-party payment processor. When you book, your payment method is authorized (held, not charged) at the time of booking. The charge is captured 24 hours before the scheduled trip. Splash Rides acts solely as a limited payment collection agent on behalf of Service Providers.</p>
-<h3>7.2 Platform Fees</h3>
-<p>Splash Rides charges a service fee to facilitate transactions (currently 20% of the boat rental amount). Fees are subject to change with 30 days&rsquo; notice.</p>
-<h3>7.3 Cancellation Policy</h3>
-<ul>
-<li><strong>48+ hours before trip:</strong> Full refund, no cancellation fee.</li>
-<li><strong>24&ndash;48 hours before trip:</strong> 75% refund (25% cancellation fee).</li>
-<li><strong>Less than 24 hours:</strong> 50% refund (50% cancellation fee).</li>
+<li><strong>48+ hours before trip:</strong> Full refund.</li>
+<li><strong>24–48 hours before trip:</strong> 75% refund.</li>
+<li><strong>Less than 24 hours:</strong> 50% refund.</li>
 <li><strong>No-show:</strong> No refund.</li>
 </ul>
-<p>Service Provider cancellations may result in financial penalties, reduced platform visibility, or account suspension.</p>
-<h3>7.4 Payout Terms</h3>
-<p>Service Provider earnings are available after payment capture and trip completion. Standard payouts process in 2&ndash;3 business days at no cost. Instant payouts incur a 1.99% fee.</p>
-<h2>8. No Duty to Inspect, Supervise, or Control</h2>
-<p><strong>Splash Rides has no duty, obligation, or responsibility to inspect, supervise, monitor, maintain, or control:</strong> (a) any vessel listed on the Platform; (b) the conduct, qualifications, or performance of any Service Provider beyond the initial credential review; (c) the interactions between Renters and Service Providers; (d) the accuracy or completeness of any listing information; or (e) compliance by any User with applicable laws.</p>
-<p>Splash Rides&rsquo;s initial review of Service Provider credentials is a limited verification of submitted documents only. It does not constitute an inspection, endorsement, certification, or guarantee. Splash Rides expressly disclaims any duty of care arising from this limited review process.</p>
-<h2>9. Disputes Between Users</h2>
-<p>Splash Rides is not a party to any agreement between Renters and Service Providers. Any disputes regarding the quality of services, vessel condition, damage claims, personal injury, or any other matter are solely between those parties. Splash Rides may, but is not obligated to, assist in resolving disputes at its sole discretion.</p>
-<h2>10. Limitation of Liability</h2>
-<div class="red-highlight">
-<p><strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SPLASH RIDES, INC., ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AFFILIATES, SUCCESSORS, AND ASSIGNS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUES, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, REGARDLESS OF THE THEORY OF LIABILITY, INCLUDING BUT NOT LIMITED TO:</strong></p>
+
+<h2>5. Renter Responsibilities</h2>
+<p>You acknowledge that boating involves inherent risks including injury and death. You voluntarily assume all risks. You will comply with all applicable US federal, state, and local boating laws including USCG regulations. You are solely responsible for determining and complying with state boating education requirements.</p>
+
+<h2>6. Service Provider Responsibilities</h2>
+<p>Captains must maintain a valid US Coast Guard Captain's License. Owners must maintain commercial marine liability insurance meeting state requirements. All credentials must be current and genuine.</p>
+
+<h2>7. Limitation of Liability</h2>
+<div class="red-highlight"><p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, SPLASH RIDES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE LESSER OF (A) AMOUNTS PAID BY YOU IN THE PRIOR 12 MONTHS OR (B) $100 USD.</strong></p></div>
+
+<h2>8. Assumption of Risk and Release</h2>
+<div class="red-highlight"><p><strong>TO THE FULLEST EXTENT PERMITTED BY LAW, YOU RELEASE SPLASH RIDES FROM ANY AND ALL LIABILITY ARISING FROM BOATING ACTIVITIES, WHETHER CAUSED BY NEGLIGENCE OR OTHERWISE.</strong></p></div>
+
+<h2>9. Indemnification</h2>
+<p>You agree to indemnify and hold harmless Splash Rides from all claims arising from your use of the Platform, violation of these Terms, or your boating activities.</p>
+
+<h2>10. Binding Arbitration and Class Action Waiver</h2>
+<div class="red-highlight"><p><strong>ALL DISPUTES SHALL BE RESOLVED BY BINDING INDIVIDUAL ARBITRATION UNDER AAA RULES. YOU AND SPLASH RIDES EACH WAIVE THE RIGHT TO TRIAL BY JURY AND TO PARTICIPATE IN ANY CLASS ACTION.</strong></p></div>
+<p>Opt-out: Send written notice to legal@splash-inc.com within 30 days of first accepting these Terms.</p>
+
+<h2>11. Governing Law</h2>
+<p>These Terms are governed by the laws of the State of Delaware. Exclusive venue: New Castle County, Delaware.</p>
+
+<h2>12. Contact</h2>
+<p>Splash Rides, Inc. — A Delaware Corporation<br>Legal: <a href="mailto:legal@splash-inc.com">legal@splash-inc.com</a></p>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     EU TERMS (GDPR + EU CONSUMER RIGHTS)
+════════════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-eu">
+<div class="jurisdiction-badge">🇪🇺 European Union / España</div>
+<div class="blue-highlight"><p><strong>IMPORTANT — EU CONSUMER RIGHTS:</strong> If you are an EU consumer, you have rights under EU law that cannot be excluded or limited by contract, including rights under the EU Consumer Rights Directive (2011/83/EU), GDPR (Regulation 2016/679), and applicable national consumer protection laws. These Terms do not affect your statutory rights.</p></div>
+
+<h2>1. Contracting Entity</h2>
+<p>These Terms of Service ("Terms") constitute a binding agreement between you and <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company (Sociedad Limitada) registered in Spain ("Splash Rides EU," "we," "us"), governing your use of the Splash Rides Platform in the European Economic Area.</p>
+<p>Registered address: Calle Palmeras 40, Urb El Chaparral Bajo, Talavera de la Reina, CP 45600, Spain.<br>
+Contact: <a href="mailto:eu-legal@splash-inc.com">eu-legal@splash-inc.com</a></p>
+
+<h2>2. Platform Description — Marketplace Only</h2>
+<div class="highlight"><p><strong>Splash Rides EU is a technology marketplace platform only.</strong> We connect Renters with independent boat Owners and Captains. We do not own, operate, or control any vessels. All boat rental and captain services are provided solely by independent third-party Service Providers.</p></div>
+
+<h2>3. Eligibility</h2>
+<p>You must be at least 18 years old (or the age of majority in your EU member state, whichever is higher) and legally able to enter into binding agreements.</p>
+
+<h2>4. Bookings, Pricing, and Consumer Rights</h2>
+<h3>4.1 Pricing and Currency</h3>
+<p>All prices are displayed <strong>inclusive of applicable VAT</strong> in <strong>Euros (EUR)</strong> for EU users. The applicable VAT rate depends on the country where the service is provided. Platform service fee: 20% of boat rental amount (VAT inclusive).</p>
+<h3>4.2 Payment Processing</h3>
+<p>Payments are processed through Stripe. Your card is authorized at booking and charged 24 hours before the trip.</p>
+<h3>4.3 Right of Withdrawal — EU Consumer Rights Directive</h3>
+<div class="blue-highlight">
+<p><strong>RIGHT OF WITHDRAWAL (Article 9, EU Consumer Rights Directive 2011/83/EU):</strong> As an EU consumer, you have the right to withdraw from this contract within 14 days without giving any reason. However, by confirming your booking, you expressly request immediate performance of the service and <strong>acknowledge that your right of withdrawal will be lost once the service has been fully performed</strong> or once the booking has been confirmed and the 24-hour pre-trip charge applied.</p>
+<p>For bookings made more than 14 days before the trip start date, you retain withdrawal rights for the 14-day period from booking confirmation, subject to the cancellation policy below.</p>
+</div>
+<h3>4.4 Cancellation Policy</h3>
 <ul>
-<li>YOUR USE OF OR INABILITY TO USE THE PLATFORM;</li>
-<li>ANY CONDUCT, CONTENT, OR SERVICES OF ANY THIRD PARTY, INCLUDING SERVICE PROVIDERS;</li>
-<li>ANY INJURY, DEATH, PROPERTY DAMAGE, OR OTHER HARM RESULTING FROM BOATING ACTIVITIES;</li>
-<li>THE CONDITION, SAFETY, SEAWORTHINESS, OR LEGALITY OF ANY VESSEL;</li>
-<li>THE QUALIFICATIONS, COMPETENCE, OR CONDUCT OF ANY SERVICE PROVIDER;</li>
-<li>UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR DATA;</li>
-<li>ANY PREMISES LIABILITY CLAIMS RELATED TO ANY VESSEL.</li>
+<li><strong>48+ hours before trip:</strong> Full refund (including any VAT paid).</li>
+<li><strong>24–48 hours before trip:</strong> 75% refund.</li>
+<li><strong>Less than 24 hours:</strong> 50% refund.</li>
+<li><strong>No-show:</strong> No refund, except where the Service Provider fails to appear.</li>
 </ul>
-<p><strong>IN NO EVENT SHALL SPLASH RIDES&rsquo;S TOTAL AGGREGATE LIABILITY EXCEED THE LESSER OF (A) THE AMOUNT YOU ACTUALLY PAID TO SPLASH RIDES IN THE 12 MONTHS PRIOR TO THE EVENT, OR (B) ONE HUNDRED DOLLARS ($100.00 USD).</strong></p>
-<p><strong>THESE LIMITATIONS APPLY REGARDLESS OF WHETHER SPLASH RIDES HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</strong></p>
+<p>These cancellation terms do not affect your statutory rights under EU law.</p>
+
+<h2>5. GDPR — Data Protection</h2>
+<div class="blue-highlight">
+<p><strong>DATA CONTROLLER:</strong> Splash Rides Europe S.L. is the data controller for personal data collected through the Platform in the EU.</p>
+<p><strong>YOUR RIGHTS UNDER GDPR:</strong> You have the right to: access your personal data; rectification of inaccurate data; erasure ("right to be forgotten"); restriction of processing; data portability; object to processing; and to lodge a complaint with your national supervisory authority (in Spain: Agencia Española de Protección de Datos — aepd.es).</p>
+<p><strong>LEGAL BASIS:</strong> We process your data based on: (a) contract performance (to provide the booking service); (b) legitimate interests (fraud prevention, platform security); (c) your consent (marketing communications — you may withdraw consent at any time).</p>
+<p><strong>DATA RETENTION:</strong> We retain personal data for as long as necessary to provide services and comply with legal obligations. Booking data is retained for 7 years for tax compliance purposes.</p>
+<p>To exercise your rights, contact: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
 </div>
-<h2>11. Assumption of Risk, Release, and Waiver</h2>
-<div class="red-highlight">
-<p><strong>RELEASE AND WAIVER OF CLAIMS:</strong> TO THE FULLEST EXTENT PERMITTED BY LAW, YOU HEREBY RELEASE, WAIVE, DISCHARGE, AND COVENANT NOT TO SUE SPLASH RIDES, INC., ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AFFILIATES, SUCCESSORS, AND ASSIGNS FROM ANY AND ALL LIABILITY, CLAIMS, DEMANDS, ACTIONS, AND CAUSES OF ACTION ARISING OUT OF OR RELATED TO ANY LOSS, DAMAGE, INJURY (INCLUDING DEATH), OR PROPERTY DAMAGE IN CONNECTION WITH YOUR USE OF THE PLATFORM OR ANY BOATING ACTIVITIES, WHETHER CAUSED BY THE NEGLIGENCE OF SPLASH RIDES OR OTHERWISE.</p>
-<p>YOU EXPRESSLY ACKNOWLEDGE THAT BOATING ACTIVITIES INVOLVE SERIOUS AND POTENTIALLY FATAL RISKS. YOU HAVE VOLUNTARILY CHOSEN TO PARTICIPATE AND ACCEPT ALL SUCH RISKS.</p>
-<p>IF YOU ARE A RESIDENT OF A STATE THAT DOES NOT ALLOW THE RELEASE OF PROSPECTIVE NEGLIGENCE CLAIMS (SUCH AS CERTAIN CLAIMS IN CONNECTICUT, HAWAII, LOUISIANA, MONTANA, NEW YORK, AND VIRGINIA), THIS SECTION SHALL APPLY TO THE MAXIMUM EXTENT PERMITTED BY YOUR STATE&rsquo;S LAW.</p>
+
+<h2>6. Renter Responsibilities</h2>
+<p>You acknowledge that boating involves inherent risks. You will comply with all applicable laws of the EU member state in which you use the Platform, including local maritime regulations and boating licensing requirements. EU boating license requirements vary by member state — you are solely responsible for obtaining any required certifications.</p>
+
+<h2>7. Service Provider Responsibilities</h2>
+<p>Service Providers must comply with all applicable EU and national regulations including maritime safety regulations, commercial insurance requirements of their country, and GDPR where they process personal data of customers.</p>
+
+<h2>8. Limitation of Liability — EU Consumer Protections</h2>
+<div class="blue-highlight"><p><strong>EU CONSUMER NOTE:</strong> Under EU law, we cannot exclude or limit liability for: death or personal injury caused by our negligence; fraudulent misrepresentation; or any other liability that cannot be limited by law. The following limitations apply only to the extent permitted by applicable EU law.</p></div>
+<p>Subject to the above, Splash Rides EU's total aggregate liability for any claim arising out of or related to these Terms shall not exceed the amount you paid to Splash Rides EU in the 12 months preceding the claim.</p>
+<p>We are not liable for indirect or consequential losses, loss of profits, or data loss, except where required by applicable EU law.</p>
+
+<h2>9. No Arbitration Clause for EU Consumers</h2>
+<div class="blue-highlight"><p><strong>EU CONSUMERS:</strong> The binding arbitration clause that applies in other jurisdictions does <strong>NOT</strong> apply to EU consumers. You retain the right to bring claims before the courts of your EU member state of residence. You also have access to the EU Online Dispute Resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>.</p></div>
+
+<h2>10. Governing Law — EU Users</h2>
+<p>For EU consumers, these Terms shall be governed by the law of the EU member state in which you are habitually resident, and you may bring proceedings in the courts of that member state. For business users, Spanish law (and exclusive jurisdiction of Spanish courts in Madrid) applies.</p>
+<p>For Spanish consumers specifically, any disputes may be submitted to the Junta Arbitral de Consumo of your autonomous community.</p>
+
+<h2>11. Contact and Complaints</h2>
+<p>Splash Rides Europe S.L.<br>
+Calle Palmeras 40, Urb El Chaparral Bajo, Talavera de la Reina, 45600, Spain<br>
+EU Legal: <a href="mailto:eu-legal@splash-inc.com">eu-legal@splash-inc.com</a><br>
+GDPR / Data: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a><br>
+EU ODR: <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a></p>
 </div>
-<h2>12. Indemnification</h2>
-<p>You agree to indemnify, defend, and hold harmless Splash Rides, Inc., its officers, directors, employees, agents, and affiliates from all claims, liabilities, damages, losses, costs, and fees (including reasonable attorneys&rsquo; fees) arising from: (a) your use of the Platform; (b) your violation of these Terms or any law; (c) any injury, death, or property damage from boating activities; (d) your content or information; (e) any dispute between you and another User; (f) your negligence or misconduct; or (g) the condition of your vessel (if you are an Owner).</p>
-<h2>13. Communication Policy</h2>
-<p>All communications between Renters and Service Providers must occur through the in-app messaging system. Sharing personal contact information (phone numbers, email addresses, social media handles) through the Platform for the purpose of circumventing Platform fees is prohibited and may result in immediate account suspension and forfeiture of any pending payouts.</p>
-<h2>14. Intellectual Property</h2>
-<p>The Platform, including all content, features, functionality, software, designs, and trademarks, is owned by Splash Rides, Inc. and protected by intellectual property laws. You may not reproduce, distribute, modify, or exploit any portion without our prior written permission.</p>
-<h2>15. Privacy</h2>
-<p>Your use of the Platform is subject to our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
-<h2>16. Governing Law and Venue</h2>
-<p>These Terms are governed by the laws of the State of Delaware, without regard to conflict of law principles. To the extent litigation is permitted, exclusive venue shall be in New Castle County, Delaware.</p>
-<h2>17. Binding Arbitration and Class Action Waiver</h2>
-<div class="red-highlight"><p><strong>PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS.</strong></p></div>
-<h3>17.1 Agreement to Arbitrate</h3>
-<p>You and Splash Rides mutually agree that any disputes shall be resolved by final and binding individual arbitration administered by the American Arbitration Association (&ldquo;AAA&rdquo;) under its Consumer Arbitration Rules, and not by a court or jury.</p>
-<h3>17.2 Class Action Waiver</h3>
-<p><strong>YOU AND SPLASH RIDES EACH WAIVE THE RIGHT TO A TRIAL BY JURY. YOU AND SPLASH RIDES EACH WAIVE THE RIGHT TO PARTICIPATE IN ANY CLASS ACTION, COLLECTIVE ACTION, PRIVATE ATTORNEY GENERAL ACTION, MASS ARBITRATION, OR OTHER REPRESENTATIVE PROCEEDING.</strong></p>
-<h3>17.3 Arbitration Procedures</h3>
-<p>The arbitration shall be conducted by a single arbitrator by telephone, videoconference, or in person in the county where you reside. The arbitrator&rsquo;s decision shall be final and binding.</p>
-<h3>17.4 Exceptions</h3>
-<p>Either party may bring an individual action in small claims court. Either party may seek injunctive relief to prevent infringement of intellectual property rights.</p>
-<h3>17.5 Opt-Out Right</h3>
-<p>You may opt out of this arbitration provision by sending written notice to legal@splash-inc.com within 30 days of first accepting these Terms.</p>
-<h2>18. Force Majeure</h2>
-<p>Splash Rides, Inc. shall not be liable for any delay or failure to perform resulting from causes beyond its reasonable control, including but not limited to acts of God, natural disasters, severe weather events, hurricanes, floods, fire, pandemics, government orders, war, terrorism, labor disputes, power outages, or internet failures. In the event a booking is cancelled due to a force majeure event, Splash Rides will make reasonable efforts to facilitate rescheduling or issue applicable refunds at its sole discretion in accordance with the cancellation policy.</p>
-<h2>19. Disclaimers</h2>
-<p><strong>THE PLATFORM IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.</strong> SPLASH RIDES, INC. EXPRESSLY DISCLAIMS ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. SPLASH RIDES DOES NOT WARRANT THAT: the Platform will be uninterrupted or error-free; any Service Provider will meet your expectations; any vessel is safe, seaworthy, or suitable; or any credentials are current beyond initial review at time of submission.</p>
-<h2>20. Third-Party Services</h2>
-<p>The Platform may integrate with third-party services (e.g., Stripe, mapping services). Splash Rides is not responsible for third-party services. Your use of them is subject to their respective terms.</p>
-<h2>21. Modifications to Terms</h2>
-<p>Splash Rides, Inc. reserves the right to modify these Terms at any time with 30 days&rsquo; notice. You will be required to accept updated Terms before continuing to use the Platform. Continued use after acceptance constitutes agreement to the modified Terms.</p>
-<h2>22. Termination</h2>
-<p>Splash Rides may terminate or suspend your account at any time, with or without cause. Upon termination, your right to use the Platform ceases immediately. Sections 2, 8, 9, 10, 11, 12, 16, 17, 19 survive termination.</p>
-<h2>23. Entire Agreement and Severability</h2>
-<p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and Splash Rides, Inc. If any provision is found unenforceable, the remaining provisions remain in full force.</p>
-<h2>24. No Waiver</h2>
-<p>Splash Rides&rsquo;s failure to enforce any provision shall not constitute a waiver of that provision.</p>
-<h2>25. Contact</h2>
-<p>Splash Rides, Inc. &mdash; A Delaware Corporation<br>
-Legal: <a href="mailto:legal@splash-inc.com">legal@splash-inc.com</a><br>
-Privacy: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+
+<!-- ════════════════════════════════════════════════
+     UK TERMS
+════════════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-uk">
+<div class="jurisdiction-badge">🇬🇧 United Kingdom</div>
+<div class="blue-highlight"><p><strong>IMPORTANT — UK CONSUMER RIGHTS:</strong> If you are a UK consumer, you have rights under the Consumer Rights Act 2015, the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013, and UK GDPR that cannot be excluded by contract.</p></div>
+
+<h2>1. Contracting Entity</h2>
+<p>These Terms govern your use of the Splash Rides Platform in the United Kingdom. Services to UK users are provided by Splash Rides, Inc. (US) operating in the UK, or its designated UK entity. For queries: <a href="mailto:uk-legal@splash-inc.com">uk-legal@splash-inc.com</a></p>
+
+<h2>2. Platform Description</h2>
+<p>Splash Rides is a technology marketplace connecting Renters with independent boat Owners and Captains. We do not own or operate any vessels.</p>
+
+<h2>3. Pricing and Currency</h2>
+<p>All prices are displayed in <strong>Pounds Sterling (GBP)</strong> inclusive of applicable VAT (20% standard rate where applicable) for UK users.</p>
+
+<h2>4. Consumer Rights — Cancellation</h2>
+<div class="blue-highlight">
+<p><strong>UK CANCELLATION RIGHTS:</strong> Under the Consumer Contracts Regulations 2013, you have a 14-day right to cancel from the date of booking. However, by confirming your booking you expressly consent to performance beginning before the end of the 14-day period and acknowledge that you lose your right to cancel once the service has been fully performed.</p>
 </div>
+<h3>Cancellation Policy</h3>
+<ul>
+<li><strong>48+ hours before trip:</strong> Full refund.</li>
+<li><strong>24–48 hours before trip:</strong> 75% refund.</li>
+<li><strong>Less than 24 hours:</strong> 50% refund.</li>
+<li><strong>No-show:</strong> No refund.</li>
+</ul>
+
+<h2>5. UK GDPR — Data Protection</h2>
+<p>We process personal data in accordance with UK GDPR and the Data Protection Act 2018. You have rights to access, rectify, erase, and port your data. To exercise your rights or complain: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a>. You may also complain to the ICO at ico.org.uk.</p>
+
+<h2>6. Limitation of Liability</h2>
+<p>Nothing in these Terms limits or excludes liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be limited under UK law. Subject to this, our total liability shall not exceed amounts paid by you in the 12 months prior to the claim.</p>
+
+<h2>7. Dispute Resolution</h2>
+<p>You may refer disputes to an Alternative Dispute Resolution (ADR) provider. We are not obliged to submit to ADR but will consider reasonable requests. You may bring proceedings in the courts of England and Wales, or Scotland or Northern Ireland if you are resident there.</p>
+
+<h2>8. Governing Law</h2>
+<p>These Terms are governed by English law. Disputes shall be subject to the jurisdiction of the courts of England and Wales, without prejudice to your rights as a consumer to bring proceedings in your local court.</p>
+
+<h2>9. Contact</h2>
+<p>UK queries: <a href="mailto:uk-legal@splash-inc.com">uk-legal@splash-inc.com</a></p>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     LATAM TERMS
+════════════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-latam">
+<div class="jurisdiction-badge">🌎 Latin America</div>
+<div class="blue-highlight"><p><strong>AVISO IMPORTANTE:</strong> Si eres residente en América Latina, los siguientes términos se aplican además de las protecciones al consumidor de tu país. Los precios se muestran en <strong>Dólares Estadounidenses (USD)</strong>. Tus derechos locales como consumidor no se ven afectados por estos términos.</p></div>
+
+<h2>1. Entidad Contratante</h2>
+<p>Estos Términos de Servicio ("Términos") constituyen un acuerdo vinculante entre tú y Splash Rides, Inc., una corporación de Delaware, EE.UU. ("Splash Rides," "nosotros") que rige tu uso de la Plataforma Splash Rides en América Latina.</p>
+
+<h2>2. Descripción de la Plataforma</h2>
+<p>Splash Rides es una plataforma de mercado tecnológico que conecta a Arrendatarios con Propietarios e Capitanes independientes. No somos propietarios ni operamos ninguna embarcación.</p>
+
+<h2>3. Precios y Moneda</h2>
+<p>Todos los precios se muestran y cobran en <strong>Dólares Estadounidenses (USD)</strong>. Tu banco o procesador de pagos puede aplicar cargos por conversión de moneda. La tarifa de la plataforma es del 20% del monto del alquiler.</p>
+
+<h2>4. Reservas y Cancelaciones</h2>
+<h3>Política de Cancelación</h3>
+<ul>
+<li><strong>Más de 48 horas antes del viaje:</strong> Reembolso completo.</li>
+<li><strong>24–48 horas antes del viaje:</strong> Reembolso del 75%.</li>
+<li><strong>Menos de 24 horas:</strong> Reembolso del 50%.</li>
+<li><strong>No presentarse:</strong> Sin reembolso.</li>
+</ul>
+
+<h2>5. Responsabilidades del Arrendatario</h2>
+<p>Reconoces que las actividades acuáticas conllevan riesgos inherentes. Debes cumplir con todas las leyes marítimas y de navegación aplicables en tu país. Eres el único responsable de obtener las licencias y certificaciones requeridas.</p>
+
+<h2>6. Protecciones al Consumidor Locales</h2>
+<p>Nada en estos Términos limita o excluye los derechos que te corresponden bajo las leyes de protección al consumidor de tu país, incluyendo (entre otros): Ley 24.240 de Argentina, Código de Defensa del Consumidor de Brasil (Ley 8.078/1990), Ley 19.496 de Chile, Ley 1480 de Colombia, Ley Federal de Protección al Consumidor de México, entre otras.</p>
+
+<h2>7. Protección de Datos</h2>
+<p>Procesamos tus datos personales de acuerdo con las leyes de protección de datos aplicables en tu país. Para ejercer tus derechos de acceso, rectificación o eliminación de datos: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+
+<h2>8. Limitación de Responsabilidad</h2>
+<p>En la medida permitida por la ley aplicable de tu país, nuestra responsabilidad total no excederá los montos que hayas pagado a Splash Rides en los 12 meses anteriores al reclamo. Esta limitación no se aplica en la medida en que las leyes locales de protección al consumidor no lo permitan.</p>
+
+<h2>9. Resolución de Disputas</h2>
+<p>Las disputas se resolverán de acuerdo con las leyes de tu país de residencia. Puedes presentar reclamos ante las autoridades de protección al consumidor de tu país.</p>
+
+<h2>10. Ley Aplicable</h2>
+<p>Sin perjuicio de los derechos obligatorios del consumidor en tu país de residencia, estos Términos se rigen por las leyes del Estado de Delaware, EE.UU.</p>
+
+<h2>11. Contacto</h2>
+<p>Consultas América Latina: <a href="mailto:latam@splash-inc.com">latam@splash-inc.com</a><br>
+Privacidad: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+</div>
+
+</div>
+
+<script>
+// Auto-detect region from browser language
+function detectRegion() {
+  const lang = navigator.language || 'en';
+  const saved = localStorage.getItem('splash_region');
+  if (saved) return saved;
+  if (lang.startsWith('es')) {
+    // Distinguish EU Spanish from LATAM Spanish
+    const latamCodes = ['es-MX','es-AR','es-CO','es-CL','es-PE','es-VE','es-EC','es-BO','es-PY','es-UY','es-CR','es-GT','es-HN','es-NI','es-PA','es-SV','es-DO','es-CU','es-PR','es-419'];
+    if (latamCodes.some(c => lang.startsWith(c.substring(0,5)))) return 'latam';
+    return 'eu'; // es or es-ES → EU
+  }
+  if (lang.startsWith('en-GB')) return 'uk';
+  if (lang.startsWith('pt-BR') || lang.startsWith('pt')) return 'latam';
+  return 'us';
+}
+
+function switchJurisdiction(region) {
+  // Hide all
+  document.querySelectorAll('.jurisdiction').forEach(el => el.classList.remove('active'));
+  // Show selected
+  const target = document.getElementById('terms-' + region);
+  if (target) target.classList.add('active');
+  // Update select
+  document.getElementById('regionSelect').value = region;
+  // Save preference
+  localStorage.setItem('splash_region', region);
+  // Update page title
+  const titles = {us:'🇺🇸 United States', eu:'🇪🇺 European Union / Spain', uk:'🇬🇧 United Kingdom', latam:'🌎 Latin America'};
+  document.title = 'Terms of Service (' + titles[region] + ') — Splash Rides';
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', function() {
+  const region = detectRegion();
+  switchJurisdiction(region);
+});
+</script>
 </body>
 </html>

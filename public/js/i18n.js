@@ -359,9 +359,48 @@ const i18n = (() => {
     setLanguage(currentLang === 'en' ? 'es' : 'en');
   }
 
+  // ─── Currency formatting ─────────────────────────────────────────
+  function formatCurrency(amountUSD) {
+    const region = localStorage.getItem('splash_region') || 'us';
+    const rates = { us: 1, eu: 0.92, uk: 0.79, latam: 1 };
+    const symbols = { us: '
+
+  // Auto-init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // ─── Public API ───────────────────────────────────────────────────
+  return { t, setLanguage, getLanguage, toggleLanguage, init };
+})();
+, eu: '€', uk: '£', latam: '
+
+  // Auto-init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // ─── Public API ───────────────────────────────────────────────────
+  return { t, setLanguage, getLanguage, toggleLanguage, init };
+})();
+ };
+    const codes = { us: 'USD', eu: 'EUR', uk: 'GBP', latam: 'USD' };
+    const rate = rates[region] || 1;
+    const symbol = symbols[region] || '
+
+  // Auto-init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
   // ─── Initialize ───────────────────────────────────────────────────
   function init() {
-    // Priority: localStorage > browser language > English
     const saved = localStorage.getItem('splash_lang');
     currentLang = saved || detectLanguage();
     applyTranslations();
