@@ -21,15 +21,13 @@ strong{color:#1a1a2e}
 .red-highlight{background:#fde8e8;padding:16px;border-left:4px solid #dc3545;border-radius:4px;margin:20px 0}
 .blue-highlight{background:#e8f0fe;padding:16px;border-left:4px solid #1a73e8;border-radius:4px;margin:20px 0}
 .jurisdiction-badge{display:inline-block;background:#0a2463;color:#fff;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
-
-/* Region selector */
 .region-bar{background:#0a2463;color:#fff;padding:12px 20px;border-radius:8px;margin-bottom:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .region-bar label{font-size:0.85rem;font-weight:600;white-space:nowrap}
 .region-bar select{padding:6px 12px;border-radius:6px;border:none;font-size:0.85rem;cursor:pointer;background:#fff;color:#0a2463;font-weight:600}
-
-/* Hide jurisdiction sections by default */
 .jurisdiction{display:none}
 .jurisdiction.active{display:block}
+.entity-box{background:#f0f4ff;border:1px solid #c5d0f5;border-radius:8px;padding:16px;margin-bottom:24px;font-size:0.9rem}
+.entity-box strong{color:#0a2463}
 </style>
 </head>
 <body>
@@ -38,103 +36,59 @@ strong{color:#1a1a2e}
 <h1>Terms of Service</h1>
 <p class="date">Version 3.0 &nbsp;|&nbsp; Effective Date: April 2, 2026 &nbsp;|&nbsp; Last Updated: April 2, 2026</p>
 
+<!-- Contracting entity notice -->
+<div class="entity-box">
+  <strong>Contracting Entity:</strong> All services are provided by <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company (Sociedad Limitada) registered in Spain. Company details are publicly available at the Registro Mercantil Central (<a href="https://www.rmc.es" target="_blank">rmc.es</a>).
+</div>
+
 <!-- Region selector -->
 <div class="region-bar">
-  <label>📍 Select your region for applicable terms:</label>
+  <label>&#128205; Select your region for applicable terms:</label>
   <select id="regionSelect" onchange="switchJurisdiction(this.value)">
-    <option value="us">🇺🇸 United States</option>
-    <option value="eu">🇪🇺 European Union / Spain</option>
-    <option value="uk">🇬🇧 United Kingdom</option>
-    <option value="latam">🌎 Latin America</option>
+    <option value="eu">&#127466;&#127482; European Union / Spain</option>
+    <option value="us">&#127482;&#127480; United States</option>
+    <option value="uk">&#127468;&#127463; United Kingdom</option>
+    <option value="latam">&#127758; Latin America</option>
   </select>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     US TERMS
-════════════════════════════════════════════════ -->
-<div class="jurisdiction active" id="terms-us">
-<div class="jurisdiction-badge">🇺🇸 United States</div>
-<div class="red-highlight"><strong>PLEASE READ THESE TERMS CAREFULLY.</strong> By creating an account or using Splash Rides, you agree to these Terms, including: (i) the binding arbitration clause and class action waiver in Section 17; (ii) the limitation of liability in Section 10; and (iii) the assumption of risk and release of claims in Section 11.</div>
-
-<h2>1. Agreement to Terms</h2>
-<p>These Terms of Service ("Terms") constitute a legally binding agreement between you and Splash Rides, Inc., a Delaware corporation ("Splash Rides," "we," "us") governing your use of our mobile applications, website, and services (the "Platform"). By using the Platform you agree to be bound by these Terms.</p>
-
-<h2>2. Platform Description — Marketplace Only</h2>
-<div class="highlight"><p><strong>Splash Rides is a technology marketplace only.</strong> We connect Renters with independent Owners and Captains. We do not own, operate, or control any vessels. All boat rental and captain services are provided solely by independent third-party Service Providers.</p></div>
-
-<h2>3. Eligibility</h2>
-<p>You must be at least 18 years old and legally able to enter into binding agreements in your state of residence.</p>
-
-<h2>4. Bookings, Payments, and Cancellations</h2>
-<h3>4.1 Pricing and Currency</h3>
-<p>All prices are displayed and charged in <strong>US Dollars (USD)</strong>. Platform fee: 20% of boat rental amount.</p>
-<h3>4.2 Payment Processing</h3>
-<p>Payments are processed through Stripe. Your card is authorized at booking and charged 24 hours before the trip.</p>
-<h3>4.3 Cancellation Policy</h3>
-<ul>
-<li><strong>48+ hours before trip:</strong> Full refund.</li>
-<li><strong>24–48 hours before trip:</strong> 75% refund.</li>
-<li><strong>Less than 24 hours:</strong> 50% refund.</li>
-<li><strong>No-show:</strong> No refund.</li>
-</ul>
-
-<h2>5. Renter Responsibilities</h2>
-<p>You acknowledge that boating involves inherent risks including injury and death. You voluntarily assume all risks. You will comply with all applicable US federal, state, and local boating laws including USCG regulations. You are solely responsible for determining and complying with state boating education requirements.</p>
-
-<h2>6. Service Provider Responsibilities</h2>
-<p>Captains must maintain a valid US Coast Guard Captain's License. Owners must maintain commercial marine liability insurance meeting state requirements. All credentials must be current and genuine.</p>
-
-<h2>7. Limitation of Liability</h2>
-<div class="red-highlight"><p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, SPLASH RIDES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE LESSER OF (A) AMOUNTS PAID BY YOU IN THE PRIOR 12 MONTHS OR (B) $100 USD.</strong></p></div>
-
-<h2>8. Assumption of Risk and Release</h2>
-<div class="red-highlight"><p><strong>TO THE FULLEST EXTENT PERMITTED BY LAW, YOU RELEASE SPLASH RIDES FROM ANY AND ALL LIABILITY ARISING FROM BOATING ACTIVITIES, WHETHER CAUSED BY NEGLIGENCE OR OTHERWISE.</strong></p></div>
-
-<h2>9. Indemnification</h2>
-<p>You agree to indemnify and hold harmless Splash Rides from all claims arising from your use of the Platform, violation of these Terms, or your boating activities.</p>
-
-<h2>10. Binding Arbitration and Class Action Waiver</h2>
-<div class="red-highlight"><p><strong>ALL DISPUTES SHALL BE RESOLVED BY BINDING INDIVIDUAL ARBITRATION UNDER AAA RULES. YOU AND SPLASH RIDES EACH WAIVE THE RIGHT TO TRIAL BY JURY AND TO PARTICIPATE IN ANY CLASS ACTION.</strong></p></div>
-<p>Opt-out: Send written notice to legal@splash-inc.com within 30 days of first accepting these Terms.</p>
-
-<h2>11. Governing Law</h2>
-<p>These Terms are governed by the laws of the State of Delaware. Exclusive venue: New Castle County, Delaware.</p>
-
-<h2>12. Contact</h2>
-<p>Splash Rides, Inc. — A Delaware Corporation<br>Legal: <a href="mailto:legal@splash-inc.com">legal@splash-inc.com</a></p>
+<!-- ═══════════════════════════════════════
+     EU / SPAIN TERMS (DEFAULT)
+════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-eu">
+<div class="jurisdiction-badge">&#127466;&#127482; European Union / Spain</div>
+<div class="blue-highlight">
+<p><strong>EU CONSUMER RIGHTS:</strong> If you are an EU consumer, you have rights under EU law that cannot be excluded or limited by contract, including rights under the EU Consumer Rights Directive (2011/83/EU), GDPR (Regulation 2016/679), and applicable national consumer protection laws. These Terms do not affect your statutory rights.</p>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     EU TERMS (GDPR + EU CONSUMER RIGHTS)
-════════════════════════════════════════════════ -->
-<div class="jurisdiction" id="terms-eu">
-<div class="jurisdiction-badge">🇪🇺 European Union / España</div>
-<div class="blue-highlight"><p><strong>IMPORTANT — EU CONSUMER RIGHTS:</strong> If you are an EU consumer, you have rights under EU law that cannot be excluded or limited by contract, including rights under the EU Consumer Rights Directive (2011/83/EU), GDPR (Regulation 2016/679), and applicable national consumer protection laws. These Terms do not affect your statutory rights.</p></div>
-
 <h2>1. Contracting Entity</h2>
-<p>These Terms of Service ("Terms") constitute a binding agreement between you and <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company (Sociedad Limitada) registered in Spain ("Splash Rides EU," "we," "us"), governing your use of the Splash Rides Platform in the European Economic Area.</p>
-<p>Registered address: Calle Palmeras 40, Urb El Chaparral Bajo, Talavera de la Reina, CP 45600, Spain.<br>
-Contact: <a href="mailto:eu-legal@splash-inc.com">eu-legal@splash-inc.com</a></p>
+<p>These Terms of Service ("Terms") constitute a binding agreement between you and <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company (Sociedad Limitada) registered in Spain ("Splash Rides," "we," "us"), governing your use of the Splash Rides Platform in the European Economic Area.</p>
+<p>Registered in Spain. Company details available at the Registro Mercantil Central.<br>
+Contact: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
 
 <h2>2. Platform Description — Marketplace Only</h2>
-<div class="highlight"><p><strong>Splash Rides EU is a technology marketplace platform only.</strong> We connect Renters with independent boat Owners and Captains. We do not own, operate, or control any vessels. All boat rental and captain services are provided solely by independent third-party Service Providers.</p></div>
+<div class="highlight">
+<p><strong>Splash Rides is a technology marketplace only.</strong> Splash Rides Europe S.L. connects Renters with independent boat Owners and Captains. We do not own, operate, or control any vessels. All boat rental and captain services are provided solely by independent third-party Service Providers.</p>
+</div>
 
 <h2>3. Eligibility</h2>
-<p>You must be at least 18 years old (or the age of majority in your EU member state, whichever is higher) and legally able to enter into binding agreements.</p>
+<p>You must be at least 18 years old (or the age of majority in your EU member state, whichever is higher) and legally capable of entering into binding agreements.</p>
 
 <h2>4. Bookings, Pricing, and Consumer Rights</h2>
 <h3>4.1 Pricing and Currency</h3>
-<p>All prices are displayed <strong>inclusive of applicable VAT</strong> in <strong>Euros (EUR)</strong> for EU users. The applicable VAT rate depends on the country where the service is provided. Platform service fee: 20% of boat rental amount (VAT inclusive).</p>
+<p>All prices for EU users are displayed <strong>inclusive of applicable VAT</strong> in <strong>Euros (EUR)</strong>. The applicable VAT rate depends on the country where the service is provided. Platform service fee: 20% of the boat rental amount (VAT inclusive).</p>
+
 <h3>4.2 Payment Processing</h3>
-<p>Payments are processed through Stripe. Your card is authorized at booking and charged 24 hours before the trip.</p>
+<p>Payments are processed through Stripe. Your card is authorized at booking and charged 24 hours before the trip start time.</p>
+
 <h3>4.3 Right of Withdrawal — EU Consumer Rights Directive</h3>
 <div class="blue-highlight">
-<p><strong>RIGHT OF WITHDRAWAL (Article 9, EU Consumer Rights Directive 2011/83/EU):</strong> As an EU consumer, you have the right to withdraw from this contract within 14 days without giving any reason. However, by confirming your booking, you expressly request immediate performance of the service and <strong>acknowledge that your right of withdrawal will be lost once the service has been fully performed</strong> or once the booking has been confirmed and the 24-hour pre-trip charge applied.</p>
-<p>For bookings made more than 14 days before the trip start date, you retain withdrawal rights for the 14-day period from booking confirmation, subject to the cancellation policy below.</p>
+<p><strong>RIGHT OF WITHDRAWAL (Article 9, EU Consumer Rights Directive 2011/83/EU):</strong> As an EU consumer, you have the right to withdraw from this contract within 14 days without giving any reason. However, by confirming your booking you expressly request immediate performance of the service and <strong>acknowledge that your right of withdrawal will be lost once the service has been fully performed</strong> or once the 24-hour pre-trip charge has been applied.</p>
 </div>
+
 <h3>4.4 Cancellation Policy</h3>
 <ul>
-<li><strong>48+ hours before trip:</strong> Full refund (including any VAT paid).</li>
+<li><strong>48+ hours before trip:</strong> Full refund (including VAT paid).</li>
 <li><strong>24–48 hours before trip:</strong> 75% refund.</li>
 <li><strong>Less than 24 hours:</strong> 50% refund.</li>
 <li><strong>No-show:</strong> No refund, except where the Service Provider fails to appear.</li>
@@ -143,60 +97,64 @@ Contact: <a href="mailto:eu-legal@splash-inc.com">eu-legal@splash-inc.com</a></p
 
 <h2>5. GDPR — Data Protection</h2>
 <div class="blue-highlight">
-<p><strong>DATA CONTROLLER:</strong> Splash Rides Europe S.L. is the data controller for personal data collected through the Platform in the EU.</p>
-<p><strong>YOUR RIGHTS UNDER GDPR:</strong> You have the right to: access your personal data; rectification of inaccurate data; erasure ("right to be forgotten"); restriction of processing; data portability; object to processing; and to lodge a complaint with your national supervisory authority (in Spain: Agencia Española de Protección de Datos — aepd.es).</p>
-<p><strong>LEGAL BASIS:</strong> We process your data based on: (a) contract performance (to provide the booking service); (b) legitimate interests (fraud prevention, platform security); (c) your consent (marketing communications — you may withdraw consent at any time).</p>
-<p><strong>DATA RETENTION:</strong> We retain personal data for as long as necessary to provide services and comply with legal obligations. Booking data is retained for 7 years for tax compliance purposes.</p>
-<p>To exercise your rights, contact: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+<p><strong>DATA CONTROLLER:</strong> Splash Rides Europe S.L. is the data controller for personal data collected through the Platform.</p>
+<p><strong>YOUR RIGHTS UNDER GDPR:</strong> You have the right to: access your personal data; rectification of inaccurate data; erasure ("right to be forgotten"); restriction of processing; data portability; object to processing; and to lodge a complaint with your national supervisory authority. In Spain: Agencia Española de Protección de Datos — <a href="https://www.aepd.es" target="_blank">aepd.es</a>.</p>
+<p><strong>LEGAL BASIS:</strong> We process your data on the basis of: (a) contract performance; (b) legitimate interests (fraud prevention, security); (c) your consent (marketing — withdrawable at any time).</p>
+<p><strong>DATA RETENTION:</strong> Booking data is retained for 7 years for Spanish tax compliance. Contact: <a href="mailto:privacy@splash-rides.com">privacy@splash-rides.com</a></p>
 </div>
 
 <h2>6. Renter Responsibilities</h2>
-<p>You acknowledge that boating involves inherent risks. You will comply with all applicable laws of the EU member state in which you use the Platform, including local maritime regulations and boating licensing requirements. EU boating license requirements vary by member state — you are solely responsible for obtaining any required certifications.</p>
+<p>You acknowledge that boating involves inherent risks including injury and death. You will comply with all applicable laws of the EU member state in which you use the Platform. EU boating license requirements vary by member state — you are solely responsible for obtaining required certifications.</p>
 
 <h2>7. Service Provider Responsibilities</h2>
-<p>Service Providers must comply with all applicable EU and national regulations including maritime safety regulations, commercial insurance requirements of their country, and GDPR where they process personal data of customers.</p>
+<p>Service Providers must comply with all applicable EU and national regulations including maritime safety rules, commercial insurance requirements of their country, and GDPR where they process customer personal data.</p>
 
-<h2>8. Limitation of Liability — EU Consumer Protections</h2>
-<div class="blue-highlight"><p><strong>EU CONSUMER NOTE:</strong> Under EU law, we cannot exclude or limit liability for: death or personal injury caused by our negligence; fraudulent misrepresentation; or any other liability that cannot be limited by law. The following limitations apply only to the extent permitted by applicable EU law.</p></div>
-<p>Subject to the above, Splash Rides EU's total aggregate liability for any claim arising out of or related to these Terms shall not exceed the amount you paid to Splash Rides EU in the 12 months preceding the claim.</p>
-<p>We are not liable for indirect or consequential losses, loss of profits, or data loss, except where required by applicable EU law.</p>
+<h2>8. Limitation of Liability</h2>
+<div class="blue-highlight">
+<p><strong>EU CONSUMER NOTE:</strong> Under EU law, we cannot exclude or limit liability for: death or personal injury caused by our negligence; fraudulent misrepresentation; or any other liability that cannot be limited by applicable law.</p>
+</div>
+<p>Subject to the above, Splash Rides Europe S.L.'s total aggregate liability for any claim shall not exceed the amount you paid to Splash Rides in the 12 months preceding the claim.</p>
 
-<h2>9. No Arbitration Clause for EU Consumers</h2>
-<div class="blue-highlight"><p><strong>EU CONSUMERS:</strong> The binding arbitration clause that applies in other jurisdictions does <strong>NOT</strong> apply to EU consumers. You retain the right to bring claims before the courts of your EU member state of residence. You also have access to the EU Online Dispute Resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>.</p></div>
+<h2>9. No Mandatory Arbitration for EU Consumers</h2>
+<div class="blue-highlight">
+<p>The binding arbitration clause does <strong>NOT</strong> apply to EU consumers. You retain full right to bring claims before the courts of your EU member state of residence. You also have access to the EU Online Dispute Resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>. In Spain, disputes may be submitted to the Junta Arbitral de Consumo of your autonomous community.</p>
+</div>
 
-<h2>10. Governing Law — EU Users</h2>
-<p>For EU consumers, these Terms shall be governed by the law of the EU member state in which you are habitually resident, and you may bring proceedings in the courts of that member state. For business users, Spanish law (and exclusive jurisdiction of Spanish courts in Madrid) applies.</p>
-<p>For Spanish consumers specifically, any disputes may be submitted to the Junta Arbitral de Consumo of your autonomous community.</p>
+<h2>10. Governing Law</h2>
+<p>For EU consumers, these Terms shall be governed by the law of your EU member state of habitual residence and you may bring proceedings in the courts of that member state. For business users, Spanish law applies with exclusive jurisdiction of Spanish courts in Madrid.</p>
 
-<h2>11. Contact and Complaints</h2>
-<p>Splash Rides Europe S.L.<br>
-Calle Palmeras 40, Urb El Chaparral Bajo, Talavera de la Reina, 45600, Spain<br>
-EU Legal: <a href="mailto:eu-legal@splash-inc.com">eu-legal@splash-inc.com</a><br>
-GDPR / Data: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a><br>
+<h2>11. Contact</h2>
+<p>Splash Rides Europe S.L. &mdash; Registered in Spain<br>
+Legal: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a><br>
+GDPR / Privacy: <a href="mailto:privacy@splash-rides.com">privacy@splash-rides.com</a><br>
 EU ODR: <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a></p>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     UK TERMS
-════════════════════════════════════════════════ -->
-<div class="jurisdiction" id="terms-uk">
-<div class="jurisdiction-badge">🇬🇧 United Kingdom</div>
-<div class="blue-highlight"><p><strong>IMPORTANT — UK CONSUMER RIGHTS:</strong> If you are a UK consumer, you have rights under the Consumer Rights Act 2015, the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013, and UK GDPR that cannot be excluded by contract.</p></div>
+<!-- ═══════════════════════════════════════
+     US TERMS
+════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-us">
+<div class="jurisdiction-badge">&#127482;&#127480; United States</div>
+<div class="highlight">
+<p><strong>NOTE:</strong> Splash Rides is operated by <strong>Splash Rides Europe S.L.</strong>, a Spanish company. By using the Platform in the United States, you agree that any dispute shall be governed by Spanish law as set out in Section 10, and you consent to the jurisdiction of Spanish courts for any litigation, except where mandatory US consumer protection laws provide otherwise.</p>
+</div>
 
 <h2>1. Contracting Entity</h2>
-<p>These Terms govern your use of the Splash Rides Platform in the United Kingdom. Services to UK users are provided by Splash Rides, Inc. (US) operating in the UK, or its designated UK entity. For queries: <a href="mailto:uk-legal@splash-inc.com">uk-legal@splash-inc.com</a></p>
+<p>These Terms govern your use of the Splash Rides Platform. All services are provided by <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company. Contact: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
 
-<h2>2. Platform Description</h2>
-<p>Splash Rides is a technology marketplace connecting Renters with independent boat Owners and Captains. We do not own or operate any vessels.</p>
-
-<h2>3. Pricing and Currency</h2>
-<p>All prices are displayed in <strong>Pounds Sterling (GBP)</strong> inclusive of applicable VAT (20% standard rate where applicable) for UK users.</p>
-
-<h2>4. Consumer Rights — Cancellation</h2>
-<div class="blue-highlight">
-<p><strong>UK CANCELLATION RIGHTS:</strong> Under the Consumer Contracts Regulations 2013, you have a 14-day right to cancel from the date of booking. However, by confirming your booking you expressly consent to performance beginning before the end of the 14-day period and acknowledge that you lose your right to cancel once the service has been fully performed.</p>
+<h2>2. Platform Description — Marketplace Only</h2>
+<div class="highlight">
+<p><strong>Splash Rides is a technology marketplace only.</strong> We connect Renters with independent Owners and Captains. We do not own, operate, or control any vessels. All services are provided by independent third-party Service Providers.</p>
 </div>
-<h3>Cancellation Policy</h3>
+
+<h2>3. Eligibility</h2>
+<p>You must be at least 18 years old and legally able to enter into binding agreements in your state of residence.</p>
+
+<h2>4. Pricing and Currency</h2>
+<p>All prices for US users are displayed in <strong>US Dollars (USD)</strong>. Platform service fee: 20% of the boat rental amount.</p>
+
+<h2>5. Bookings and Cancellations</h2>
+<p>Your card is authorized at booking and charged 24 hours before the trip.</p>
 <ul>
 <li><strong>48+ hours before trip:</strong> Full refund.</li>
 <li><strong>24–48 hours before trip:</strong> 75% refund.</li>
@@ -204,108 +162,147 @@ EU ODR: <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.e
 <li><strong>No-show:</strong> No refund.</li>
 </ul>
 
-<h2>5. UK GDPR — Data Protection</h2>
-<p>We process personal data in accordance with UK GDPR and the Data Protection Act 2018. You have rights to access, rectify, erase, and port your data. To exercise your rights or complain: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a>. You may also complain to the ICO at ico.org.uk.</p>
+<h2>6. Renter Responsibilities</h2>
+<p>You acknowledge that boating involves inherent risks including injury and death. You voluntarily assume all risks. You will comply with all applicable US federal, state, and local boating laws including USCG regulations. You are solely responsible for obtaining required state boating certifications.</p>
 
-<h2>6. Limitation of Liability</h2>
-<p>Nothing in these Terms limits or excludes liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be limited under UK law. Subject to this, our total liability shall not exceed amounts paid by you in the 12 months prior to the claim.</p>
+<h2>7. Service Provider Responsibilities</h2>
+<p>Captains operating in the US must maintain a valid US Coast Guard Captain's License. Owners must maintain commercial marine liability insurance meeting applicable state requirements.</p>
 
-<h2>7. Dispute Resolution</h2>
-<p>You may refer disputes to an Alternative Dispute Resolution (ADR) provider. We are not obliged to submit to ADR but will consider reasonable requests. You may bring proceedings in the courts of England and Wales, or Scotland or Northern Ireland if you are resident there.</p>
-
-<h2>8. Governing Law</h2>
-<p>These Terms are governed by English law. Disputes shall be subject to the jurisdiction of the courts of England and Wales, without prejudice to your rights as a consumer to bring proceedings in your local court.</p>
-
-<h2>9. Contact</h2>
-<p>UK queries: <a href="mailto:uk-legal@splash-inc.com">uk-legal@splash-inc.com</a></p>
+<h2>8. Limitation of Liability</h2>
+<div class="red-highlight">
+<p><strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SPLASH RIDES EUROPE S.L. SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID IN THE PRIOR 12 MONTHS.</strong></p>
 </div>
 
-<!-- ════════════════════════════════════════════════
+<h2>9. Assumption of Risk</h2>
+<div class="red-highlight">
+<p><strong>TO THE FULLEST EXTENT PERMITTED BY LAW, YOU RELEASE SPLASH RIDES EUROPE S.L. FROM ALL LIABILITY ARISING FROM BOATING ACTIVITIES.</strong> If you are a resident of a state that does not permit such releases (including Connecticut, Hawaii, Louisiana, Montana, New York, and Virginia), this section applies to the maximum extent permitted by your state's law.</p>
+</div>
+
+<h2>10. Governing Law</h2>
+<p>These Terms are governed by the laws of Spain. To the extent litigation is permitted, disputes shall be resolved in the courts of Madrid, Spain. Nothing in this section limits rights you may have under mandatory US consumer protection laws.</p>
+
+<h2>11. Contact</h2>
+<p>Splash Rides Europe S.L. — Spain<br>
+Legal: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     UK TERMS
+════════════════════════════════════════ -->
+<div class="jurisdiction" id="terms-uk">
+<div class="jurisdiction-badge">&#127468;&#127463; United Kingdom</div>
+<div class="blue-highlight">
+<p><strong>UK CONSUMER RIGHTS:</strong> If you are a UK consumer, you have rights under the Consumer Rights Act 2015, the Consumer Contracts Regulations 2013, and UK GDPR that cannot be excluded by contract. These Terms do not affect those rights.</p>
+</div>
+
+<h2>1. Contracting Entity</h2>
+<p>These Terms govern your use of the Splash Rides Platform in the United Kingdom. All services are provided by <strong>Splash Rides Europe S.L.</strong>, a Spanish limited liability company operating in the UK market. Contact: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
+
+<h2>2. Platform Description</h2>
+<p>Splash Rides is a technology marketplace connecting Renters with independent boat Owners and Captains. We do not own or operate any vessels.</p>
+
+<h2>3. Pricing and Currency</h2>
+<p>All prices for UK users are displayed in <strong>Pounds Sterling (GBP)</strong> inclusive of applicable VAT (20% standard rate where applicable).</p>
+
+<h2>4. Consumer Cancellation Rights</h2>
+<div class="blue-highlight">
+<p><strong>UK CANCELLATION RIGHTS:</strong> Under the Consumer Contracts Regulations 2013, you have a 14-day right to cancel from the date of booking. By confirming your booking you consent to performance beginning before the end of this period and acknowledge you lose your cancellation right once the service has been fully performed.</p>
+</div>
+<ul>
+<li><strong>48+ hours before trip:</strong> Full refund.</li>
+<li><strong>24–48 hours before trip:</strong> 75% refund.</li>
+<li><strong>Less than 24 hours:</strong> 50% refund.</li>
+<li><strong>No-show:</strong> No refund.</li>
+</ul>
+
+<h2>5. UK GDPR and Data Protection</h2>
+<p>Splash Rides Europe S.L. processes personal data in accordance with UK GDPR and the Data Protection Act 2018. You have rights to access, rectify, erase, and port your data. Complaints may be made to the ICO at <a href="https://ico.org.uk" target="_blank">ico.org.uk</a>. Contact: <a href="mailto:privacy@splash-rides.com">privacy@splash-rides.com</a></p>
+
+<h2>6. Limitation of Liability</h2>
+<p>Nothing in these Terms limits or excludes liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be limited under UK law. Subject to this, total liability shall not exceed amounts paid by you in the 12 months prior to the claim.</p>
+
+<h2>7. Governing Law</h2>
+<p>These Terms are governed by Spanish law. Without prejudice to your rights as a UK consumer, disputes may be brought in the courts of England and Wales, or Scotland or Northern Ireland if you are resident there.</p>
+
+<h2>8. Contact</h2>
+<p>Splash Rides Europe S.L.<br>
+Legal: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
+</div>
+
+<!-- ═══════════════════════════════════════
      LATAM TERMS
-════════════════════════════════════════════════ -->
+════════════════════════════════════════ -->
 <div class="jurisdiction" id="terms-latam">
-<div class="jurisdiction-badge">🌎 Latin America</div>
-<div class="blue-highlight"><p><strong>AVISO IMPORTANTE:</strong> Si eres residente en América Latina, los siguientes términos se aplican además de las protecciones al consumidor de tu país. Los precios se muestran en <strong>Dólares Estadounidenses (USD)</strong>. Tus derechos locales como consumidor no se ven afectados por estos términos.</p></div>
+<div class="jurisdiction-badge">&#127758; Latin America</div>
+<div class="blue-highlight">
+<p><strong>AVISO:</strong> Todos los servicios son prestados por <strong>Splash Rides Europe S.L.</strong>, una sociedad limitada española. Tus derechos como consumidor según las leyes de tu país no se ven afectados por estos términos.</p>
+</div>
 
 <h2>1. Entidad Contratante</h2>
-<p>Estos Términos de Servicio ("Términos") constituyen un acuerdo vinculante entre tú y Splash Rides, Inc., una corporación de Delaware, EE.UU. ("Splash Rides," "nosotros") que rige tu uso de la Plataforma Splash Rides en América Latina.</p>
+<p>Estos Términos de Servicio ("Términos") constituyen un acuerdo vinculante entre tú y <strong>Splash Rides Europe S.L.</strong>, una sociedad limitada española ("Splash Rides," "nosotros") que rige el uso de la Plataforma Splash Rides.</p>
+<p>Sociedad limitada registrada en España. Datos disponibles en el Registro Mercantil Central.<br>
+Contacto: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a></p>
 
 <h2>2. Descripción de la Plataforma</h2>
-<p>Splash Rides es una plataforma de mercado tecnológico que conecta a Arrendatarios con Propietarios e Capitanes independientes. No somos propietarios ni operamos ninguna embarcación.</p>
+<p>Splash Rides es una plataforma de mercado tecnológico que conecta Arrendatarios con Propietarios y Capitanes independientes. No somos propietarios ni operamos embarcaciones.</p>
 
 <h2>3. Precios y Moneda</h2>
-<p>Todos los precios se muestran y cobran en <strong>Dólares Estadounidenses (USD)</strong>. Tu banco o procesador de pagos puede aplicar cargos por conversión de moneda. La tarifa de la plataforma es del 20% del monto del alquiler.</p>
+<p>Los precios para usuarios de América Latina se muestran en <strong>Dólares Estadounidenses (USD)</strong>. Tu banco puede aplicar cargos por conversión de moneda. La comisión de la plataforma es del 20% del monto del alquiler.</p>
 
 <h2>4. Reservas y Cancelaciones</h2>
-<h3>Política de Cancelación</h3>
 <ul>
 <li><strong>Más de 48 horas antes del viaje:</strong> Reembolso completo.</li>
-<li><strong>24–48 horas antes del viaje:</strong> Reembolso del 75%.</li>
+<li><strong>24–48 horas antes:</strong> Reembolso del 75%.</li>
 <li><strong>Menos de 24 horas:</strong> Reembolso del 50%.</li>
 <li><strong>No presentarse:</strong> Sin reembolso.</li>
 </ul>
 
 <h2>5. Responsabilidades del Arrendatario</h2>
-<p>Reconoces que las actividades acuáticas conllevan riesgos inherentes. Debes cumplir con todas las leyes marítimas y de navegación aplicables en tu país. Eres el único responsable de obtener las licencias y certificaciones requeridas.</p>
+<p>Reconoces que las actividades acuáticas conllevan riesgos inherentes. Debes cumplir con todas las leyes marítimas aplicables en tu país y obtener las licencias de navegación requeridas.</p>
 
-<h2>6. Protecciones al Consumidor Locales</h2>
-<p>Nada en estos Términos limita o excluye los derechos que te corresponden bajo las leyes de protección al consumidor de tu país, incluyendo (entre otros): Ley 24.240 de Argentina, Código de Defensa del Consumidor de Brasil (Ley 8.078/1990), Ley 19.496 de Chile, Ley 1480 de Colombia, Ley Federal de Protección al Consumidor de México, entre otras.</p>
+<h2>6. Protección al Consumidor Local</h2>
+<p>Nada en estos Términos limita o excluye los derechos que te corresponden bajo las leyes de protección al consumidor de tu país, incluyendo: Ley 24.240 (Argentina), Código de Defensa del Consumidor — Ley 8.078/1990 (Brasil), Ley 19.496 (Chile), Ley 1480 (Colombia), Ley Federal de Protección al Consumidor (México), entre otras.</p>
 
 <h2>7. Protección de Datos</h2>
-<p>Procesamos tus datos personales de acuerdo con las leyes de protección de datos aplicables en tu país. Para ejercer tus derechos de acceso, rectificación o eliminación de datos: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+<p>Tratamos tus datos personales de conformidad con el RGPD europeo y las leyes de protección de datos aplicables en tu país. Para ejercer tus derechos: <a href="mailto:privacy@splash-rides.com">privacy@splash-rides.com</a></p>
 
 <h2>8. Limitación de Responsabilidad</h2>
-<p>En la medida permitida por la ley aplicable de tu país, nuestra responsabilidad total no excederá los montos que hayas pagado a Splash Rides en los 12 meses anteriores al reclamo. Esta limitación no se aplica en la medida en que las leyes locales de protección al consumidor no lo permitan.</p>
+<p>En la medida permitida por la ley aplicable en tu país, la responsabilidad total de Splash Rides Europe S.L. no excederá los montos que hayas pagado en los 12 meses anteriores al reclamo.</p>
 
-<h2>9. Resolución de Disputas</h2>
-<p>Las disputas se resolverán de acuerdo con las leyes de tu país de residencia. Puedes presentar reclamos ante las autoridades de protección al consumidor de tu país.</p>
+<h2>9. Ley Aplicable</h2>
+<p>Sin perjuicio de los derechos obligatorios del consumidor en tu país, estos Términos se rigen por las leyes de España. Las disputas se resolverán de acuerdo con las leyes de tu país de residencia en cuanto a derechos del consumidor.</p>
 
-<h2>10. Ley Aplicable</h2>
-<p>Sin perjuicio de los derechos obligatorios del consumidor en tu país de residencia, estos Términos se rigen por las leyes del Estado de Delaware, EE.UU.</p>
-
-<h2>11. Contacto</h2>
-<p>Consultas América Latina: <a href="mailto:latam@splash-inc.com">latam@splash-inc.com</a><br>
-Privacidad: <a href="mailto:privacy@splash-inc.com">privacy@splash-inc.com</a></p>
+<h2>10. Contacto</h2>
+<p>Splash Rides Europe S.L. — España<br>
+Legal: <a href="mailto:legal@splash-rides.com">legal@splash-rides.com</a><br>
+Privacidad: <a href="mailto:privacy@splash-rides.com">privacy@splash-rides.com</a></p>
 </div>
 
-</div>
+</div><!-- .container -->
 
 <script>
-// Auto-detect region from browser language
 function detectRegion() {
-  const lang = navigator.language || 'en';
   const saved = localStorage.getItem('splash_region');
   if (saved) return saved;
-  if (lang.startsWith('es')) {
-    // Distinguish EU Spanish from LATAM Spanish
-    const latamCodes = ['es-MX','es-AR','es-CO','es-CL','es-PE','es-VE','es-EC','es-BO','es-PY','es-UY','es-CR','es-GT','es-HN','es-NI','es-PA','es-SV','es-DO','es-CU','es-PR','es-419'];
-    if (latamCodes.some(c => lang.startsWith(c.substring(0,5)))) return 'latam';
-    return 'eu'; // es or es-ES → EU
-  }
+  const lang = navigator.language || 'en';
+  const latam = ['es-MX','es-AR','es-CO','es-CL','es-PE','es-VE','es-EC','es-BO','es-PY','es-UY','es-CR','es-GT','es-HN','es-NI','es-PA','es-SV','es-DO','es-CU','es-PR','pt-BR','pt'];
+  if (latam.some(c => lang.startsWith(c))) return 'latam';
+  if (lang.startsWith('es')) return 'eu';
   if (lang.startsWith('en-GB')) return 'uk';
-  if (lang.startsWith('pt-BR') || lang.startsWith('pt')) return 'latam';
-  return 'us';
+  if (lang.startsWith('en-US') || lang.startsWith('en-CA')) return 'us';
+  return 'eu'; // Default to EU since that's where the company is
 }
 
 function switchJurisdiction(region) {
-  // Hide all
   document.querySelectorAll('.jurisdiction').forEach(el => el.classList.remove('active'));
-  // Show selected
   const target = document.getElementById('terms-' + region);
   if (target) target.classList.add('active');
-  // Update select
   document.getElementById('regionSelect').value = region;
-  // Save preference
   localStorage.setItem('splash_region', region);
-  // Update page title
-  const titles = {us:'🇺🇸 United States', eu:'🇪🇺 European Union / Spain', uk:'🇬🇧 United Kingdom', latam:'🌎 Latin America'};
-  document.title = 'Terms of Service (' + titles[region] + ') — Splash Rides';
 }
 
-// Init on load
 document.addEventListener('DOMContentLoaded', function() {
-  const region = detectRegion();
-  switchJurisdiction(region);
+  switchJurisdiction(detectRegion());
 });
 </script>
 </body>
