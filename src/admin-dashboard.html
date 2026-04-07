@@ -23,10 +23,15 @@
         .status-rejected { background: #FEE2E2; color: #991B1B; }
         .modal { display: none; }
         .modal.active { display: flex; }
-
-        /* Action modal styles */
         #actionModal { display: none; }
         #actionModal.active { display: flex; }
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .tab { font-size: 0.75rem; padding: 0.75rem 0.25rem; white-space: nowrap; }
+            table { font-size: 0.75rem; }
+            table th, table td { padding: 0.5rem 0.5rem; }
+            h2 { font-size: 1.25rem !important; }
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -41,7 +46,7 @@
                 <h1 class="text-xl font-bold text-gray-900">BoatRide Admin</h1>
             </div>
             <div class="flex items-center space-x-4">
-                <span id="adminEmail" class="text-sm text-gray-600"></span>
+                <span id="adminEmail" class="text-sm text-gray-600 hidden sm:inline"></span>
                 <button onclick="logout()" class="text-sm text-red-600 hover:text-red-800">Logout</button>
             </div>
         </div>
@@ -49,8 +54,8 @@
 
     <!-- Navigation Tabs -->
     <nav class="bg-white border-b">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex space-x-8">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 overflow-x-auto">
+            <div class="flex space-x-2 sm:space-x-6 min-w-max">
                 <button onclick="showTab('overview')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 tab-active" id="tab-overview">Overview</button>
                 <button onclick="showTab('verifications')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-verifications">Verifications</button>
                 <button onclick="showTab('users')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-users">Users</button>
@@ -63,7 +68,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
 
         <!-- Overview Tab -->
         <div id="content-overview" class="tab-content">
@@ -133,11 +138,11 @@
         <!-- Verifications Tab -->
         <div id="content-verifications" class="tab-content hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Verification Management</h2>
-            <div class="flex space-x-4 mb-6">
+            <div class="flex flex-wrap gap-2 mb-6">
                 <button onclick="loadVerifications('captain')" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" id="btn-captain-ver">Captain Verifications</button>
                 <button onclick="loadVerifications('boat')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300" id="btn-boat-ver">Boat Verifications</button>
             </div>
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -158,16 +163,16 @@
         <!-- Users Tab -->
         <div id="content-users" class="tab-content hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">User Management</h2>
-            <div class="flex items-center space-x-4 mb-6">
-                <input type="text" id="userSearch" placeholder="Search users..." class="px-4 py-2 border rounded-lg w-64" onkeyup="searchUsers()">
-                <select id="userRole" class="px-4 py-2 border rounded-lg" onchange="loadUsers()">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                <input type="text" id="userSearch" placeholder="Search users..." class="px-4 py-2 border rounded-lg w-full sm:w-64" onkeyup="searchUsers()">
+                <select id="userRole" class="px-4 py-2 border rounded-lg w-full sm:w-auto" onchange="loadUsers()">
                     <option value="">All Roles</option>
                     <option value="customer">Customer</option>
                     <option value="owner">Owner</option>
                     <option value="captain">Captain</option>
                 </select>
             </div>
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -189,8 +194,8 @@
         <!-- Bookings Tab -->
         <div id="content-bookings" class="tab-content hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Booking Management</h2>
-            <div class="flex items-center space-x-4 mb-6">
-                <select id="bookingStatus" class="px-4 py-2 border rounded-lg" onchange="loadBookings()">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                <select id="bookingStatus" class="px-4 py-2 border rounded-lg w-full sm:w-auto" onchange="loadBookings()">
                     <option value="">All Status</option>
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
@@ -198,7 +203,7 @@
                     <option value="cancelled">Cancelled</option>
                 </select>
             </div>
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -221,14 +226,14 @@
         <!-- Boats Tab -->
         <div id="content-boats" class="tab-content hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Boat Management</h2>
-            <div class="flex items-center space-x-4 mb-6">
-                <select id="boatActive" class="px-4 py-2 border rounded-lg" onchange="loadBoats()">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                <select id="boatActive" class="px-4 py-2 border rounded-lg w-full sm:w-auto" onchange="loadBoats()">
                     <option value="">All Boats</option>
                     <option value="true">Active</option>
                     <option value="false">Inactive</option>
                 </select>
             </div>
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -250,7 +255,7 @@
         <!-- Payments Tab -->
         <div id="content-payments" class="tab-content hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Payment Management</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Pending Payouts</h3>
                     <div id="pendingPayouts" class="space-y-3">
@@ -268,9 +273,9 @@
 
         <!-- Promotions Tab -->
         <div id="content-promotions" class="tab-content hidden">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Commission & Promotions</h2>
-                <button onclick="showAddPromotionModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Commission & Promotions</h2>
+                <button onclick="showAddPromotionModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2 text-sm w-full sm:w-auto justify-center">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                     <span>New Promotion</span>
                 </button>
