@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FIX: Content Security Policy — blocks XSS script injection -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src https://fonts.gstatic.com;
+        connect-src 'self' https://boatride-api.onrender.com;
+        img-src 'self' data: https:;
+    ">
+    <title>BoatRide Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { border-bottom: 2px solid #3B82F6; color: #3B82F6; }
+        .status-pending { background: #FEF3C7; color: #92400E; }
+        .status-approved { background: #D1FAE5; color: #065F46; }
+        .status-rejected { background: #FEE2E2; color: #991B1B; }
+        .modal { display: none; }
+        .modal.active { display: flex; }
+
+        /* Action modal styles */
+        #actionModal { display: none; }
+        #actionModal.active { display: flex; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                <h1 class="text-xl font-bold text-gray-900">BoatRide Admin</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span id="adminEmail" class="text-sm text-gray-600"></span>
+                <button onclick="logout()" class="text-sm text-red-600 hover:text-red-800">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex space-x-8">
+                <button onclick="showTab('overview')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 tab-active" id="tab-overview">Overview</button>
+                <button onclick="showTab('verifications')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-verifications">Verifications</button>
+                <button onclick="showTab('users')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-users">Users</button>
+                <button onclick="showTab('bookings')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-bookings">Bookings</button>
+                <button onclick="showTab('boats')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-boats">Boats</button>
+                <button onclick="showTab('payments')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-payments">Payments</button>
+                <button onclick="showTab('promotions')" class="tab py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700" id="tab-promotions">Promotions</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- Overview Tab -->
+        <div id="content-overview" class="tab-content">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-500">Total Users</p>
+                            <p class="text-2xl font-bold text-gray-900" id="stat-users">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-500">Active Boats</p>
+                            <p class="text-2xl font-bold text-gray-900" id="stat-boats">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-yellow-100">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-500">Pending Verifications</p>
+                            <p class="text-2xl font-bold text-gray-900" id="stat-pending">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-100">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-500">Revenue (30 days)</p>
+                            <p class="text-2xl font-bold text-gray-900" id="stat-revenue">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Pending Actions</h3>
+                <div id="pendingActions" class="space-y-3">
+                    <p class="text-gray-500 text-sm">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verifications Tab -->
+        <div id="content-verifications" class="tab-content hidden">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Verification Management</h2>
+            <div class="flex space-x-4 mb-6">
+                <button onclick="loadVerifications('captain')" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" id="btn-captain-ver">Captain Verifications</button>
+                <button onclick="loadVerifications('boat')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300" id="btn-boat-ver">Boat Verifications</button>
+            </div>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Applicant</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Details</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Submitted</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="verificationsTable" class="bg-white divide-y divide-gray-200">
+                        <tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="content-users" class="tab-content hidden">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">User Management</h2>
+            <div class="flex items-center space-x-4 mb-6">
+                <input type="text" id="userSearch" placeholder="Search users..." class="px-4 py-2 border rounded-lg w-64" onkeyup="searchUsers()">
+                <select id="userRole" class="px-4 py-2 border rounded-lg" onchange="loadUsers()">
+                    <option value="">All Roles</option>
+                    <option value="customer">Customer</option>
+                    <option value="owner">Owner</option>
+                    <option value="captain">Captain</option>
+                </select>
+            </div>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">User</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Joined</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable" class="bg-white divide-y divide-gray-200">
+                        <tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div id="content-bookings" class="tab-content hidden">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Booking Management</h2>
+            <div class="flex items-center space-x-4 mb-6">
+                <select id="bookingStatus" class="px-4 py-2 border rounded-lg" onchange="loadBookings()">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Booking #</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Boat</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable" class="bg-white divide-y divide-gray-200">
+                        <tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Boats Tab -->
+        <div id="content-boats" class="tab-content hidden">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Boat Management</h2>
+            <div class="flex items-center space-x-4 mb-6">
+                <select id="boatActive" class="px-4 py-2 border rounded-lg" onchange="loadBoats()">
+                    <option value="">All Boats</option>
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+            </div>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Boat</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="boatsTable" class="bg-white divide-y divide-gray-200">
+                        <tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Payments Tab -->
+        <div id="content-payments" class="tab-content hidden">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Payment Management</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Pending Payouts</h3>
+                    <div id="pendingPayouts" class="space-y-3">
+                        <p class="text-gray-500 text-sm">Loading...</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Revenue (Last 30 Days)</h3>
+                    <div id="revenueSummary" class="space-y-4">
+                        <p class="text-gray-500 text-sm">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promotions Tab -->
+        <div id="content-promotions" class="tab-content hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Commission & Promotions</h2>
+                <button onclick="showAddPromotionModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    <span>New Promotion</span>
+                </button>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-5">
+                    <p class="text-sm text-gray-500">Standard Rate</p>
+                    <p class="text-3xl font-bold text-gray-900">20%</p>
+                    <p class="text-xs text-gray-400 mt-1">Default platform commission</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-5">
+                    <p class="text-sm text-gray-500">Active Promotions</p>
+                    <p class="text-3xl font-bold text-blue-600" id="promoActiveCount">-</p>
+                    <p class="text-xs text-gray-400 mt-1" id="promoStandardCount">- owners at standard rate</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-5">
+                    <p class="text-sm text-gray-500">Promo Revenue Generated</p>
+                    <p class="text-3xl font-bold text-green-600" id="promoRevenue">$0</p>
+                    <p class="text-xs text-gray-400 mt-1">From promoted owners</p>
+                </div>
+            </div>
+
+            <!-- Active Promotions Table -->
+            <div class="bg-white rounded-lg shadow mb-6">
+                <div class="px-6 py-4 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Active Promotions</h3>
+                </div>
+                <div id="activePromotionsTable" class="p-6">
+                    <p class="text-gray-500 text-sm">Loading...</p>
+                </div>
+            </div>
+
+            <!-- All Owners Commission Table -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">All Owners — Commission Rates</h3>
+                </div>
+                <div id="allOwnersTable" class="overflow-x-auto">
+                    <p class="text-gray-500 text-sm p-6">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promotion Modal -->
+        <div id="promoModal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50" style="display:none">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4" id="promoModalTitle">Set Promotion</h3>
+                    <div class="space-y-4">
+                        <div id="promoOwnerSelectWrapper">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Owner</label>
+                            <select id="promoOwnerSelect" class="w-full border rounded-lg p-2"><option>Loading...</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Commission Rate (%)</label>
+                            <input id="promoRate" type="number" min="0" max="100" step="1" value="15" class="w-full border rounded-lg p-2" placeholder="e.g. 15 for 15%">
+                            <p class="text-xs text-gray-400 mt-1">Standard is 20%. Lower = more attractive for the owner.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Promotion Name</label>
+                            <input id="promoName" type="text" class="w-full border rounded-lg p-2" placeholder="e.g. Early Adopter, Launch Special">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Expires (optional)</label>
+                            <input id="promoExpires" type="date" class="w-full border rounded-lg p-2">
+                            <p class="text-xs text-gray-400 mt-1">Leave blank for no expiration. Auto-reverts to 20% when expired.</p>
+                        </div>
+                    </div>
+                    <div id="promoModalError" class="text-red-600 text-sm mt-3 hidden"></div>
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button onclick="closePromoModal()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Cancel</button>
+                        <button onclick="savePromotion()" id="promoSaveBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Promotion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Review Modal (captain/boat verification) -->
+    <div id="reviewModal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4" id="modalTitle">Review Application</h3>
+                <!-- FIX: modalContent is now built with DOM methods, NOT innerHTML, to prevent XSS -->
+                <div id="modalContent" class="mb-6"></div>
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Rejection Reason (required if rejecting)</label>
+                    <textarea id="rejectionReason" class="w-full border rounded-lg p-2" rows="3" placeholder="Enter reason..."></textarea>
+                </div>
+                <div class="flex justify-end space-x-3 mt-4">
+                    <button onclick="closeModal()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Cancel</button>
+                    <button onclick="rejectApplication()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Reject</button>
+                    <button onclick="approveApplication()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Approve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIX: Action Modal — replaces all prompt() dialogs for reason/amount inputs -->
+    <div id="actionModal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2" id="actionModalTitle">Confirm Action</h3>
+                <p class="text-sm text-gray-600 mb-4" id="actionModalDesc"></p>
+                <div id="actionModalFields" class="space-y-3 mb-4"></div>
+                <div id="actionModalError" class="text-red-600 text-sm hidden mb-2"></div>
+                <div class="flex justify-end space-x-3">
+                    <button onclick="closeActionModal()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Cancel</button>
+                    <button id="actionModalConfirm" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://boatride-api.onrender.com/api';
+        let authToken = null;
+        let currentVerificationType = 'captain';
+        let currentReviewItem = null;
+
+        // =====================================================================
+        // FIX 1: XSS Prevention — escapeHTML sanitizes ALL user-supplied data
+        // before it touches the DOM. Used everywhere instead of raw interpolation.
+        // =====================================================================
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // FIX 2: Safe URL validator — only allows https:// and http:// hrefs.
+        // Blocks javascript: URIs and data: URIs that could run code on click.
+        function safeUrl(url) {
+            if (!url || typeof url !== 'string') return null;
+            try {
+                const u = new URL(url);
+                if (u.protocol === 'https:' || u.protocol === 'http:') return url;
+            } catch (e) { /* invalid URL */ }
+            return null;
+        }
+
+        // FIX 3: Safe document link builder — creates <a> elements via DOM API,
+        // never via innerHTML, and validates the URL before setting href.
+        function buildDocLink(url, label, icon) {
+            const safe = safeUrl(url);
+            if (!safe) {
+                const span = document.createElement('span');
+                span.className = 'text-gray-400 text-sm';
+                span.textContent = `No ${label}`;
+                return span;
+            }
+            const a = document.createElement('a');
+            a.href = safe;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer'; // FIX: prevent tab-napping
+            a.className = 'flex items-center p-2 bg-blue-50 rounded border border-blue-200 hover:bg-blue-100';
+            a.innerHTML = `<span class="mr-2">${icon}</span><span class="text-sm text-blue-700">${escapeHTML(label)}</span>`;
+            return a;
+        }
+
+        // =====================================================================
+        // Auth — FIX 4: Use sessionStorage (clears on tab close) instead of
+        // localStorage. Token theft via XSS is mitigated by Fix 1 (no XSS) and
+        // this (shorter token lifetime). Ideal: httpOnly cookie (needs backend).
+        // =====================================================================
+        async function initAuth() {
+            const storedToken = sessionStorage.getItem('adminToken');
+            if (!storedToken) {
+                window.location.replace('/admin-login.html');
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE}/users/me`, {
+                    headers: { 'Authorization': `Bearer ${storedToken}` }
+                });
+                if (response.ok) {
+                    const userData = await response.json();
+                    if (!userData.is_admin) {
+                        sessionStorage.removeItem('adminToken');
+                        window.location.replace('/admin-login.html');
+                        return;
+                    }
+                    authToken = storedToken;
+                    document.getElementById('adminEmail').textContent = escapeHTML(userData.email || 'Admin');
+                    loadOverview();
+                } else {
+                    sessionStorage.removeItem('adminToken');
+                    window.location.replace('/admin-login.html');
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                alert('Cannot connect to API. Backend may be starting up. Please wait 30 seconds and refresh.');
+            }
+        }
+
+        initAuth();
+
+        // API Helper
+        async function api(endpoint, options = {}) {
+            const response = await fetch(`${API_BASE}${endpoint}`, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`,
+                    ...options.headers
+                }
+            });
+            if (response.status === 401) {
+                sessionStorage.removeItem('adminToken');
+                window.location.replace('/admin-login.html');
+                return {};
+            }
+            return response.json();
+        }
+
+        // Tab Navigation
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('tab-active'));
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('tab-active');
+            switch (tabName) {
+                case 'overview': loadOverview(); break;
+                case 'verifications': loadVerifications(currentVerificationType); break;
+                case 'users': loadUsers(); break;
+                case 'bookings': loadBookings(); break;
+                case 'boats': loadBoats(); break;
+                case 'payments': loadPayments(); break;
+                case 'promotions': loadPromotions(); break;
+            }
+        }
+
+        // =====================================================================
+        // Overview — uses escapeHTML for any user-supplied fields
+        // =====================================================================
+        async function loadOverview() {
+            try {
+                const stats = await api('/admin/stats');
+                document.getElementById('stat-users').textContent = stats.total_users || 0;
+                document.getElementById('stat-boats').textContent = stats.active_boats || 0;
+                document.getElementById('stat-pending').textContent =
+                    (parseInt(stats.pending_captain_verifications || 0) + parseInt(stats.pending_boat_verifications || 0));
+                document.getElementById('stat-revenue').textContent =
+                    '$' + (parseFloat(stats.revenue_30_days || 0) / 100).toLocaleString();
+
+                const [captainPending, boatPending] = await Promise.all([
+                    api('/admin/verifications/captain?status=pending'),
+                    api('/admin/verifications/boat?status=pending')
+                ]);
+
+                const actionsEl = document.getElementById('pendingActions');
+                actionsEl.innerHTML = '';
+
+                if ((!captainPending.length) && (!boatPending.length)) {
+                    const p = document.createElement('p');
+                    p.className = 'text-green-600 text-sm';
+                    p.textContent = 'No pending actions!';
+                    actionsEl.appendChild(p);
+                    return;
+                }
+
+                // FIX: Build DOM nodes, never innerHTML with user data
+                [...captainPending.slice(0, 3).map(v => ({ label: `Captain verification: ${escapeHTML(v.first_name)} ${escapeHTML(v.last_name)}` })),
+                 ...boatPending.slice(0, 3).map(v => ({ label: `Boat verification: ${escapeHTML(v.boat_name)}` }))
+                ].forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center justify-between p-3 bg-yellow-50 rounded-lg';
+                    const span = document.createElement('span');
+                    span.className = 'text-sm';
+                    span.textContent = item.label; // textContent = safe
+                    const btn = document.createElement('button');
+                    btn.className = 'text-blue-600 text-sm hover:underline';
+                    btn.textContent = 'Review';
+                    btn.onclick = () => showTab('verifications');
+                    div.appendChild(span);
+                    div.appendChild(btn);
+                    actionsEl.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Failed to load overview:', error);
+            }
+        }
+
+        // =====================================================================
+        // Verifications — all user data goes through escapeHTML or textContent
+        // =====================================================================
+        async function loadVerifications(type) {
+            currentVerificationType = type;
+            document.getElementById('btn-captain-ver').className = type === 'captain'
+                ? 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
+                : 'px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300';
+            document.getElementById('btn-boat-ver').className = type === 'boat'
+                ? 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
+                : 'px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300';
+
+            try {
+                const data = await api(`/admin/verifications/${type}?status=pending`);
+                const tbody = document.getElementById('verificationsTable');
+                tbody.innerHTML = '';
+
+                if (!data.length) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No pending verifications</td></tr>';
+                    return;
+                }
+
+                data.forEach(v => {
+                    const tr = document.createElement('tr');
+
+                    // Applicant cell
+                    const tdApplicant = document.createElement('td');
+                    tdApplicant.className = 'px-6 py-4';
+                    tdApplicant.innerHTML = `
+                        <div class="font-medium text-gray-900">${escapeHTML(v.first_name)} ${escapeHTML(v.last_name)}</div>
+                        <div class="text-sm text-gray-500">${escapeHTML(v.email)}</div>`;
+
+                    // Details cell
+                    const tdDetails = document.createElement('td');
+                    tdDetails.className = 'px-6 py-4 text-sm text-gray-500';
+                    if (type === 'captain') {
+                        tdDetails.innerHTML = `License: ${escapeHTML(v.license_number || 'N/A')}<br>
+                            Type: ${escapeHTML(v.license_type || 'N/A')}<br>
+                            <span class="text-xs">Docs: ${v.license_front_url ? '✅' : '❌'}License ${v.id_front_url ? '✅' : '❌'}ID</span>`;
+                    } else {
+                        tdDetails.innerHTML = `Boat: ${escapeHTML(v.boat_name || 'N/A')}<br>
+                            Type: ${escapeHTML(v.boat_type || 'N/A')}<br>
+                            <span class="text-xs">${v.registration_url ? '✅ Reg' : '❌ Reg'}</span>`;
+                    }
+
+                    // Submitted cell
+                    const tdDate = document.createElement('td');
+                    tdDate.className = 'px-6 py-4 text-sm text-gray-500';
+                    tdDate.textContent = formatDate(v.submitted_at);
+
+                    // Status cell
+                    const tdStatus = document.createElement('td');
+                    tdStatus.className = 'px-6 py-4';
+                    const statusSpan = document.createElement('span');
+                    statusSpan.className = `px-2 py-1 text-xs font-medium rounded-full status-${escapeHTML(v.status)}`;
+                    statusSpan.textContent = v.status;
+                    tdStatus.appendChild(statusSpan);
+
+                    // Actions cell
+                    const tdActions = document.createElement('td');
+                    tdActions.className = 'px-6 py-4';
+                    const reviewBtn = document.createElement('button');
+                    reviewBtn.className = 'text-blue-600 hover:text-blue-900 text-sm font-medium';
+                    reviewBtn.textContent = 'Review';
+                    reviewBtn.addEventListener('click', () => openReviewModal(type, v));
+                    tdActions.appendChild(reviewBtn);
+
+                    tr.append(tdApplicant, tdDetails, tdDate, tdStatus, tdActions);
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Failed to load verifications:', error);
+            }
+        }
+
+        // =====================================================================
+        // Users
+        // =====================================================================
+        async function loadUsers() {
+            const role = document.getElementById('userRole').value;
+            const search = document.getElementById('userSearch').value;
+            try {
+                let url = '/admin/users?';
+                if (role) url += `role=${encodeURIComponent(role)}&`;
+                if (search) url += `search=${encodeURIComponent(search)}&`;
+
+                const data = await api(url);
+                const tbody = document.getElementById('usersTable');
+                tbody.innerHTML = '';
+
+                if (!data.users || !data.users.length) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">No users found</td></tr>';
+                    return;
+                }
+
+                data.users.forEach(u => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-gray-900">${escapeHTML(u.first_name)} ${escapeHTML(u.last_name)}</div>
+                            <div class="text-sm text-gray-500">${escapeHTML(u.phone_number || '')}</div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${escapeHTML(u.email)}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500 capitalize">${escapeHTML(u.role || 'customer')}</td>
+                        <td class="px-6 py-4">${
+                            u.is_suspended
+                                ? '<span class="px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800">Suspended</span>'
+                                : u.is_verified
+                                    ? '<span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Verified</span>'
+                                    : '<span class="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">Active</span>'
+                        }</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${formatDate(u.created_at)}</td>
+                        <td class="px-6 py-4"></td>`;
+
+                    const actionTd = tr.querySelector('td:last-child');
+                    const btn = document.createElement('button');
+                    if (u.is_suspended) {
+                        btn.className = 'text-green-600 hover:text-green-900 text-sm font-medium';
+                        btn.textContent = 'Unsuspend';
+                        btn.addEventListener('click', () => toggleSuspend(u.id, false));
+                    } else {
+                        btn.className = 'text-red-600 hover:text-red-900 text-sm font-medium';
+                        btn.textContent = 'Suspend';
+                        btn.addEventListener('click', () => toggleSuspend(u.id, true));
+                    }
+                    actionTd.appendChild(btn);
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Failed to load users:', error);
+            }
+        }
+
+        // =====================================================================
+        // Bookings
+        // =====================================================================
+        async function loadBookings() {
+            const status = document.getElementById('bookingStatus').value;
+            try {
+                let url = '/admin/bookings?';
+                if (status) url += `status=${encodeURIComponent(status)}&`;
+                const data = await api(url);
+                const tbody = document.getElementById('bookingsTable');
+                tbody.innerHTML = '';
+
+                if (!data.bookings || !data.bookings.length) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No bookings found</td></tr>';
+                    return;
+                }
+
+                data.bookings.forEach(b => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="px-6 py-4 font-medium text-gray-900">${escapeHTML(b.booking_number || b.id.slice(0, 8))}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${escapeHTML(b.customer_first_name || '')} (${escapeHTML(b.customer_email)})</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${escapeHTML(b.boat_name || 'N/A')}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${formatDate(b.booking_date)}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${parseFloat(b.total_amount || 0).toFixed(2)}</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium rounded-full status-${escapeHTML(b.status)}">${escapeHTML(b.status)}</span></td>
+                        <td class="px-6 py-4 text-sm space-x-2"></td>`;
+
+                    const actionTd = tr.querySelector('td:last-child');
+                    if (b.status === 'confirmed') {
+                        const btn = document.createElement('button');
+                        btn.className = 'text-green-600 hover:text-green-900';
+                        btn.textContent = 'Complete';
+                        btn.addEventListener('click', () => completeBooking(b.id));
+                        actionTd.appendChild(btn);
+                    }
+                    if (b.status !== 'cancelled' && b.status !== 'completed') {
+                        const btn = document.createElement('button');
+                        btn.className = 'text-red-600 hover:text-red-900';
+                        btn.textContent = 'Cancel';
+                        btn.addEventListener('click', () => cancelBooking(b.id));
+                        actionTd.appendChild(btn);
+                    }
+                    if (b.status === 'completed') {
+                        const btn = document.createElement('button');
+                        btn.className = 'text-blue-600 hover:text-blue-900';
+                        btn.textContent = 'Refund';
+                        btn.addEventListener('click', () => refundBooking(b.id));
+                        actionTd.appendChild(btn);
+                    }
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Failed to load bookings:', error);
+            }
+        }
+
+        // =====================================================================
+        // Boats
+        // =====================================================================
+        async function loadBoats() {
+            const active = document.getElementById('boatActive').value;
+            try {
+                let url = '/admin/boats?';
+                if (active) url += `active=${encodeURIComponent(active)}&`;
+                const data = await api(url);
+                const tbody = document.getElementById('boatsTable');
+                tbody.innerHTML = '';
+
+                if (!data.boats || !data.boats.length) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">No boats found</td></tr>';
+                    return;
+                }
+
+                data.boats.forEach(b => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-gray-900">${escapeHTML(b.name)}</div>
+                            <div class="text-sm text-gray-500">${escapeHTML(b.year || '')} ${escapeHTML(b.make || '')} ${escapeHTML(b.model || '')}</div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${escapeHTML(b.owner_first_name || '')} (${escapeHTML(b.owner_email)})</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${escapeHTML(b.boat_type || b.type || 'N/A')}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">$${escapeHTML(String(b.hourly_rate || 0))}/hr</td>
+                        <td class="px-6 py-4">${
+                            b.is_active
+                                ? '<span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>'
+                                : '<span class="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">Inactive</span>'
+                        }</td>
+                        <td class="px-6 py-4"></td>`;
+
+                    const actionTd = tr.querySelector('td:last-child');
+                    const btn = document.createElement('button');
+                    if (b.is_active) {
+                        btn.className = 'text-red-600 hover:text-red-900 text-sm font-medium';
+                        btn.textContent = 'Deactivate';
+                        btn.addEventListener('click', () => toggleBoat(b.id, false));
+                    } else {
+                        btn.className = 'text-green-600 hover:text-green-900 text-sm font-medium';
+                        btn.textContent = 'Activate';
+                        btn.addEventListener('click', () => toggleBoat(b.id, true));
+                    }
+                    actionTd.appendChild(btn);
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Failed to load boats:', error);
+            }
+        }
+
+        // =====================================================================
+        // Payments
+        // =====================================================================
+        async function loadPayments() {
+            try {
+                const [pending, revenue] = await Promise.all([
+                    api('/admin/payments/pending'),
+                    api('/admin/payments/revenue?period=30')
+                ]);
+
+                const payoutsEl = document.getElementById('pendingPayouts');
+                payoutsEl.innerHTML = '';
+
+                if (pending.error) {
+                    payoutsEl.innerHTML = `<p class="text-red-600 text-sm">Error: ${escapeHTML(pending.error)}</p>`;
+                } else if (!pending || !pending.length) {
+                    payoutsEl.innerHTML = '<p class="text-gray-500 text-sm">No pending payouts.</p>';
+                } else {
+                    pending.forEach(p => {
+                        const div = document.createElement('div');
+                        div.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg';
+                        div.innerHTML = `
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium">${escapeHTML(p.first_name || 'N/A')} ${escapeHTML(p.last_name || '')}</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full ${p.type === 'owner' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}">${escapeHTML(p.type)}</span>
+                                    ${p.has_stripe ? '<span class="text-green-500 text-xs">✓ Stripe</span>' : '<span class="text-orange-500 text-xs">No Stripe</span>'}
+                                </div>
+                                <div class="text-sm text-gray-500">${escapeHTML(p.email || 'N/A')}</div>
+                                <div class="text-xs text-gray-400">${escapeHTML(p.boat_name || 'Booking')} - #${escapeHTML(p.booking_number || (p.id || '').slice(0, 8))}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-semibold text-green-600">${parseFloat(p.amount || 0).toFixed(2)}</div>
+                                <div class="text-xs text-gray-400">${escapeHTML(p.status)} / ${escapeHTML(p.payment_status)}</div>
+                                <div class="text-xs text-gray-400">${formatDate(p.booking_date)}</div>
+                            </div>`;
+                        payoutsEl.appendChild(div);
+                    });
+                }
+
+                const revenueEl = document.getElementById('revenueSummary');
+                if (revenue && revenue.totals) {
+                    revenueEl.innerHTML = `
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Total Revenue</p>
+                                <p class="text-xl font-bold text-green-600">$${parseFloat(revenue.totals.total_revenue || 0).toFixed(2)}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Platform Fees (20%)</p>
+                                <p class="text-xl font-bold text-blue-600">$${parseFloat(revenue.totals.total_fees || 0).toFixed(2)}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Transactions</p>
+                                <p class="text-xl font-bold text-gray-900">${parseInt(revenue.totals.total_transactions || 0)}</p>
+                            </div>
+                        </div>`;
+                } else {
+                    revenueEl.innerHTML = '<p class="text-gray-500 text-sm">No revenue data available</p>';
+                }
+            } catch (error) {
+                console.error('Failed to load payments:', error);
+                document.getElementById('pendingPayouts').textContent = `Failed to load: ${error.message}`;
+            }
+        }
+
+        // =====================================================================
+        // Review Modal — FIX: built with DOM API (no innerHTML for user data)
+        // and safeUrl() for document links
+        // =====================================================================
+        function openReviewModal(type, item) {
+            currentReviewItem = { type, ...item };
+            document.getElementById('modalTitle').textContent =
+                type === 'captain' ? 'Review Captain Application' : 'Review Boat Application';
+            document.getElementById('rejectionReason').value = '';
+
+            const content = document.getElementById('modalContent');
+            content.innerHTML = '';
+
+            const info = document.createElement('div');
+            info.className = 'space-y-2 text-sm';
+
+            const addField = (label, value) => {
+                const p = document.createElement('p');
+                p.innerHTML = `<strong>${escapeHTML(label)}:</strong> `;
+                const val = document.createTextNode(value || 'N/A');
+                p.appendChild(val);
+                info.appendChild(p);
+            };
+
+            if (type === 'captain') {
+                addField('Name', `${item.first_name || ''} ${item.last_name || ''}`);
+                addField('Email', item.email);
+                addField('Phone', item.phone);
+                addField('License #', item.license_number);
+                addField('License Type', item.license_type);
+                addField('Expiration', item.license_expiration);
+                addField('Background Certified', item.background_certified ? '✅ Yes' : '❌ No');
+                addField('Insurance Certified', item.insurance_certified ? '✅ Yes' : '❌ No');
+
+                const docsDiv = document.createElement('div');
+                docsDiv.className = 'mt-3 p-3 bg-gray-50 rounded-lg';
+                const docsTitle = document.createElement('p');
+                docsTitle.className = 'font-semibold text-gray-700 mb-2';
+                docsTitle.textContent = '📄 Uploaded Documents';
+                docsDiv.appendChild(docsTitle);
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-2 gap-3';
+                grid.appendChild(buildDocLink(item.license_front_url, 'License Front', '🪪'));
+                if (item.license_back_url) grid.appendChild(buildDocLink(item.license_back_url, 'License Back', '🪪'));
+                grid.appendChild(buildDocLink(item.id_front_url, 'ID Front', '🆔'));
+                if (item.id_back_url) grid.appendChild(buildDocLink(item.id_back_url, 'ID Back', '🆔'));
+                docsDiv.appendChild(grid);
+                info.appendChild(docsDiv);
+            } else {
+                addField('Boat', item.boat_name);
+                addField('Type', item.boat_type);
+                addField('Owner', `${item.first_name || ''} ${item.last_name || ''}`);
+                addField('Registration', item.registration_number);
+                addField('Safety Certified', item.safety_certified ? '✅ Yes' : '❌ No');
+
+                const docsDiv = document.createElement('div');
+                docsDiv.className = 'mt-3 p-3 bg-gray-50 rounded-lg';
+                const docsTitle = document.createElement('p');
+                docsTitle.className = 'font-semibold text-gray-700 mb-2';
+                docsTitle.textContent = '📄 Uploaded Documents';
+                docsDiv.appendChild(docsTitle);
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-2 gap-3';
+                grid.appendChild(buildDocLink(item.registration_url, 'Registration', '📋'));
+                grid.appendChild(buildDocLink(item.insurance_url, 'Insurance', '🛡️'));
+                docsDiv.appendChild(grid);
+                info.appendChild(docsDiv);
+            }
+
+            content.appendChild(info);
+            document.getElementById('reviewModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('reviewModal').classList.remove('active');
+            currentReviewItem = null;
+        }
+
+        async function approveApplication() {
+            if (!currentReviewItem) return;
+            try {
+                await api(`/admin/verifications/${currentReviewItem.type}/${currentReviewItem.id}/review`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ status: 'approved' })
+                });
+                closeModal();
+                loadVerifications(currentVerificationType);
+            } catch (error) {
+                alert('Failed to approve: ' + error.message);
+            }
+        }
+
+        async function rejectApplication() {
+            if (!currentReviewItem) return;
+            const reason = document.getElementById('rejectionReason').value.trim();
+            if (!reason) {
+                alert('Please provide a rejection reason');
+                return;
+            }
+            try {
+                await api(`/admin/verifications/${currentReviewItem.type}/${currentReviewItem.id}/review`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ status: 'rejected', rejection_reason: reason })
+                });
+                closeModal();
+                loadVerifications(currentVerificationType);
+            } catch (error) {
+                alert('Failed to reject: ' + error.message);
+            }
+        }
+
+        // =====================================================================
+        // FIX 5: Action Modal — replaces all prompt() dialogs with proper UI
+        // =====================================================================
+        let actionModalCallback = null;
+
+        function showActionModal({ title, desc, fields, confirmLabel = 'Confirm', confirmClass = 'bg-blue-600 hover:bg-blue-700', onConfirm }) {
+            document.getElementById('actionModalTitle').textContent = title;
+            document.getElementById('actionModalDesc').textContent = desc || '';
+            document.getElementById('actionModalError').classList.add('hidden');
+            document.getElementById('actionModalError').textContent = '';
+
+            const confirmBtn = document.getElementById('actionModalConfirm');
+            confirmBtn.textContent = confirmLabel;
+            confirmBtn.className = `px-4 py-2 text-white rounded-lg ${confirmClass}`;
+
+            const fieldsEl = document.getElementById('actionModalFields');
+            fieldsEl.innerHTML = '';
+            (fields || []).forEach(f => {
+                const label = document.createElement('label');
+                label.className = 'block text-sm font-medium text-gray-700 mb-1';
+                label.textContent = f.label;
+                fieldsEl.appendChild(label);
+
+                let input;
+                if (f.type === 'textarea') {
+                    input = document.createElement('textarea');
+                    input.rows = 3;
+                } else {
+                    input = document.createElement('input');
+                    input.type = f.type || 'text';
+                }
+                input.id = f.id;
+                input.placeholder = f.placeholder || '';
+                input.className = 'w-full border border-gray-300 rounded-lg px-3 py-2 text-sm';
+                fieldsEl.appendChild(input);
+            });
+
+            actionModalCallback = onConfirm;
+            document.getElementById('actionModal').style.display = 'flex';
+            document.getElementById('actionModal').classList.add('active');
+        }
+
+        function closeActionModal() {
+            document.getElementById('actionModal').style.display = 'none';
+            document.getElementById('actionModal').classList.remove('active');
+            actionModalCallback = null;
+        }
+
+        document.getElementById('actionModalConfirm').addEventListener('click', async () => {
+            if (actionModalCallback) {
+                const errorEl = document.getElementById('actionModalError');
+                errorEl.classList.add('hidden');
+                try {
+                    await actionModalCallback();
+                } catch (err) {
+                    errorEl.textContent = err.message;
+                    errorEl.classList.remove('hidden');
+                }
+            }
+        });
+
+        // =====================================================================
+        // Action functions — all use showActionModal instead of prompt()
+        // =====================================================================
+        function toggleSuspend(userId, suspend) {
+            if (!suspend) {
+                // Unsuspend needs no reason
+                api(`/admin/users/${userId}/suspend`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ suspended: false, reason: null })
+                }).then(() => loadUsers()).catch(err => alert('Failed: ' + err.message));
+                return;
+            }
+            showActionModal({
+                title: 'Suspend User',
+                desc: 'This will prevent the user from accessing the platform.',
+                fields: [{ id: 'suspendReason', label: 'Suspension Reason', type: 'textarea', placeholder: 'Enter reason...' }],
+                confirmLabel: 'Suspend',
+                confirmClass: 'bg-red-600 hover:bg-red-700',
+                onConfirm: async () => {
+                    const reason = document.getElementById('suspendReason').value.trim();
+                    if (!reason) throw new Error('Suspension reason is required');
+                    await api(`/admin/users/${userId}/suspend`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ suspended: true, reason })
+                    });
+                    closeActionModal();
+                    loadUsers();
+                }
+            });
+        }
+
+        function toggleBoat(boatId, active) {
+            if (active) {
+                api(`/admin/boats/${boatId}/status`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ active: true, reason: null })
+                }).then(() => loadBoats()).catch(err => alert('Failed: ' + err.message));
+                return;
+            }
+            showActionModal({
+                title: 'Deactivate Boat',
+                desc: 'This will remove the boat from the platform listings.',
+                fields: [{ id: 'boatReason', label: 'Deactivation Reason', type: 'textarea', placeholder: 'Enter reason...' }],
+                confirmLabel: 'Deactivate',
+                confirmClass: 'bg-red-600 hover:bg-red-700',
+                onConfirm: async () => {
+                    const reason = document.getElementById('boatReason').value.trim();
+                    if (!reason) throw new Error('Reason is required');
+                    await api(`/admin/boats/${boatId}/status`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ active: false, reason })
+                    });
+                    closeActionModal();
+                    loadBoats();
+                }
+            });
+        }
+
+        function completeBooking(bookingId) {
+            showActionModal({
+                title: 'Complete Booking',
+                desc: 'Mark this booking as completed? This action cannot be undone.',
+                confirmLabel: 'Mark Complete',
+                confirmClass: 'bg-green-600 hover:bg-green-700',
+                onConfirm: async () => {
+                    await api(`/admin/bookings/${bookingId}/complete`, { method: 'PUT' });
+                    closeActionModal();
+                    loadBookings();
+                }
+            });
+        }
+
+        function cancelBooking(bookingId) {
+            showActionModal({
+                title: 'Cancel Booking',
+                desc: 'Please provide a reason for cancelling this booking.',
+                fields: [{ id: 'cancelReason', label: 'Cancellation Reason', type: 'textarea', placeholder: 'Enter reason...' }],
+                confirmLabel: 'Cancel Booking',
+                confirmClass: 'bg-red-600 hover:bg-red-700',
+                onConfirm: async () => {
+                    const reason = document.getElementById('cancelReason').value.trim();
+                    if (!reason) throw new Error('Cancellation reason is required');
+                    await api(`/admin/bookings/${bookingId}/cancel`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ reason })
+                    });
+                    closeActionModal();
+                    loadBookings();
+                }
+            });
+        }
+
+        function refundBooking(bookingId) {
+            showActionModal({
+                title: 'Process Refund',
+                desc: 'Enter the refund amount and reason.',
+                fields: [
+                    { id: 'refundAmount', label: 'Refund Amount (USD)', type: 'number', placeholder: '0.00' },
+                    { id: 'refundReason', label: 'Reason', type: 'textarea', placeholder: 'Enter reason...' }
+                ],
+                confirmLabel: 'Process Refund',
+                confirmClass: 'bg-blue-600 hover:bg-blue-700',
+                onConfirm: async () => {
+                    const amount = parseFloat(document.getElementById('refundAmount').value);
+                    const reason = document.getElementById('refundReason').value.trim();
+                    if (!amount || isNaN(amount) || amount <= 0) throw new Error('Please enter a valid refund amount');
+                    if (!reason) throw new Error('Refund reason is required');
+
+                    const result = await api(`/admin/bookings/${bookingId}/refund`, {
+                        method: 'POST',
+                        body: JSON.stringify({ amount: Math.round(amount * 100), reason })
+                    });
+
+                    if (result.error) throw new Error(result.error + (result.details ? '\n' + result.details : ''));
+
+                    closeActionModal();
+                    alert(`Refund processed!\nRefund ID: ${result.refund_id || 'N/A'}\nAmount: $${amount.toFixed(2)}`);
+                    loadBookings();
+                }
+            });
+        }
+
+        function searchUsers() {
+            clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(loadUsers, 300);
+        }
+
+        function logout() {
+            sessionStorage.removeItem('adminToken');
+            window.location.replace('/admin-login.html');
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'N/A';
+            return new Date(dateStr).toLocaleDateString();
+        }
+
+        // =====================================================================
+        // Promotions
+        // =====================================================================
+        let allOwnersCache = [];
+        let editingOwnerId = null;
+
+        async function loadPromotions() {
+            try {
+                const [promoData, ownerData] = await Promise.all([
+                    api('/admin/promotions'),
+                    api('/admin/owners/commissions')
+                ]);
+
+                allOwnersCache = ownerData.owners || [];
+                const promos = promoData.activePromotions || [];
+
+                // Summary cards
+                document.getElementById('promoActiveCount').textContent = promos.length;
+                document.getElementById('promoStandardCount').textContent = `${promoData.standardRateOwners || 0} owners at standard rate`;
+                const totalRevenue = promos.reduce((sum, p) => sum + parseFloat(p.revenue_generated || 0), 0);
+                document.getElementById('promoRevenue').textContent = `${totalRevenue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+
+                // Active promotions table
+                const promoContainer = document.getElementById('activePromotionsTable');
+                if (promos.length === 0) {
+                    promoContainer.innerHTML = '<p class="text-gray-400 text-sm">No active promotions. Click "New Promotion" to create one.</p>';
+                } else {
+                    promoContainer.innerHTML = `<table class="w-full text-sm"><thead><tr class="text-left text-gray-500 border-b">
+                        <th class="pb-3">Owner</th><th class="pb-3">Rate</th><th class="pb-3">Promotion</th><th class="pb-3">Expires</th><th class="pb-3">Boats</th><th class="pb-3">Revenue</th><th class="pb-3">Actions</th>
+                    </tr></thead><tbody>${promos.map(p => `<tr class="border-b hover:bg-gray-50">
+                        <td class="py-3"><div class="font-medium">${escapeHTML(p.owner_name)}</div><div class="text-xs text-gray-400">${escapeHTML(p.email)}</div></td>
+                        <td class="py-3"><span class="px-2 py-1 rounded-full text-xs font-semibold ${parseFloat(p.commission_rate) < 0.20 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">${(parseFloat(p.commission_rate) * 100).toFixed(0)}%</span></td>
+                        <td class="py-3"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">${escapeHTML(p.promotion_name)}</span></td>
+                        <td class="py-3 text-gray-500">${p.promotion_expires_at ? formatDate(p.promotion_expires_at) : '<span class="text-green-600">No expiry</span>'}</td>
+                        <td class="py-3">${p.total_boats || 0}</td>
+                        <td class="py-3 font-medium text-green-600">${parseFloat(p.revenue_generated || 0).toLocaleString()}</td>
+                        <td class="py-3"><button onclick="editPromotion('${p.owner_id}')" class="text-blue-600 hover:text-blue-800 mr-2 text-xs">Edit</button><button onclick="resetPromotion('${p.owner_id}', '${escapeHTML(p.owner_name)}')" class="text-red-600 hover:text-red-800 text-xs">Remove</button></td>
+                    </tr>`).join('')}</tbody></table>`;
+                }
+
+                // All owners table
+                const ownersContainer = document.getElementById('allOwnersTable');
+                if (allOwnersCache.length === 0) {
+                    ownersContainer.innerHTML = '<p class="text-gray-400 text-sm p-6">No owners registered yet.</p>';
+                } else {
+                    ownersContainer.innerHTML = `<table class="w-full text-sm"><thead><tr class="text-left text-gray-500 border-b">
+                        <th class="px-6 pb-3 pt-4">Owner</th><th class="pb-3 pt-4">Email</th><th class="pb-3 pt-4">Commission</th><th class="pb-3 pt-4">Status</th><th class="pb-3 pt-4">Boats</th><th class="pb-3 pt-4">Actions</th>
+                    </tr></thead><tbody>${allOwnersCache.map(o => {
+                        const rate = parseFloat(o.commission_rate) || 0.20;
+                        const isPromo = o.has_active_promotion;
+                        return `<tr class="border-b hover:bg-gray-50">
+                            <td class="px-6 py-3 font-medium">${escapeHTML(o.first_name || '')} ${escapeHTML(o.last_name || '')}</td>
+                            <td class="py-3 text-gray-500">${escapeHTML(o.email || '')}</td>
+                            <td class="py-3"><span class="px-2 py-1 rounded-full text-xs font-semibold ${isPromo ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}">${(rate * 100).toFixed(0)}%</span></td>
+                            <td class="py-3">${isPromo ? '<span class="text-blue-600 text-xs">' + escapeHTML(o.promotion_name || 'Promo') + '</span>' : '<span class="text-gray-400 text-xs">Standard</span>'}</td>
+                            <td class="py-3">${o.active_boats || 0}</td>
+                            <td class="py-3"><button onclick="editPromotion('${o.owner_id}')" class="px-3 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded text-xs">${isPromo ? 'Edit' : 'Set Promo'}</button></td>
+                        </tr>`;
+                    }).join('')}</tbody></table>`;
+                }
+
+            } catch (error) {
+                console.error('Load promotions error:', error);
+            }
+        }
+
+        function showAddPromotionModal() {
+            editingOwnerId = null;
+            document.getElementById('promoModalTitle').textContent = 'New Promotion';
+            document.getElementById('promoOwnerSelectWrapper').style.display = 'block';
+            const select = document.getElementById('promoOwnerSelect');
+            select.innerHTML = allOwnersCache.map(o => `<option value="${o.owner_id}">${escapeHTML(o.first_name || '')} ${escapeHTML(o.last_name || '')} (${escapeHTML(o.email || '')})</option>`).join('');
+            document.getElementById('promoRate').value = '15';
+            document.getElementById('promoName').value = '';
+            document.getElementById('promoExpires').value = '';
+            document.getElementById('promoModalError').classList.add('hidden');
+            document.getElementById('promoModal').style.display = 'flex';
+        }
+
+        function editPromotion(ownerId) {
+            editingOwnerId = ownerId;
+            const owner = allOwnersCache.find(o => o.owner_id == ownerId);
+            if (!owner) return;
+            document.getElementById('promoModalTitle').textContent = `Edit: ${owner.first_name} ${owner.last_name}`;
+            document.getElementById('promoOwnerSelectWrapper').style.display = 'none';
+            document.getElementById('promoRate').value = ((parseFloat(owner.commission_rate) || 0.20) * 100).toFixed(0);
+            document.getElementById('promoName').value = owner.promotion_name || '';
+            document.getElementById('promoExpires').value = owner.promotion_expires_at ? new Date(owner.promotion_expires_at).toISOString().split('T')[0] : '';
+            document.getElementById('promoModalError').classList.add('hidden');
+            document.getElementById('promoModal').style.display = 'flex';
+        }
+
+        function closePromoModal() {
+            document.getElementById('promoModal').style.display = 'none';
+            editingOwnerId = null;
+        }
+
+        async function savePromotion() {
+            const errEl = document.getElementById('promoModalError');
+            errEl.classList.add('hidden');
+            try {
+                const ownerId = editingOwnerId || document.getElementById('promoOwnerSelect').value;
+                const ratePercent = parseFloat(document.getElementById('promoRate').value);
+                const name = document.getElementById('promoName').value.trim();
+                const expires = document.getElementById('promoExpires').value;
+
+                if (!ownerId) throw new Error('Select an owner');
+                if (isNaN(ratePercent) || ratePercent < 0 || ratePercent > 100) throw new Error('Rate must be 0-100');
+                if (!name) throw new Error('Promotion name is required');
+
+                const body = {
+                    commissionRate: ratePercent / 100,
+                    promotionName: name,
+                    promotionExpiresAt: expires ? new Date(expires + 'T23:59:59Z').toISOString() : null
+                };
+
+                const result = await api(`/admin/owners/${ownerId}/commission`, {
+                    method: 'PUT',
+                    body: JSON.stringify(body)
+                });
+
+                if (result.error) throw new Error(result.error);
+
+                closePromoModal();
+                loadPromotions();
+            } catch (error) {
+                errEl.textContent = error.message;
+                errEl.classList.remove('hidden');
+            }
+        }
+
+        async function resetPromotion(ownerId, ownerName) {
+            if (!confirm(`Reset ${ownerName} to standard 20% commission?`)) return;
+            try {
+                await api(`/admin/owners/${ownerId}/promotion`, { method: 'DELETE' });
+                loadPromotions();
+            } catch (error) {
+                alert('Failed to reset: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

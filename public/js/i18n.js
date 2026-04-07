@@ -22,12 +22,12 @@ const i18n = (() => {
       "nav.cta": "Get the App",
 
       // Hero
-      "hero.badge": "Now Available Nationwide",
+      "hero.badge": "Now Available Worldwide",
       "hero.title": "The easiest way to get on the <em>water</em>",
       "hero.title.1": "Rent a Boat.",
       "hero.title.2": "List Your Boat.",
-      "hero.title.em": "Nationwide.",
-      "hero.subtitle": "Splash connects you with verified boats and USCG-licensed captains across the U.S. — book in under a minute from your phone.",
+      "hero.title.em": "Worldwide.",
+      "hero.subtitle": "Splash connects you with verified boats and licensed captains around the world — book in under a minute from your phone.",
 
       // Path Cards
       "path.renter.title": "I want to rent a boat",
@@ -46,7 +46,7 @@ const i18n = (() => {
       "renters.step2.title": "Pick a date & book instantly",
       "renters.step2.desc": "Choose your day, time, and duration. Your card is held — you're only charged 24 hours before the trip.",
       "renters.step3.title": "Show up & enjoy",
-      "renters.step3.desc": "Meet your USCG-licensed captain at the marina. They handle the driving — you just relax and have fun.",
+      "renters.step3.desc": "Meet your licensed captain at the marina. They handle the driving — you just relax and have fun.",
       "renters.mockup.tagline": "Download free on iOS & Android",
 
       // Feature Pills
@@ -56,22 +56,22 @@ const i18n = (() => {
       "pill.chat": "💬 In-App Chat",
       "pill.tracking": "📍 Live Trip Tracking",
       "pill.insured": "🛡️ Insured Boats",
-      "pill.cities": "🌊 50+ Cities",
+      "pill.cities": "🌊 Available Worldwide",
       "pill.cancellation": "❌ Free Cancellation*",
 
       // Renter Features
       "rf.captains.title": "Licensed Captains Only",
-      "rf.captains.desc": "Every captain is verified with a valid U.S. Coast Guard license and government ID before they can accept any booking.",
+      "rf.captains.desc": "Every captain is verified with a valid license for their jurisdiction and government ID before they can accept any booking.",
       "rf.pay.title": "Pay Only When It's Real",
       "rf.pay.desc": "Your card is authorized at booking but only charged 24 hours before departure. Cancel before that — full refund.",
       "rf.insured.title": "Every Boat Insured",
-      "rf.insured.desc": "All boats must carry liability insurance that meets their state's requirements before going live on Splash.",
+      "rf.insured.desc": "All boats must carry liability insurance that meets local requirements before going live on Splash.",
       "rf.chat.title": "Chat in the App",
       "rf.chat.desc": "Message your captain or boat owner directly. Ask questions, coordinate pickup details — all in one place.",
       "rf.reviews.title": "Honest Reviews",
       "rf.reviews.desc": "Every review is from a real renter who completed a real trip. No fakes, no paid reviews.",
-      "rf.coast.title": "Coast to Coast",
-      "rf.coast.desc": "From Miami to Seattle, the Great Lakes to the Gulf — find boats wherever your next trip takes you.",
+      "rf.coast.title": "Around the World",
+      "rf.coast.desc": "From the Mediterranean to the Caribbean, the Great Lakes to the Gulf — find boats wherever your next trip takes you.",
 
       // For Owners
       "owners.label": "For Boat Owners & Captains",
@@ -82,7 +82,7 @@ const i18n = (() => {
       "owners.point3": "Captain your own boat or assign verified captains",
       "owners.point4": "Full earnings dashboard, payout tracking, and tax reports",
       "owners.point5": "We handle payment processing, disputes, and support",
-      "owners.point6": "List from any state — Splash Pro works nationwide",
+      "owners.point6": "List from anywhere — Splash Pro works worldwide",
       "owners.cta": "Download Splash Pro →",
       "owners.earnings.title": "Estimated Monthly Earnings",
       "owners.weekday": "Weekday trips (8×)",
@@ -95,7 +95,7 @@ const i18n = (() => {
       "safety.heading": "We take safety seriously",
       "safety.subheading": "Every boat and captain on Splash is verified before they can accept a single booking.",
       "safety.captain.title": "Captain Verification",
-      "safety.captain.desc": "USCG license and government ID reviewed and approved by our team before any captain goes live.",
+      "safety.captain.desc": "Valid captain's license and government ID reviewed and approved by our team before any captain goes live.",
       "safety.vessel.title": "Vessel Requirements",
       "safety.vessel.desc": "Current registration, required safety equipment, and adequate liability insurance — verified before listing.",
       "safety.briefing.title": "Safety Briefings",
@@ -104,8 +104,8 @@ const i18n = (() => {
       "safety.weather.desc": "Real-time weather alerts. Captains have full authority to cancel or postpone any trip for safety.",
       "safety.messaging.title": "Secure Messaging",
       "safety.messaging.desc": "All communication is in-app. Personal contact sharing is blocked to protect everyone involved.",
-      "safety.compliance.title": "State Compliance",
-      "safety.compliance.desc": "Owners must meet their state's insurance and permit requirements. We verify documentation before going live.",
+      "safety.compliance.title": "Local Compliance",
+      "safety.compliance.desc": "Owners must meet their local insurance and permit requirements. We verify documentation before going live.",
 
       // Reviews
       "reviews.heading": "What people are saying",
@@ -127,7 +127,7 @@ const i18n = (() => {
       "cta.download.label": "Download",
 
       // Footer
-      "footer.desc": "The easiest way to rent a boat or list yours in the United States. Browse, book, and earn — all from your phone.",
+      "footer.desc": "The easiest way to rent a boat or list yours anywhere in the world. Browse, book, and earn — all from your phone.",
       "footer.renters": "Renters",
       "footer.howItWorks": "How It Works",
       "footer.browseBoats": "Browse Boats",
@@ -141,7 +141,7 @@ const i18n = (() => {
       "footer.terms": "Terms of Service",
       "footer.privacy": "Privacy Policy",
       "footer.contact": "Contact",
-      "footer.rights": "© 2026 Splash Inc. All rights reserved.",
+      "footer.rights": "© 2026 Splash Rides S.L. All rights reserved.",
       "footer.madeWith": "Made with 🌊 for the boating community"
     },
 
@@ -154,12 +154,12 @@ const i18n = (() => {
       "nav.cta": "Obtener la App",
 
       // Hero
-      "hero.badge": "Disponible en Todo el País",
+      "hero.badge": "Disponible en Todo el Mundo",
       "hero.title": "La forma más fácil de estar en el <em>agua</em>",
       "hero.title.1": "Alquila un Barco.",
       "hero.title.2": "Publica Tu Barco.",
-      "hero.title.em": "En Todo el País.",
-      "hero.subtitle": "Splash te conecta con barcos verificados y capitanes con licencia USCG en todo EE.UU. — reserva en menos de un minuto desde tu teléfono.",
+      "hero.title.em": "En Todo el Mundo.",
+      "hero.subtitle": "Splash te conecta con barcos verificados y capitanes con licencia en todo el mundo — reserva en menos de un minuto desde tu teléfono.",
 
       // Path Cards
       "path.renter.title": "Quiero alquilar un barco",
@@ -178,7 +178,7 @@ const i18n = (() => {
       "renters.step2.title": "Elige una fecha y reserva al instante",
       "renters.step2.desc": "Escoge tu día, hora y duración. Tu tarjeta se retiene — solo se cobra 24 horas antes del viaje.",
       "renters.step3.title": "Preséntate y disfruta",
-      "renters.step3.desc": "Encuentra a tu capitán con licencia USCG en la marina. Él conduce — tú solo relájate y disfruta.",
+      "renters.step3.desc": "Encuentra a tu capitán con licencia en el puerto. Él conduce — tú solo relájate y disfruta.",
       "renters.mockup.tagline": "Descarga gratis en iOS y Android",
 
       // Feature Pills
@@ -188,22 +188,22 @@ const i18n = (() => {
       "pill.chat": "💬 Chat en la App",
       "pill.tracking": "📍 Rastreo en Vivo",
       "pill.insured": "🛡️ Barcos Asegurados",
-      "pill.cities": "🌊 50+ Ciudades",
+      "pill.cities": "🌊 Disponible Mundialmente",
       "pill.cancellation": "❌ Cancelación Gratis*",
 
       // Renter Features
       "rf.captains.title": "Solo Capitanes con Licencia",
-      "rf.captains.desc": "Cada capitán está verificado con una licencia válida de la Guardia Costera de EE.UU. e identificación oficial antes de aceptar reservas.",
+      "rf.captains.desc": "Cada capitán está verificado con una licencia válida para su jurisdicción e identificación oficial antes de aceptar reservas.",
       "rf.pay.title": "Paga Solo Cuando Es Real",
       "rf.pay.desc": "Tu tarjeta se autoriza al reservar pero solo se cobra 24 horas antes de la salida. Cancela antes — reembolso total.",
       "rf.insured.title": "Todos los Barcos Asegurados",
-      "rf.insured.desc": "Todos los barcos deben tener seguro de responsabilidad que cumpla con los requisitos de su estado antes de publicarse en Splash.",
+      "rf.insured.desc": "Todos los barcos deben tener seguro de responsabilidad que cumpla con los requisitos locales antes de publicarse en Splash.",
       "rf.chat.title": "Chatea en la App",
       "rf.chat.desc": "Envía mensajes a tu capitán o dueño del barco directamente. Haz preguntas, coordina detalles — todo en un solo lugar.",
       "rf.reviews.title": "Reseñas Honestas",
       "rf.reviews.desc": "Cada reseña es de un cliente real que completó un viaje real. Sin falsas, sin reseñas pagadas.",
-      "rf.coast.title": "De Costa a Costa",
-      "rf.coast.desc": "De Miami a Seattle, los Grandes Lagos al Golfo — encuentra barcos donde sea que te lleve tu próximo viaje.",
+      "rf.coast.title": "En Todo el Mundo",
+      "rf.coast.desc": "Del Mediterráneo al Caribe, de los Grandes Lagos al Golfo — encuentra barcos donde sea que te lleve tu próximo viaje.",
 
       // For Owners
       "owners.label": "Para Dueños de Barcos y Capitanes",
@@ -214,7 +214,7 @@ const i18n = (() => {
       "owners.point3": "Capitanea tu propio barco o asigna capitanes verificados",
       "owners.point4": "Panel completo de ganancias, seguimiento de pagos e informes fiscales",
       "owners.point5": "Nosotros manejamos el procesamiento de pagos, disputas y soporte",
-      "owners.point6": "Publica desde cualquier estado — Splash Pro funciona en todo el país",
+      "owners.point6": "Publica desde cualquier lugar — Splash Pro funciona en todo el mundo",
       "owners.cta": "Descargar Splash Pro →",
       "owners.earnings.title": "Ganancias Mensuales Estimadas",
       "owners.weekday": "Viajes entre semana (8×)",
@@ -227,7 +227,7 @@ const i18n = (() => {
       "safety.heading": "Nos tomamos la seguridad en serio",
       "safety.subheading": "Cada barco y capitán en Splash está verificado antes de que puedan aceptar una sola reserva.",
       "safety.captain.title": "Verificación de Capitanes",
-      "safety.captain.desc": "Licencia USCG e identificación oficial revisadas y aprobadas por nuestro equipo antes de que cualquier capitán se active.",
+      "safety.captain.desc": "Licencia de capitán válida e identificación oficial revisadas y aprobadas por nuestro equipo antes de que cualquier capitán se active.",
       "safety.vessel.title": "Requisitos de Embarcación",
       "safety.vessel.desc": "Registro vigente, equipo de seguridad requerido y seguro de responsabilidad adecuado — verificado antes de la publicación.",
       "safety.briefing.title": "Sesiones de Seguridad",
@@ -236,8 +236,8 @@ const i18n = (() => {
       "safety.weather.desc": "Alertas meteorológicas en tiempo real. Los capitanes tienen autoridad total para cancelar o posponer cualquier viaje por seguridad.",
       "safety.messaging.title": "Mensajería Segura",
       "safety.messaging.desc": "Toda la comunicación es dentro de la app. El intercambio de contacto personal está bloqueado para proteger a todos.",
-      "safety.compliance.title": "Cumplimiento Estatal",
-      "safety.compliance.desc": "Los propietarios deben cumplir con los requisitos de seguro y permisos de su estado. Verificamos la documentación antes de la publicación.",
+      "safety.compliance.title": "Cumplimiento Local",
+      "safety.compliance.desc": "Los propietarios deben cumplir con los requisitos de seguro y permisos locales. Verificamos la documentación antes de la publicación.",
 
       // Reviews
       "reviews.heading": "Lo que dice la gente",
@@ -259,7 +259,7 @@ const i18n = (() => {
       "cta.download.label": "Descargar",
 
       // Footer
-      "footer.desc": "La forma más fácil de alquilar un barco o publicar el tuyo en Estados Unidos. Busca, reserva y gana — todo desde tu teléfono.",
+      "footer.desc": "La forma más fácil de alquilar un barco o publicar el tuyo en cualquier lugar del mundo. Busca, reserva y gana — todo desde tu teléfono.",
       "footer.renters": "Clientes",
       "footer.howItWorks": "Cómo Funciona",
       "footer.browseBoats": "Buscar Barcos",
@@ -273,7 +273,7 @@ const i18n = (() => {
       "footer.terms": "Términos de Servicio",
       "footer.privacy": "Política de Privacidad",
       "footer.contact": "Contacto",
-      "footer.rights": "© 2026 Splash Inc. Todos los derechos reservados.",
+      "footer.rights": "© 2026 Splash Rides S.L. Todos los derechos reservados.",
       "footer.madeWith": "Hecho con 🌊 para la comunidad náutica"
     }
   };
@@ -333,8 +333,8 @@ const i18n = (() => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.content = currentLang === 'es'
-        ? 'Splash conecta a clientes de barcos con propietarios verificados y capitanes con licencia USCG en todo EE.UU. Descarga la app Splash para alquilar o Splash Pro para ganar.'
-        : 'Splash connects boat renters with verified owners and USCG-licensed captains across the U.S. Download the Splash app to rent or the Splash Pro app to earn.';
+        ? 'Splash conecta a clientes con propietarios de barcos verificados y capitanes con licencia en todo el mundo. Descarga la app Splash para alquilar o Splash Pro para ganar.'
+        : 'Splash connects boat renters with verified owners and licensed captains around the world. Download the Splash app to rent or the Splash Pro app to earn.';
     }
 
     // Dispatch event so other scripts can react
@@ -347,6 +347,7 @@ const i18n = (() => {
     currentLang = lang;
     localStorage.setItem('splash_lang', lang);
     applyTranslations();
+    applyCurrencies();
   }
 
   // ─── Public: get current language ─────────────────────────────────
@@ -360,50 +361,56 @@ const i18n = (() => {
   }
 
   // ─── Currency formatting ─────────────────────────────────────────
+  var currencyConfig = {
+    us:    { rate: 1,    symbol: '\u0024', code: 'USD', locale: 'en-US' },
+    eu:    { rate: 0.92, symbol: '\u20ac', code: 'EUR', locale: 'es-ES' },
+    uk:    { rate: 0.79, symbol: '\u00a3', code: 'GBP', locale: 'en-GB' },
+    latam: { rate: 1,    symbol: '\u0024', code: 'USD', locale: 'es-MX' }
+  };
+
+  function detectRegion() {
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+    // UK
+    if (tz.startsWith('Europe/London') || tz.startsWith('Europe/Belfast')) return 'uk';
+    // EU (any European timezone except UK)
+    if (tz.startsWith('Europe/')) return 'eu';
+    // US timezones
+    var usTimezones = ['America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Phoenix','America/Anchorage','America/Adak','America/Detroit','America/Indiana','America/Kentucky','America/Menominee','America/Nome','America/Sitka','America/Yakutat','America/Juneau','America/Boise','Pacific/Honolulu','US/'];
+    for (var i = 0; i < usTimezones.length; i++) {
+      if (tz.startsWith(usTimezones[i])) return 'us';
+    }
+    // Latin America (other America/ timezones)
+    if (tz.startsWith('America/')) return 'latam';
+    // Default US
+    return 'us';
+  }
+
   function formatCurrency(amountUSD) {
-    const region = localStorage.getItem('splash_region') || 'us';
-    const rates = { us: 1, eu: 0.92, uk: 0.79, latam: 1 };
-    const symbols = { us: '
-
-  // Auto-init when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+    var region = localStorage.getItem('splash_region') || detectRegion();
+    var cfg = currencyConfig[region] || currencyConfig.us;
+    var converted = Math.round(amountUSD * cfg.rate);
+    var abs = Math.abs(converted);
+    var formatted = abs.toLocaleString(cfg.locale);
+    var prefix = converted < 0 ? '\u2212' : '';
+    return prefix + cfg.symbol + formatted;
   }
 
-  // ─── Public API ───────────────────────────────────────────────────
-  return { t, setLanguage, getLanguage, toggleLanguage, init };
-})();
-, eu: '€', uk: '£', latam: '
-
-  // Auto-init when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  // ─── Public API ───────────────────────────────────────────────────
-  return { t, setLanguage, getLanguage, toggleLanguage, init };
-})();
- };
-    const codes = { us: 'USD', eu: 'EUR', uk: 'GBP', latam: 'USD' };
-    const rate = rates[region] || 1;
-    const symbol = symbols[region] || '
-
-  // Auto-init when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  function applyCurrencies() {
+    document.querySelectorAll('[data-currency]').forEach(function(el) {
+      var amount = parseFloat(el.getAttribute('data-currency'));
+      if (!isNaN(amount)) {
+        el.textContent = formatCurrency(amount);
+      }
+    });
   }
 
   // ─── Initialize ───────────────────────────────────────────────────
   function init() {
-    const saved = localStorage.getItem('splash_lang');
+    var saved = localStorage.getItem('splash_lang');
     currentLang = saved || detectLanguage();
     applyTranslations();
+    applyCurrencies();
   }
 
   // Auto-init when DOM is ready
@@ -414,5 +421,5 @@ const i18n = (() => {
   }
 
   // ─── Public API ───────────────────────────────────────────────────
-  return { t, setLanguage, getLanguage, toggleLanguage, init };
+  return { t, setLanguage, getLanguage, toggleLanguage, formatCurrency, init };
 })();
