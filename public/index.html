@@ -42,17 +42,24 @@
 <meta property="og:site_name" content="Splash Rides">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
+<!-- Using the Unsplash hero image directly. Cropped to 1200x630 (Facebook/
+     LinkedIn standard) via Unsplash URL params — no separate file needed. -->
+<meta property="og:image" content="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&h=630&fit=crop&crop=entropy&q=85">
+<meta property="og:image:secure_url" content="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&h=630&fit=crop&crop=entropy&q=85">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Luxury yacht on turquoise water — Splash Rides">
 
 <!-- ===========================================
      TWITTER/X CARD
-     Using summary (not summary_large_image) until og-image.jpg exists.
-     When you add og-image.jpg later, switch back to summary_large_image
-     and re-add og:image / twitter:image meta tags.
      =========================================== -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@splashrides">
 <meta name="twitter:title" content="Splash Rides — Rent a Boat with a Licensed Captain">
 <meta name="twitter:description" content="Browse boats, book in minutes, meet your USCG-licensed captain at the dock. The easiest way to get on the water.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&h=630&fit=crop&crop=entropy&q=85">
+<meta name="twitter:image:alt" content="Luxury yacht on turquoise water — Splash Rides">
 
 <!-- ===========================================
      STRUCTURED DATA (Schema.org)
@@ -1278,12 +1285,30 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
     submitBtn.querySelector('span').textContent='Sending…';
     var src=qs.get('ref')||qs.get('utm_source')||(initialOwnerIntent?'owner_link':'audience_toggle');
     var payload={email:email,source:src,utm_source:qs.get('utm_source'),utm_medium:qs.get('utm_medium'),utm_campaign:qs.get('utm_campaign'),utm_content:qs.get('utm_content'),referrer:document.referrer||null,landing_page:window.location.pathname};
-    var apiBase=(window.SPLASH_API_BASE||'https://api.splash-inc.com')+'/api/marketing/lead';
-    fetch(apiBase,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){}).finally(function(){
-      body.style.display='none';
-      done.style.display='block';
-      markDismissed();
-    });
+    // API host: the api.splash-inc.com subdomain has no DNS record, so we
+    // point at the Render service directly. If/when api.splash-inc.com is
+    // set up as a CNAME to boatride-api.onrender.com, set window.SPLASH_API_BASE
+    // before this script runs (or just change the literal below).
+    var apiBase=(window.SPLASH_API_BASE||'https://boatride-api.onrender.com')+'/api/marketing/lead';
+    // Check response status before showing success. Previously this swallowed
+    // ALL failures (DNS, CORS, 500s) and still showed the green checkmark,
+    // which is why submissions appeared to work but no email ever arrived.
+    fetch(apiBase,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){
+        if(!r.ok) throw new Error('http '+r.status);
+        return r.json();
+      })
+      .then(function(){
+        body.style.display='none';
+        done.style.display='block';
+        markDismissed();
+      })
+      .catch(function(err){
+        console.error('[F30] submit failed:', err);
+        submitBtn.disabled=false;
+        submitBtn.querySelector('span').textContent='Try again';
+        emailInput.style.borderColor='#fb5607';
+      });
   });
 })();
 </script>
