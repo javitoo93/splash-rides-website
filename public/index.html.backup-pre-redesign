@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splash Rides — Rent a Boat. List Your Boat. Worldwide.</title>
+<meta name="description" content="Splash Rides connects boat renters with verified owners and licensed captains worldwide. Browse boats, book instantly, and enjoy the water. List your boat and start earning.">
+<meta name="keywords" content="boat rental, yacht charter, boat hire, rent a boat, boat sharing, captain for hire, fishing charter, pontoon rental, jet ski rental, boat marketplace">
+<meta name="author" content="Splash Rides Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://splash-inc.com">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Splash Rides — Rent a Boat Anywhere">
+<meta property="og:description" content="Browse thousands of boats worldwide. Book instantly with verified owners and licensed captains.">
+<meta property="og:url" content="https://splash-inc.com">
+<meta property="og:site_name" content="Splash Rides">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Splash Rides — Rent a Boat Anywhere">
+<meta name="twitter:description" content="Browse thousands of boats worldwide. Book instantly with verified owners and licensed captains.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Splash Rides","legalName":"Splash Rides Ltd","url":"https://splash-inc.com","description":"Boat rental marketplace connecting renters with verified owners and licensed captains worldwide","contactPoint":{"@type":"ContactPoint","email":"support@splash-inc.com","contactType":"customer service"},"sameAs":[]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Splash Rides","applicationCategory":"TravelApplication","operatingSystem":"iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0b1d3a;--azure:#1b6ca8;--splash:#00b4d8;--aqua:#90e0ef;
+  --sun:#ffb703;--coral:#fb5607;--sand:#fdf6ec;--foam:#f0f9ff;
+  --dark:#060e1f;--text:#1c2541;--muted:#5a6a85;--light:#f8fafc;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;z-index:200;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:.4s}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(24px);box-shadow:0 2px 40px rgba(0,0,0,.06);padding:12px 48px}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:800;color:#fff;text-decoration:none;transition:.4s;letter-spacing:-.5px}
+nav.scrolled .nav-logo{color:var(--navy)}
+.nav-logo i{font-style:normal;color:var(--splash)}
+.nav-right{display:flex;gap:28px;align-items:center}
+.nav-right a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;font-weight:500;transition:.25s}
+nav.scrolled .nav-right a{color:var(--muted)}
+.nav-right a:hover{color:#fff}
+nav.scrolled .nav-right a:hover{color:var(--azure)}
+.nav-cta{background:var(--splash)!important;color:#fff!important;padding:9px 22px;border-radius:50px;font-weight:600}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;transition:.3s}
+nav.scrolled .hamburger span{background:var(--navy)}
+.lang-toggle{cursor:pointer;font-size:.82rem;font-weight:600;padding:5px 14px;border-radius:50px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.85);transition:.25s;letter-spacing:.5px}
+.lang-toggle:hover{background:rgba(255,255,255,.15)}
+nav.scrolled .lang-toggle{border-color:var(--muted);color:var(--muted)}
+nav.scrolled .lang-toggle:hover{background:var(--foam);color:var(--azure)}
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(155deg,var(--dark) 0%,var(--navy) 35%,var(--azure) 70%,var(--splash) 100%)}
+.hero-wave{position:absolute;bottom:-2px;left:0;width:100%;z-index:2}
+.hero-wave svg{display:block;width:100%}
+.hero-inner{position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:140px 48px 100px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 20px;border-radius:50px;color:rgba(255,255,255,.9);font-size:.78rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(12px);margin-bottom:32px}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,6.5vw,5rem);color:#fff;line-height:1.08;margin-bottom:20px;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--splash),var(--aqua));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.7);max-width:580px;margin:0 auto 48px;line-height:1.7;font-weight:300}
+.path-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto}
+.path-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:40px 32px;backdrop-filter:blur(20px);text-align:left;transition:.4s;cursor:pointer}
+section{padding:100px 48px}
+footer{background:var(--dark);color:rgba(255,255,255,.5);padding:60px 48px 28px}
+</style>
+</head>
+<body>
+<!-- FULL ORIGINAL BODY OMITTED FROM BACKUP — recoverable via `git log` and `git show HEAD~1:frontend/web/public/index.html` -->
+<!-- The site is git-tracked; this stub backup confirms the redesign timestamp and points to git for the canonical pre-redesign version. -->
+<!-- Run: git log --follow frontend/web/public/index.html  to find the commit immediately before the redesign. -->
+</body>
+</html>
