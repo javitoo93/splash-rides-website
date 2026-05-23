@@ -3,27 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Splash Rides — Rent a Boat. List Your Boat. Worldwide.</title>
-<meta name="description" content="Splash Rides connects boat renters with verified owners and licensed captains worldwide. Browse boats, book instantly, and enjoy the water. List your boat and start earning.">
-<meta name="keywords" content="boat rental, yacht charter, boat hire, rent a boat, boat sharing, captain for hire, fishing charter, pontoon rental, jet ski rental, boat marketplace">
+
+<!-- ===========================================
+     PRIMARY META TAGS
+     Title under 60 chars (Google truncates at ~60). Front-loads the
+     primary phrase ("Rent a Boat") then differentiates with the brand
+     and the differentiator ("licensed captains"). Description under 160
+     chars, ends with a CTA verb ("Book in minutes") that boosts CTR.
+     =========================================== -->
+<title>Rent a Boat with a Licensed Captain | Splash Rides</title>
+<meta name="description" content="Rent a boat anywhere in the US with verified owners and USCG-licensed captains. No phone calls, no paperwork. Book in minutes from your phone.">
+<meta name="keywords" content="boat rental, rent a boat, boat rental app, boat charter, boat hire, yacht rental, fishing charter, pontoon rental, captain for hire, boat rental Florida, boat rental near me">
 <meta name="author" content="Splash Rides Ltd">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://splash-inc.com">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://splash-inc.com/">
+<link rel="alternate" hreflang="en" href="https://splash-inc.com/">
+<link rel="alternate" hreflang="es" href="https://splash-inc.com/?lang=es">
+<link rel="alternate" hreflang="x-default" href="https://splash-inc.com/">
+<meta name="theme-color" content="#0b1d3a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+
+<!-- ===========================================
+     OPEN GRAPH (Facebook, LinkedIn, iMessage, WhatsApp link previews)
+     The og:image is THE most-shared visual asset of this site. It
+     appears in every IG DM link preview, every WhatsApp share, every
+     iMessage paste. Must be a real, high-quality 1200x630 JPG/PNG
+     hosted at a stable URL.
+     =========================================== -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Splash Rides — Rent a Boat Anywhere">
-<meta property="og:description" content="Browse thousands of boats worldwide. Book instantly with verified owners and licensed captains.">
-<meta property="og:url" content="https://splash-inc.com">
+<meta property="og:title" content="Splash Rides — Rent a Boat with a Licensed Captain">
+<meta property="og:description" content="Browse boats, book in minutes, and meet your USCG-licensed captain at the dock. The easiest way to get on the water in the US.">
+<meta property="og:url" content="https://splash-inc.com/">
 <meta property="og:site_name" content="Splash Rides">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Splash Rides — Rent a Boat Anywhere">
-<meta name="twitter:description" content="Browse thousands of boats worldwide. Book instantly with verified owners and licensed captains.">
+
+<!-- ===========================================
+     TWITTER/X CARD
+     Using summary (not summary_large_image) until og-image.jpg exists.
+     When you add og-image.jpg later, switch back to summary_large_image
+     and re-add og:image / twitter:image meta tags.
+     =========================================== -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@splashrides">
+<meta name="twitter:title" content="Splash Rides — Rent a Boat with a Licensed Captain">
+<meta name="twitter:description" content="Browse boats, book in minutes, meet your USCG-licensed captain at the dock. The easiest way to get on the water.">
+
+<!-- ===========================================
+     STRUCTURED DATA (Schema.org)
+     Multiple schema types because Google rewards different ones in
+     different SERP features:
+       - Organization: Knowledge Panel
+       - WebSite + SearchAction: Sitelinks Search Box
+       - SoftwareApplication: App rich card (with rating once we have them)
+       - FAQPage: FAQ rich results (biggest SERP real estate for new sites)
+       - LocalBusiness: "near me" queries, Google Business Profile sync
+     =========================================== -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Splash Rides","legalName":"Splash Rides Ltd","url":"https://splash-inc.com","description":"Boat rental marketplace connecting renters with verified owners and licensed captains worldwide","contactPoint":{"@type":"ContactPoint","email":"support@splash-inc.com","contactType":"customer service"},"sameAs":[]}
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Splash Rides",
+  "legalName": "Splash Rides Ltd",
+  "url": "https://splash-inc.com",
+  "description": "Boat rental marketplace connecting renters with verified boat owners and USCG-licensed captains across the United States.",
+  "foundingDate": "2026",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "support@splash-inc.com",
+    "contactType": "customer service",
+    "areaServed": "US",
+    "availableLanguage": ["English", "Spanish"]
+  },
+  "sameAs": [
+    "https://apps.apple.com/app/id6768420588",
+    "https://apps.apple.com/app/id6768137397"
+  ]
+}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Splash Rides","applicationCategory":"TravelApplication","operatingSystem":"iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Splash Rides",
+  "url": "https://splash-inc.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://splash-inc.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Splash Rides",
+  "operatingSystem": "iOS",
+  "applicationCategory": "TravelApplication",
+  "description": "Rent a boat with a verified owner or USCG-licensed captain in the United States. Browse boats, book instantly, and pay only 24 hours before the trip.",
+  "downloadUrl": "https://apps.apple.com/app/id6768420588",
+  "installUrl": "https://apps.apple.com/app/id6768420588",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Splash Rides Ltd"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Splash Pro",
+  "operatingSystem": "iOS",
+  "applicationCategory": "BusinessApplication",
+  "description": "List your boat and earn money. Splash Pro is the owner and captain app for the Splash Rides marketplace.",
+  "downloadUrl": "https://apps.apple.com/app/id6768137397",
+  "installUrl": "https://apps.apple.com/app/id6768137397",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a boating license to rent a boat on Splash Rides?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. When you book a boat with a USCG-licensed captain on Splash Rides, the captain operates the vessel for you. No boating license is required. Bareboat charters (where you operate the boat yourself) have their own state-specific licensing rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to rent a boat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Boat rental prices on Splash Rides vary by boat type, size, location, and trip duration. Pontoons typically start around $100/hour, center consoles and bowriders $150-$300/hour, and larger yachts $400+/hour. You only pay the listed price plus any captain gratuity — no hidden fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When am I charged for my boat rental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your card is authorized at booking but only charged 24 hours before your trip. If you cancel more than 24 hours before departure, you get a full refund."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I list my boat on Splash Pro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Download the Splash Pro app, sign up as a boat owner, and add your boat in about 10 minutes: 4-6 photos, basic details (length, year, capacity), your hourly rate, and availability. Our team reviews each listing within 24 hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much can I earn renting out my boat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 28-foot boat on Splash Pro typically earns $4,400+ per month at 16 trips/month (a weekend schedule). Earnings depend on boat size, location, and how often you make it available. Splash Pro takes a 20% commission; the rest is yours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are all boats and captains insured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every boat on Splash Rides must carry commercial marine liability insurance that meets its state's requirements. Captains are verified with a current USCG license and government ID before they can accept any booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I rent a boat with Splash Rides?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Splash Rides operates nationwide in the United States, with active boats in Florida, California, Texas, the Great Lakes, the Northeast, and most coastal and lake regions. Open the app to see available boats near you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I need to cancel my boat rental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cancel free up to 24 hours before your trip for a full refund. Within 24 hours of departure, cancellation policies depend on the boat owner's listed terms (moderate or strict). If the captain cancels for safety or weather, you always get a full refund."
+      }
+    }
+  ]
+}
 </script>
 
 <!--
@@ -282,6 +466,25 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 .fcol a{display:block;color:rgba(255,255,255,.5);text-decoration:none;font-size:.86rem;margin-bottom:10px;transition:.2s}
 .fcol a:hover{color:var(--splash)}
 .footer-bottom{max-width:1180px;margin:0 auto;padding-top:28px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;font-size:.78rem;flex-wrap:wrap;gap:10px;color:rgba(255,255,255,.4)}
+
+/* ─── FAQ ─── */
+.faq-section{padding:120px 48px;background:var(--foam)}
+.faq-grid{display:flex;flex-direction:column;gap:12px;max-width:820px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid #e2ecf3;border-radius:14px;overflow:hidden;transition:.25s}
+.faq-item[open]{box-shadow:0 8px 28px rgba(11,29,58,.08);border-color:rgba(0,180,216,.25)}
+.faq-item summary{cursor:pointer;padding:20px 56px 20px 24px;font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--navy);position:relative;list-style:none;transition:.2s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:1.4rem;font-weight:400;color:var(--splash);transition:transform .25s}
+.faq-item[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq-item summary:hover{color:var(--azure)}
+.faq-item > div{padding:0 24px 22px 24px;color:var(--muted);line-height:1.7;font-size:.95rem}
+.faq-item > div p{margin:0}
+@media(max-width:640px){
+  .faq-section{padding:64px 20px}
+  .faq-item summary{padding:16px 44px 16px 18px;font-size:.98rem}
+  .faq-item summary::after{right:18px;font-size:1.25rem}
+  .faq-item > div{padding:0 18px 18px 18px;font-size:.9rem}
+}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
@@ -564,6 +767,55 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
   </div>
 </section>
 
+<!-- FAQ SECTION (visible, also matches FAQPage schema in <head>)
+     Schema FAQs must appear in visible HTML or Google suppresses the rich
+     result. Beyond the SERP feature, this section adds real keyword content
+     for long-tail queries ("do I need a boating license to rent a boat",
+     "how much does it cost to rent a boat", etc.) which a new site needs
+     for any chance of ranking. Audience-neutral — shown to both renter and
+     owner modes. -->
+<section class="faq-section" id="faq" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="s-header center reveal" style="max-width:680px;margin:0 auto 56px;">
+    <div class="section-label blue">Frequently asked questions</div>
+    <h2>Everything you need to know</h2>
+    <p>The quick answers most people ask before their first booking.</p>
+  </div>
+  <div class="faq-grid">
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Do I need a boating license to rent a boat?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">No. When you book a boat with a USCG-licensed captain on Splash Rides, the captain operates the vessel for you. No boating license is required. Bareboat charters (where you operate the boat yourself) have their own state-specific licensing rules.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">How much does it cost to rent a boat?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Boat rental prices on Splash Rides vary by boat type, size, location, and trip duration. Pontoons typically start around $100/hour, center consoles and bowriders $150&ndash;$300/hour, and larger yachts $400+/hour. You only pay the listed price plus any captain gratuity &mdash; no hidden fees.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">When am I charged for my boat rental?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Your card is authorized at booking but only charged 24 hours before your trip. If you cancel more than 24 hours before departure, you get a full refund.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">How do I list my boat on Splash Pro?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Download the Splash Pro app, sign up as a boat owner, and add your boat in about 10 minutes: 4&ndash;6 photos, basic details (length, year, capacity), your hourly rate, and availability. Our team reviews each listing within 24 hours.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">How much can I earn renting out my boat?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">A 28-foot boat on Splash Pro typically earns $4,400+ per month at 16 trips/month (a weekend schedule). Earnings depend on boat size, location, and how often you make it available. Splash Pro takes a 20% commission; the rest is yours.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Are all boats and captains insured?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Every boat on Splash Rides must carry commercial marine liability insurance that meets its state's requirements. Captains are verified with a current USCG license and government ID before they can accept any booking.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Where can I rent a boat with Splash Rides?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Splash Rides operates nationwide in the United States, with active boats in Florida, California, Texas, the Great Lakes, the Northeast, and most coastal and lake regions. Open the app to see available boats near you.</p></div>
+    </details>
+    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">What if I need to cancel my boat rental?</summary>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Cancel free up to 24 hours before your trip for a full refund. Within 24 hours of departure, cancellation policies depend on the boat owner's listed terms (moderate or strict). If the captain cancels for safety or weather, you always get a full refund.</p></div>
+    </details>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="cta-section" id="download">
   <div class="cta-bg" id="ctaBg"></div>
@@ -610,6 +862,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
       <h5 data-i18n="footer.legal">Legal</h5>
       <a href="/terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
       <a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+      <a href="#faq">FAQ</a>
       <a href="mailto:support@splash-inc.com" data-i18n="footer.contact">Contact</a>
     </div>
   </div>

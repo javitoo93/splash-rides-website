@@ -1,12 +1,52 @@
+# Splash Rides — robots.txt
+# Allow all standard search crawlers full access.
+
 User-agent: *
 Allow: /
-Sitemap: https://splash-inc.com/sitemap.xml
+Disallow: /admin
+Disallow: /api/
+
+# AI crawlers — ALLOW. New brand fighting for visibility, every channel matters.
+# ChatGPT, Perplexity, Claude, and Google AI Overviews are how a growing share
+# of users now discover services. Blocking them is shooting ourselves in the
+# foot. If we ever care about training-data extraction vs RAG-retrieval, we
+# can split the two — but for now: open the doors.
 
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
+
+# Honest crawl delay request for the smaller bots to keep server load reasonable.
+# Major engines (Google, Bing) ignore this; the smaller ones honor it.
+Crawl-delay: 1
+
+Sitemap: https://splash-inc.com/sitemap.xml
