@@ -66,6 +66,68 @@ nav.scrolled .nav-right a:hover{color:var(--azure)}
 nav.scrolled .lang-toggle{border-color:var(--muted);color:var(--muted)}
 nav.scrolled .lang-toggle:hover{background:var(--foam);color:var(--azure)}
 
+/* ─── AUDIENCE TOGGLE (Renter / Owner) ─── */
+.audience-toggle{position:relative;display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:50px;padding:4px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:background .4s,border-color .4s}
+nav.scrolled .audience-toggle{background:var(--foam);border-color:#e2ecf3}
+.aud-btn{position:relative;z-index:2;background:transparent;border:none;cursor:pointer;padding:8px 18px;border-radius:50px;font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.2px;color:rgba(255,255,255,.7);transition:color .3s;white-space:nowrap}
+nav.scrolled .aud-btn{color:var(--muted)}
+.aud-btn.active{color:#fff}
+.aud-btn.aud-owner.active{color:var(--navy)}
+nav.scrolled .aud-btn.aud-renter.active{color:#fff}
+nav.scrolled .aud-btn.aud-owner.active{color:var(--navy)}
+.aud-pill{position:absolute;z-index:1;top:4px;left:4px;height:calc(100% - 8px);width:calc(50% - 4px);background:var(--splash);border-radius:50px;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s}
+body.audience-owner .aud-pill{transform:translateX(100%);background:var(--sun)}
+
+/* On mobile/tablet, the toggle moves OUT of the nav (where there's no room
+   next to the logo) and becomes a full-width sticky band just under the nav.
+   This is the single most important mobile control — most IG traffic is
+   mobile, and we need owners to be able to switch modes without a deep link. */
+@media(max-width:900px){
+  .audience-toggle{
+    position:fixed;
+    top:64px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:199;
+    width:calc(100% - 32px);
+    max-width:420px;
+    background:rgba(11,29,58,.85);
+    border-color:rgba(255,255,255,.14);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+    will-change:transform;
+  }
+  nav.scrolled .audience-toggle{background:#fff;border-color:#e2ecf3;box-shadow:0 4px 16px rgba(11,29,58,.08)}
+  .aud-btn{flex:1;padding:10px 14px;font-size:.85rem;text-align:center}
+  .aud-pill{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s}
+  /* Hero needs extra top padding so it doesn't slide under the floating toggle */
+  .hero-inner{padding-top:200px!important}
+}
+@media(max-width:480px){
+  .audience-toggle{top:60px;width:calc(100% - 24px)}
+  .aud-btn{font-size:.78rem;padding:9px 10px}
+  .hero-inner{padding-top:190px!important}
+}
+
+/* Owner mode: hide pure-renter sections; renter mode: hide pure-owner. The owners-section (id=#owners) is shown in BOTH modes but visually retitled below to make sense as the primary CTA when in owner mode. */
+body.audience-renter .audience-owner-only{display:none!important}
+body.audience-owner  .audience-renter-only{display:none!important}
+
+/* Nav link audience-gating: don't show "Rent a Boat" when on the owner side, and vice versa */
+body.audience-owner  .nav-link-renter{display:none}
+body.audience-renter .nav-link-owner{display:none}
+
+/* Owner-mode hero subtitle override (set via JS, but reserve space for the swap) */
+body.audience-owner .path-card.renter{display:none}
+body.audience-owner .path-cards{grid-template-columns:1fr;max-width:520px}
+body.audience-renter .path-card.owner{display:none}
+body.audience-renter .path-cards{grid-template-columns:1fr;max-width:520px}
+
+/* When in owner mode, push the .owners-section title slightly tighter since it's the focal point */
+body.audience-owner .owners-section{padding-top:80px}
+
+
 /* ─── HERO ─── */
 .hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--ink)}
 .hero-bg{position:absolute;inset:-5% 0;background-image:url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2400&q=85&auto=format&fit=crop');background-size:cover;background-position:center;will-change:transform;transform:translateZ(0)}
@@ -234,16 +296,60 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 @media(max-width:640px){
   nav{padding:14px 20px}
   nav.scrolled{padding:10px 20px}
-  .nav-right{gap:14px}
+  .nav-logo{font-size:1.4rem}
+  .nav-right{gap:10px}
+  /* Hide secondary nav links on mobile — the audience toggle below handles section switching */
   .nav-right a:not(.nav-cta):not(.lang-toggle){display:none}
-  section{padding:80px 20px}
-  .renter-features-section,.safety-section,.reviews-section{padding:80px 20px}
-  .three-taps-sticky{padding:60px 20px}
-  .renter-features{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .hero-inner{padding:120px 24px 80px}
-  .editorial{height:auto;min-height:360px}
-  .editorial-inner{padding:80px 24px}
+  .nav-cta{padding:8px 16px;font-size:.82rem}
+  .lang-toggle{padding:5px 10px;font-size:.76rem}
+  section{padding:64px 20px}
+  .renter-features-section,.safety-section,.reviews-section{padding:64px 20px}
+  .owners-section{padding:64px 20px}
+  body.audience-owner .owners-section{padding-top:64px}
+  .three-taps-sticky{padding:48px 20px}
+  .renter-features{grid-template-columns:1fr;gap:16px}
+  .rf{padding:28px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
+  .footer-bottom{flex-direction:column;text-align:center;gap:6px}
+  .hero-inner{padding:160px 20px 60px}
+  .hero-badge{font-size:.68rem;padding:6px 16px;margin-bottom:24px}
+  .hero-sub{margin-bottom:36px}
+  .hero{min-height:100svh}
+  .scroll-cue{display:none}
+  .editorial{height:auto;min-height:300px}
+  .editorial-inner{padding:60px 24px}
+  .path-card{padding:28px 24px}
+  .path-card h3{font-size:1.25rem}
+  .path-card p{font-size:.88rem;margin-bottom:18px}
+  /* Owner section: stack the earnings box under the points list with proper spacing */
+  .owners-grid{gap:32px}
+  .earnings-box{padding:28px 22px}
+  .earnings-box h4{margin-bottom:20px;font-size:.72rem}
+  .e-row{padding:12px 0}
+  .e-label{font-size:.85rem}
+  .e-val{font-size:1.1rem}
+  .e-total .e-val{font-size:1.65rem}
+  .pro-badge{padding:12px 24px;font-size:.88rem;width:100%;justify-content:center}
+  /* CTA section tighter */
+  .cta-section{padding:96px 20px}
+  .cta-inner p{font-size:.98rem;margin-bottom:32px}
+  .store-row{flex-direction:column;gap:12px}
+  .store-btn{width:100%;justify-content:center;padding:14px 20px}
+  /* Reviews stack cleanly */
+  .review{padding:28px 24px}
+  /* Safety cards tighter */
+  .sf{padding:24px 20px}
+}
+@media(max-width:380px){
+  .hero-badge{font-size:.62rem;letter-spacing:1px;padding:5px 12px}
+  .nav-cta{padding:7px 14px;font-size:.78rem}
+}
+
+/* iPhone safe-area for the floating audience toggle (notch, dynamic island) */
+@supports(padding:max(0px)){
+  @media(max-width:900px){
+    .audience-toggle{top:max(64px,calc(env(safe-area-inset-top) + 56px))}
+  }
 }
 
 /* ─── REDUCED MOTION ─── */
@@ -259,9 +365,24 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 <!-- NAV -->
 <nav id="nav">
   <a href="/" class="nav-logo"><i>S</i>plash</a>
+
+  <!--
+    Audience toggle (Renters ↔ Owners). Drives a body-level class
+    (audience-renter / audience-owner) which the CSS below uses to hide
+    the opposite-audience sections and swap CTAs. Also gates the
+    FOUNDER30 popup — it only shows when the user explicitly chooses
+    the Owner tab, never to passing renters. Default is renter; owner
+    persists via ?owner=1, ?ref=ig, or sessionStorage during the visit.
+  -->
+  <div class="audience-toggle" id="audienceToggle" role="tablist" aria-label="Choose audience">
+    <button class="aud-btn aud-renter active" id="audRenterBtn" role="tab" aria-selected="true" data-i18n="toggle.renter">I want to rent</button>
+    <button class="aud-btn aud-owner" id="audOwnerBtn" role="tab" aria-selected="false" data-i18n="toggle.owner">I want to list my boat</button>
+    <span class="aud-pill" id="audPill" aria-hidden="true"></span>
+  </div>
+
   <div class="nav-right">
-    <a href="#renters" data-i18n="nav.renters">Rent a Boat</a>
-    <a href="#owners" data-i18n="nav.owners">List Your Boat</a>
+    <a href="#renters" data-i18n="nav.renters" class="nav-link-renter">Rent a Boat</a>
+    <a href="#owners" data-i18n="nav.owners" class="nav-link-owner">List Your Boat</a>
     <a href="#safety" data-i18n="nav.safety">Safety</a>
     <button class="lang-toggle" id="langToggle" onclick="i18n.toggleLanguage(); this.textContent = i18n.getLanguage() === 'en' ? 'ES 🇪🇸' : 'EN 🇺🇸'">ES 🇪🇸</button>
     <a href="#download" class="nav-cta" data-i18n="nav.cta">Get the App</a>
@@ -298,7 +419,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 </section>
 
 <!-- PINNED THREE-TAPS (CONVEYOR) -->
-<section class="three-taps" id="renters">
+<section class="three-taps audience-renter-only" id="renters">
   <div class="three-taps-sticky">
     <div class="three-taps-head">
       <div class="section-label blue" data-i18n="renters.label">For Renters</div>
@@ -340,7 +461,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 </section>
 
 <!-- RENTER FEATURES -->
-<section class="renter-features-section">
+<section class="renter-features-section audience-renter-only">
   <div class="rf-head">
     <div class="section-label blue" data-i18n="renters.label">For Renters</div>
     <h2 style="font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin-bottom:16px;font-weight:700;letter-spacing:-.02em">Built for the boating community</h2>
@@ -369,7 +490,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
 </section>
 
 <!-- OWNERS -->
-<section class="owners-section" id="owners">
+<section class="owners-section audience-owner-only" id="owners">
   <div class="owners-bg" id="ownersBg"></div>
   <div class="owners-overlay"></div>
   <div class="owners-grid">
@@ -707,6 +828,210 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
     }, { threshold: 0.5 });
     countObserver.observe(counter);
   }
+})();
+</script>
+
+<!-- ─── FOUNDER30 POPUP ─── -->
+<style>
+.f30-overlay{position:fixed;inset:0;background:rgba(6,14,31,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .35s ease}
+.f30-overlay.show{display:flex;opacity:1}
+.f30-card{position:relative;background:linear-gradient(160deg,#0b1d3a 0%,#0a1628 100%);border:1px solid rgba(255,183,3,.25);border-radius:24px;max-width:480px;width:100%;padding:44px 36px 36px;color:#fff;box-shadow:0 40px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);transform:translateY(20px);transition:transform .4s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.f30-overlay.show .f30-card{transform:translateY(0)}
+.f30-card::before{content:'';position:absolute;top:-60%;right:-30%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,183,3,.18),transparent 70%);filter:blur(30px);pointer-events:none}
+.f30-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;z-index:2}
+.f30-close:hover{background:rgba(255,255,255,.12);color:#fff;transform:rotate(90deg)}
+.f30-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,183,3,.14);border:1px solid rgba(255,183,3,.35);padding:6px 16px;border-radius:50px;color:#ffb703;font-size:.7rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:1}
+.f30-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#ffb703;box-shadow:0 0 0 4px rgba(255,183,3,.25);animation:pulse 2s infinite}
+.f30-card h3{font-family:'Fraunces',serif;font-size:1.85rem;line-height:1.15;margin-bottom:14px;font-weight:700;letter-spacing:-.02em;position:relative;z-index:1}
+.f30-card h3 em{font-style:italic;background:linear-gradient(135deg,#ffb703 0%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.f30-card p{color:rgba(255,255,255,.72);font-size:.94rem;line-height:1.65;margin-bottom:24px;position:relative;z-index:1}
+.f30-code{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border:1px dashed rgba(255,183,3,.45);border-radius:14px;padding:14px 20px;margin-bottom:20px;position:relative;z-index:1}
+.f30-code-label{font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.f30-code-val{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:#ffb703;letter-spacing:.05em}
+.f30-form{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.f30-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 18px;color:#fff;font-size:.95rem;font-family:inherit;transition:.25s;outline:none}
+.f30-input:focus{border-color:#ffb703;background:rgba(255,255,255,.1)}
+.f30-input::placeholder{color:rgba(255,255,255,.4)}
+.f30-cta{background:#ffb703;color:#0b1d3a;border:none;border-radius:50px;padding:16px 24px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.f30-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,183,3,.35)}
+.f30-cta:disabled{opacity:.6;cursor:wait}
+.f30-spots{text-align:center;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px;position:relative;z-index:1}
+.f30-spots b{color:#ffb703;font-weight:700}
+.f30-success{text-align:center;padding:20px 0;position:relative;z-index:1}
+.f30-success .checkmark{width:64px;height:64px;border-radius:50%;background:rgba(255,183,3,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2rem}
+.f30-success h4{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:10px;color:#fff}
+.f30-success p{color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:20px}
+.f30-success .store-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+@media(max-width:520px){
+  .f30-overlay{padding:16px}
+  .f30-card{padding:32px 22px 24px;max-width:none;border-radius:20px}
+  .f30-card h3{font-size:1.4rem;line-height:1.2;margin-bottom:12px}
+  .f30-card p{font-size:.9rem;margin-bottom:20px}
+  .f30-close{top:10px;right:10px;width:32px;height:32px;font-size:1rem}
+  .f30-badge{font-size:.62rem;padding:5px 12px;margin-bottom:16px;letter-spacing:1.4px}
+  .f30-code{padding:12px 16px}
+  .f30-code-val{font-size:1.2rem}
+  .f30-input{padding:13px 16px;font-size:16px}/* 16px prevents iOS zoom on focus */
+  .f30-cta{padding:14px 20px;font-size:.92rem}
+  .f30-spots{font-size:.74rem}
+}
+@media(max-width:380px){
+  .f30-card{padding:28px 18px 20px}
+  .f30-card h3{font-size:1.25rem}
+}
+</style>
+<div class="f30-overlay" id="f30Overlay" role="dialog" aria-modal="true" aria-labelledby="f30Title">
+  <div class="f30-card">
+    <button class="f30-close" id="f30Close" aria-label="Close">✕</button>
+    <div class="f30-badge" data-i18n="f30.badge">Founder Group · First 30 Owners</div>
+    <div id="f30Body">
+      <h3 id="f30Title" data-i18n-html="f30.title">Keep <em>100%</em> of every booking for a year</h3>
+      <p data-i18n="f30.subtitle">List your boat on Splash Pro with our founder code and pay zero commission for 365 days. No exclusivity, cancel anytime.</p>
+      <div class="f30-code">
+        <span class="f30-code-label" data-i18n="f30.codeLabel">Your code</span>
+        <span class="f30-code-val">FOUNDER30</span>
+      </div>
+      <form class="f30-form" id="f30Form" novalidate>
+        <input type="email" class="f30-input" id="f30Email" placeholder="your@email.com" required autocomplete="email" data-i18n-placeholder="f30.emailPlaceholder">
+        <button type="submit" class="f30-cta" id="f30Submit">
+          <span data-i18n="f30.cta">Claim my founder spot</span>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"/></svg>
+        </button>
+      </form>
+      <div class="f30-spots" id="f30Spots" data-i18n-html="f30.spots">Limited to the first <b>30 owners</b> · No credit card required</div>
+    </div>
+    <div id="f30Done" class="f30-success" style="display:none">
+      <div class="checkmark">✓</div>
+      <h4 data-i18n="f30.successTitle">You're in. Welcome aboard.</h4>
+      <p data-i18n-html="f30.successMsg">Download Splash Pro and enter <b>FOUNDER30</b> at signup to lock in 0% commission for a year.</p>
+      <a href="https://apps.apple.com/app/id6768137397" class="store-btn" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;padding:14px 24px;border-radius:12px;text-decoration:none;color:#fff">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span style="text-align:left;line-height:1.2">
+          <span style="font-size:.65rem;font-weight:400;opacity:.7;display:block;text-transform:uppercase;letter-spacing:1px">Download on the</span>
+          <span style="font-size:1rem;font-weight:700">App Store — Splash Pro</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var STORAGE_KEY='splash_f30_dismissed';
+  var SESSION_KEY='splash_audience';
+  var DISMISS_DAYS=30;
+  var overlay=document.getElementById('f30Overlay');
+  var closeBtn=document.getElementById('f30Close');
+  var form=document.getElementById('f30Form');
+  var emailInput=document.getElementById('f30Email');
+  var submitBtn=document.getElementById('f30Submit');
+  var body=document.getElementById('f30Body');
+  var done=document.getElementById('f30Done');
+  var renterBtn=document.getElementById('audRenterBtn');
+  var ownerBtn=document.getElementById('audOwnerBtn');
+  var shown=false;
+
+  function isDismissed(){
+    try{
+      var v=localStorage.getItem(STORAGE_KEY);
+      if(!v)return false;
+      var ts=parseInt(v,10);if(isNaN(ts))return false;
+      return (Date.now()-ts)<(DISMISS_DAYS*86400000);
+    }catch(e){return false}
+  }
+  function markDismissed(){
+    try{localStorage.setItem(STORAGE_KEY,String(Date.now()))}catch(e){}
+  }
+  function showPopup(){
+    if(shown||isDismissed())return;
+    shown=true;
+    overlay.classList.add('show');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){if(emailInput)emailInput.focus()},400);
+  }
+  function hidePopup(){
+    overlay.classList.remove('show');
+    document.body.style.overflow='';
+    markDismissed();
+  }
+
+  // ─── Audience switch ───
+  // Source of truth: <body> class. On switch we also persist in session
+  // storage so a page reload (e.g. language toggle) keeps the choice,
+  // and we fire the FOUNDER30 popup only on Owner mode — once per
+  // visit, never to passing renters. Exit-intent / hover triggers are
+  // gone; this is now a deliberate user action.
+  function setAudience(mode, opts){
+    opts = opts || {};
+    var isOwner = mode === 'owner';
+    document.body.classList.toggle('audience-owner', isOwner);
+    document.body.classList.toggle('audience-renter', !isOwner);
+    if(renterBtn){
+      renterBtn.classList.toggle('active', !isOwner);
+      renterBtn.setAttribute('aria-selected', String(!isOwner));
+    }
+    if(ownerBtn){
+      ownerBtn.classList.toggle('active', isOwner);
+      ownerBtn.setAttribute('aria-selected', String(isOwner));
+    }
+    try{ sessionStorage.setItem(SESSION_KEY, mode); }catch(e){}
+    // Scroll back to top so the user sees the relevant hero/sections.
+    // Skip on the initial page-load apply so we don't yank a deep-linked anchor.
+    if(!opts.silent){
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    if(isOwner && !opts.silent){
+      // Fire popup right after the smooth scroll settles. Delay long
+      // enough for the section transitions to feel intentional rather
+      // than jumpy.
+      setTimeout(showPopup, 600);
+    }
+  }
+
+  // Initial audience: ?owner=1, ?ref=ig, ?utm_campaign=founder30 win first;
+  // then sessionStorage; else default renter.
+  var qs=new URLSearchParams(window.location.search);
+  var sessionChoice=null;
+  try{ sessionChoice=sessionStorage.getItem(SESSION_KEY); }catch(e){}
+  var initialOwnerIntent=qs.has('owner')||qs.get('ref')==='ig'||qs.get('utm_campaign')==='founder30'||qs.get('utm_content')==='founder30';
+  if(initialOwnerIntent){
+    setAudience('owner', {silent:true});
+    // Owner-intent landing: show popup after a short delay (not silent
+    // because the popup is the whole point of the link), but skip the
+    // scroll-to-top since we honored ?owner=1 already.
+    setTimeout(showPopup, 1200);
+  } else if(sessionChoice === 'owner'){
+    setAudience('owner', {silent:true});
+  } else {
+    setAudience('renter', {silent:true});
+  }
+
+  if(renterBtn) renterBtn.addEventListener('click', function(){ setAudience('renter'); });
+  if(ownerBtn)  ownerBtn.addEventListener('click',  function(){ setAudience('owner'); });
+
+  // Popup close handlers
+  closeBtn.addEventListener('click',hidePopup);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)hidePopup();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&shown)hidePopup();});
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=emailInput.value.trim();
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      emailInput.style.borderColor='#fb5607';
+      emailInput.focus();return;
+    }
+    submitBtn.disabled=true;
+    submitBtn.querySelector('span').textContent='Sending…';
+    var src=qs.get('ref')||qs.get('utm_source')||(initialOwnerIntent?'owner_link':'audience_toggle');
+    var payload={email:email,source:src,utm_source:qs.get('utm_source'),utm_medium:qs.get('utm_medium'),utm_campaign:qs.get('utm_campaign'),utm_content:qs.get('utm_content'),referrer:document.referrer||null,landing_page:window.location.pathname};
+    var apiBase=(window.SPLASH_API_BASE||'https://api.splash-inc.com')+'/api/marketing/lead';
+    fetch(apiBase,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){}).finally(function(){
+      body.style.display='none';
+      done.style.display='block';
+      markDismissed();
+    });
+  });
 })();
 </script>
 

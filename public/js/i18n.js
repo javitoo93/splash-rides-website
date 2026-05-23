@@ -47,7 +47,8 @@ const i18n = (() => {
       "renters.step2.desc": "Choose your day, time, and duration. Your card is held — you're only charged 24 hours before the trip.",
       "renters.step3.title": "Show up & enjoy",
       "renters.step3.desc": "Meet your licensed captain at the marina. They handle the driving — you just relax and have fun.",
-      "renters.mockup.tagline": "Download free on iOS & Android",
+      "renters.mockup.tagline": "Download free on the App Store",
+      "editorial.quote": "Your next adventure starts at the dock.",
 
       // Feature Pills
       "pill.captains": "⚓ Verified Captains",
@@ -142,7 +143,22 @@ const i18n = (() => {
       "footer.privacy": "Privacy Policy",
       "footer.contact": "Contact",
       "footer.rights": "© 2026 Splash Rides S.L. All rights reserved.",
-      "footer.madeWith": "Made with 🌊 for the boating community"
+      "footer.madeWith": "Made with 🌊 for the boating community",
+
+      // Audience Toggle (top of page)
+      "toggle.renter": "I want to rent",
+      "toggle.owner": "I want to list my boat",
+
+      // FOUNDER30 Popup
+      "f30.badge": "Founder Group · First 30 Owners",
+      "f30.title": "Keep <em>100%</em> of every booking for a year",
+      "f30.subtitle": "List your boat on Splash Pro with our founder code and pay zero commission for 365 days. No exclusivity, cancel anytime.",
+      "f30.codeLabel": "Your code",
+      "f30.emailPlaceholder": "your@email.com",
+      "f30.cta": "Claim my founder spot",
+      "f30.spots": "Limited to the first <b>30 owners</b> · No credit card required",
+      "f30.successTitle": "You're in. Welcome aboard.",
+      "f30.successMsg": "Download Splash Pro and enter <b>FOUNDER30</b> at signup to lock in 0% commission for a year."
     },
 
     es: {
@@ -179,7 +195,8 @@ const i18n = (() => {
       "renters.step2.desc": "Escoge tu día, hora y duración. Tu tarjeta se retiene — solo se cobra 24 horas antes del viaje.",
       "renters.step3.title": "Preséntate y disfruta",
       "renters.step3.desc": "Encuentra a tu capitán con licencia en el puerto. Él conduce — tú solo relájate y disfruta.",
-      "renters.mockup.tagline": "Descarga gratis en iOS y Android",
+      "renters.mockup.tagline": "Descarga gratis en la App Store",
+      "editorial.quote": "Tu próxima aventura empieza en el muelle.",
 
       // Feature Pills
       "pill.captains": "⚓ Capitanes Verificados",
@@ -274,7 +291,22 @@ const i18n = (() => {
       "footer.privacy": "Política de Privacidad",
       "footer.contact": "Contacto",
       "footer.rights": "© 2026 Splash Rides S.L. Todos los derechos reservados.",
-      "footer.madeWith": "Hecho con 🌊 para la comunidad náutica"
+      "footer.madeWith": "Hecho con 🌊 para la comunidad náutica",
+
+      // Audience Toggle (top of page)
+      "toggle.renter": "Quiero alquilar",
+      "toggle.owner": "Quiero publicar mi barco",
+
+      // FOUNDER30 Popup
+      "f30.badge": "Grupo Fundador · Primeros 30 Propietarios",
+      "f30.title": "Quédate con el <em>100%</em> de cada reserva durante un año",
+      "f30.subtitle": "Publica tu barco en Splash Pro con nuestro código fundador y paga cero comisión durante 365 días. Sin exclusividad, cancela cuando quieras.",
+      "f30.codeLabel": "Tu código",
+      "f30.emailPlaceholder": "tu@email.com",
+      "f30.cta": "Reclamar mi plaza de fundador",
+      "f30.spots": "Limitado a los primeros <b>30 propietarios</b> · No se requiere tarjeta de crédito",
+      "f30.successTitle": "Estás dentro. Bienvenido a bordo.",
+      "f30.successMsg": "Descarga Splash Pro e introduce <b>FOUNDER30</b> al registrarte para asegurar 0% de comisión durante un año."
     }
   };
 
@@ -369,20 +401,26 @@ const i18n = (() => {
   };
 
   function detectRegion() {
+    // Check browser language first (most reliable for user preference)
+    var lang = (navigator.language || navigator.userLanguage || 'en-US').toLowerCase();
+    
+    // Strong language signals
+    if (lang === 'en-us' || lang.startsWith('en-us')) return 'us';
+    if (lang === 'en-gb' || lang.startsWith('en-gb')) return 'uk';
+    if (lang.startsWith('es-mx') || lang.startsWith('es-us')) return 'latam';
+    if (lang.startsWith('es-') || lang.startsWith('fr-') || lang.startsWith('de-') || lang.startsWith('it-') || lang.startsWith('pt-pt') || lang.startsWith('nl-')) return 'eu';
+    if (lang.startsWith('pt-br')) return 'latam';
+    
+    // Fallback to timezone
     var tz = '';
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
-    // UK
     if (tz.startsWith('Europe/London') || tz.startsWith('Europe/Belfast')) return 'uk';
-    // EU (any European timezone except UK)
     if (tz.startsWith('Europe/')) return 'eu';
-    // US timezones
     var usTimezones = ['America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Phoenix','America/Anchorage','America/Adak','America/Detroit','America/Indiana','America/Kentucky','America/Menominee','America/Nome','America/Sitka','America/Yakutat','America/Juneau','America/Boise','Pacific/Honolulu','US/'];
     for (var i = 0; i < usTimezones.length; i++) {
       if (tz.startsWith(usTimezones[i])) return 'us';
     }
-    // Latin America (other America/ timezones)
     if (tz.startsWith('America/')) return 'latam';
-    // Default US
     return 'us';
   }
 
