@@ -898,79 +898,81 @@ footer{background:var(--dark);color:rgba(255,255,255,.5);padding:80px 48px 32px;
   </div>
 </section>
 
-<!-- FAQ SECTION (visible, also matches FAQPage schema in <head>)
-     Schema FAQs must appear in visible HTML or Google suppresses the rich
-     result. Beyond the SERP feature, this section adds real keyword content
-     for long-tail queries ("do I need a boating license to rent a boat",
-     "how much does it cost to rent a boat", etc.) which a new site needs
-     for any chance of ranking. Audience-neutral — shown to both renter and
-     owner modes. -->
-<section class="faq-section" id="faq" itemscope itemtype="https://schema.org/FAQPage">
+<!-- FAQ SECTION (visible content matching FAQPage JSON-LD schema in <head>)
+     Schema rich results require the FAQ content to appear in visible HTML.
+     The JSON-LD in <head> handles the actual schema declaration — we don't
+     repeat it as Microdata here, since Google flags duplicate FAQPage
+     entities when both are present. Beyond the SERP feature, this section
+     adds real keyword content for long-tail queries ("do I need a boating
+     license to rent a boat", "how much does it cost to rent a boat", etc.)
+     which a new site needs for any chance of ranking. Audience-neutral —
+     shown to both renter and owner modes. -->
+<section class="faq-section" id="faq">
   <div class="s-header center reveal" style="max-width:680px;margin:0 auto 56px;">
     <div class="section-label blue">Frequently asked questions</div>
     <h2>Everything you need to know</h2>
     <p>The quick answers most people ask before their first booking.</p>
   </div>
   <div class="faq-grid">
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Do I need a boating license to rent a boat?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">No. When you book a boat with a USCG-licensed captain on Splash Rides, the captain operates the vessel for you. No boating license is required. Bareboat charters (where you operate the boat yourself) have their own state-specific licensing rules.</p></div>
+    <details class="faq-item reveal">
+      <summary>Do I need a boating license to rent a boat?</summary>
+      <div><p>No. When you book a boat with a USCG-licensed captain on Splash Rides, the captain operates the vessel for you. No boating license is required. Bareboat charters (where you operate the boat yourself) have their own state-specific licensing rules.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">How much does it cost to rent a boat?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Boat rental prices on Splash Rides vary by boat type, size, location, and trip duration. Pontoons typically start around $100/hour, center consoles and bowriders $150&ndash;$300/hour, and larger yachts $400+/hour. You only pay the listed price plus any captain gratuity &mdash; no hidden fees.</p></div>
+    <details class="faq-item reveal">
+      <summary>How much does it cost to rent a boat?</summary>
+      <div><p>Boat rental prices on Splash Rides vary by boat type, size, location, and trip duration. Pontoons typically start around $100/hour, center consoles and bowriders $150&ndash;$300/hour, and larger yachts $400+/hour. You only pay the listed price plus any captain gratuity &mdash; no hidden fees.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">When am I charged for my boat rental?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Your card is authorized at booking but only charged 24 hours before your trip. If you cancel more than 24 hours before departure, you get a full refund.</p></div>
+    <details class="faq-item reveal">
+      <summary>When am I charged for my boat rental?</summary>
+      <div><p>Your card is authorized at booking but only charged 24 hours before your trip. If you cancel more than 24 hours before departure, you get a full refund.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">How do I list my boat on Splash Pro?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Download the Splash Pro app, sign up as a boat owner, and add your boat in about 10 minutes: 4&ndash;6 photos, basic details (length, year, capacity), your hourly rate, and availability. Our team reviews each listing within 24 hours.</p></div>
+    <details class="faq-item reveal">
+      <summary>How do I list my boat on Splash Pro?</summary>
+      <div><p>Download the Splash Pro app, sign up as a boat owner, and add your boat in about 10 minutes: 4&ndash;6 photos, basic details (length, year, capacity), your hourly rate, and availability. Our team reviews each listing within 24 hours.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">How much can I earn renting out my boat?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">A 28-foot boat on Splash Pro typically earns $4,400+ per month at 16 trips/month (a weekend schedule). Earnings depend on boat size, location, and how often you make it available. Splash Pro takes a 20% commission; the rest is yours.</p></div>
+    <details class="faq-item reveal">
+      <summary>How much can I earn renting out my boat?</summary>
+      <div><p>A 28-foot boat on Splash Pro typically earns $4,400+ per month at 16 trips/month (a weekend schedule). Earnings depend on boat size, location, and how often you make it available. Splash Pro takes a 20% commission; the rest is yours.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Are all boats and captains insured?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Every boat on Splash Rides must carry commercial marine liability insurance that meets its state's requirements. Captains are verified with a current USCG license and government ID before they can accept any booking.</p></div>
+    <details class="faq-item reveal">
+      <summary>Are all boats and captains insured?</summary>
+      <div><p>Yes. Every boat on Splash Rides must carry commercial marine liability insurance that meets its state's requirements. Captains are verified with a current USCG license and government ID before they can accept any booking.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Where can I rent a boat with Splash Rides?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Splash Rides operates nationwide in the United States, with active boats in Florida, California, Texas, the Great Lakes, the Northeast, and most coastal and lake regions. Open the app to see available boats near you.</p></div>
+    <details class="faq-item reveal">
+      <summary>Where can I rent a boat with Splash Rides?</summary>
+      <div><p>Splash Rides operates nationwide in the United States, with active boats in Florida, California, Texas, the Great Lakes, the Northeast, and most coastal and lake regions. Open the app to see available boats near you.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">What if I need to cancel my boat rental?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Cancel free up to 24 hours before your trip for a full refund. Within 24 hours of departure, cancellation policies depend on the boat owner's listed terms (moderate or strict). If the captain cancels for safety or weather, you always get a full refund.</p></div>
+    <details class="faq-item reveal">
+      <summary>What if I need to cancel my boat rental?</summary>
+      <div><p>Cancel free up to 24 hours before your trip for a full refund. Within 24 hours of departure, cancellation policies depend on the boat owner's listed terms (moderate or strict). If the captain cancels for safety or weather, you always get a full refund.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">How is Splash Rides different from Boatsetter or GetMyBoat?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Splash Rides focuses on a simpler booking experience and lower fees for boat owners. Renters get the same access to verified boats and USCG-licensed captains with no booking fees, and owners keep a higher share of every booking thanks to our 20% commission and current 0% founder promotion.</p></div>
+    <details class="faq-item reveal">
+      <summary>How is Splash Rides different from Boatsetter or GetMyBoat?</summary>
+      <div><p>Splash Rides focuses on a simpler booking experience and lower fees for boat owners. Renters get the same access to verified boats and USCG-licensed captains with no booking fees, and owners keep a higher share of every booking thanks to our 20% commission and current 0% founder promotion.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Can I rent a boat for a sunset cruise, fishing trip, or party?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Boats on Splash Rides can be booked for sunset cruises, deep sea fishing charters, family day trips, bachelor and bachelorette parties, birthdays, and corporate outings. Each listing shows what activities the boat is best for and what amenities are included.</p></div>
+    <details class="faq-item reveal">
+      <summary>Can I rent a boat for a sunset cruise, fishing trip, or party?</summary>
+      <div><p>Yes. Boats on Splash Rides can be booked for sunset cruises, deep sea fishing charters, family day trips, bachelor and bachelorette parties, birthdays, and corporate outings. Each listing shows what activities the boat is best for and what amenities are included.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Where can I rent a boat in Florida?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Splash Rides has boats available across Florida including Miami, Fort Lauderdale, Tampa Bay, St. Petersburg, Key West, Naples, Sarasota, Destin, Jacksonville, and Pensacola. Open the Splash Rides app to see availability for your date and location.</p></div>
+    <details class="faq-item reveal">
+      <summary>Where can I rent a boat in Florida?</summary>
+      <div><p>Splash Rides has boats available across Florida including Miami, Fort Lauderdale, Tampa Bay, St. Petersburg, Key West, Naples, Sarasota, Destin, Jacksonville, and Pensacola. Open the Splash Rides app to see availability for your date and location.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">¿Puedo alquilar un barco con capitán en Puerto Rico o Florida?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Sí. Splash Rides ofrece alquiler de barcos, yates, motoras y lanchas con capitán licenciado por la USCG en Puerto Rico (San Juan, Fajardo, Culebra, Vieques) y por toda Florida (Miami, Tampa, Fort Lauderdale, Key West). Descarga la app, busca por ciudad y reserva en minutos.</p></div>
+    <details class="faq-item reveal">
+      <summary>¿Puedo alquilar un barco con capitán en Puerto Rico o Florida?</summary>
+      <div><p>Sí. Splash Rides ofrece alquiler de barcos, yates, motoras y lanchas con capitán licenciado por la USCG en Puerto Rico (San Juan, Fajardo, Culebra, Vieques) y por toda Florida (Miami, Tampa, Fort Lauderdale, Key West). Descarga la app, busca por ciudad y reserva en minutos.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">¿Cuánto cuesta alquilar un barco?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Los precios varían según el tipo de barco, tamaño y ubicación. Las pontonas y lanchas pequeñas desde $100/hora, motoras y center consoles de $150 a $300/hora, y yates más grandes desde $400/hora. Solo pagas el precio listado más propina del capitán &mdash; sin cargos ocultos.</p></div>
+    <details class="faq-item reveal">
+      <summary>¿Cuánto cuesta alquilar un barco?</summary>
+      <div><p>Los precios varían según el tipo de barco, tamaño y ubicación. Las pontonas y lanchas pequeñas desde $100/hora, motoras y center consoles de $150 a $300/hora, y yates más grandes desde $400/hora. Solo pagas el precio listado más propina del capitán &mdash; sin cargos ocultos.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">What types of boats can I rent on Splash Rides?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">You can rent pontoons, center consoles, bowriders, deck boats, sailboats, catamarans, yachts, fishing boats, houseboats, and luxury cruisers. Filter by boat type, length, capacity, and price in the Splash Rides app.</p></div>
+    <details class="faq-item reveal">
+      <summary>What types of boats can I rent on Splash Rides?</summary>
+      <div><p>You can rent pontoons, center consoles, bowriders, deck boats, sailboats, catamarans, yachts, fishing boats, houseboats, and luxury cruisers. Filter by boat type, length, capacity, and price in the Splash Rides app.</p></div>
     </details>
-    <details class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary itemprop="name">Is Splash Rides available outside the United States?</summary>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Splash Rides launched in the United States and Puerto Rico, with expansion to other Caribbean destinations and Latin America (Colombia, Mexico, Dominican Republic) planned. Join the email list on the website to be notified when new countries go live.</p></div>
+    <details class="faq-item reveal">
+      <summary>Is Splash Rides available outside the United States?</summary>
+      <div><p>Splash Rides launched in the United States and Puerto Rico, with expansion to other Caribbean destinations and Latin America (Colombia, Mexico, Dominican Republic) planned. Join the email list on the website to be notified when new countries go live.</p></div>
     </details>
   </div>
 </section>
