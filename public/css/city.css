@@ -1,0 +1,318 @@
+/* ============================================================
+   CITY LANDING PAGE STYLES — Splash Rides
+   ============================================================
+   Shared stylesheet for all /boat-rental/* and /alquiler-barcos/*
+   city pages. Each page links to this file so the brand stays
+   consistent without duplicating CSS across 5+ HTML files.
+
+   Design tokens match the homepage so visitors moving between
+   homepage and a city page see no visual seams. Mobile-first
+   because the vast majority of "boat rental Miami" searches
+   come from phones.
+   ============================================================ */
+
+:root {
+  --navy:#0b1d3a;
+  --azure:#1b6ca8;
+  --splash:#00b4d8;
+  --aqua:#90e0ef;
+  --sun:#ffb703;
+  --coral:#fb5607;
+  --sand:#fdf6ec;
+  --foam:#f0f9ff;
+  --ink:#1f2937;
+  --muted:#64748b;
+  --border:#e2e8f0;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  color:var(--ink);
+  background:#fff;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:var(--splash); text-decoration:none; transition:opacity .2s; }
+a:hover { opacity:.75; }
+img { max-width:100%; height:auto; display:block; }
+
+/* Top bar (mini nav back to home) */
+.city-nav {
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.city-nav .logo {
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:700;font-size:1.3rem;
+  color:var(--navy);
+}
+.city-nav .logo span { color:var(--splash); }
+.city-nav .nav-cta {
+  display:inline-block;padding:8px 18px;
+  background:var(--splash);color:#fff;
+  border-radius:50px;font-weight:600;font-size:.88rem;
+}
+
+/* Hero */
+.city-hero {
+  position:relative;
+  min-height:60vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 24px;
+  color:#fff;
+  background:linear-gradient(135deg,rgba(11,29,58,.85),rgba(27,108,168,.7));
+  overflow:hidden;
+}
+.city-hero::before {
+  content:"";position:absolute;inset:0;
+  background-image:var(--hero-img);
+  background-size:cover;background-position:center;
+  filter:brightness(.65);
+  z-index:-1;
+}
+.city-hero .container { max-width:780px; }
+.city-hero .breadcrumb {
+  font-size:.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:.9;
+  margin-bottom:18px;
+}
+.city-hero h1 {
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  font-weight:700;line-height:1.1;
+  margin-bottom:20px;
+  text-shadow:0 2px 30px rgba(0,0,0,.3);
+}
+.city-hero p.subtitle {
+  font-size:clamp(1rem,2vw,1.25rem);
+  max-width:600px;margin:0 auto 32px;
+  opacity:.95;
+}
+.city-hero .cta-row {
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+}
+.app-btn {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;
+  background:#000;color:#fff;
+  border-radius:14px;
+  font-weight:600;font-size:1rem;
+  border:2px solid #fff;
+  transition:transform .2s, background .2s;
+}
+.app-btn:hover { transform:translateY(-2px); background:#1a1a1a; opacity:1; }
+.app-btn.secondary { background:rgba(255,255,255,.15); backdrop-filter:blur(10px); }
+
+/* Section base */
+.city-section { padding:72px 24px; max-width:1100px; margin:0 auto; }
+.city-section h2 {
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(1.8rem,3.5vw,2.4rem);
+  font-weight:700;color:var(--navy);
+  margin-bottom:14px;line-height:1.2;
+}
+.city-section h2 + p.lead {
+  font-size:1.08rem;color:var(--muted);
+  max-width:680px;margin-bottom:36px;
+}
+.city-section .intro-prose p {
+  font-size:1.02rem;color:var(--ink);
+  margin-bottom:18px;max-width:760px;
+}
+
+/* Boat-type grid */
+.boat-types {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:32px;
+}
+.boat-type {
+  padding:24px;
+  background:var(--foam);
+  border-radius:16px;
+  border:1px solid var(--border);
+  transition:transform .25s, box-shadow .25s;
+}
+.boat-type:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,180,216,.12);
+}
+.boat-type .emoji { font-size:2rem; margin-bottom:10px; display:block; }
+.boat-type h3 {
+  font-family:'Fraunces',Georgia,serif;
+  font-size:1.15rem;color:var(--navy);
+  margin-bottom:8px;
+}
+.boat-type p { font-size:.92rem; color:var(--muted); }
+
+/* Pricing table */
+.pricing-table {
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  margin-top:24px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 20px rgba(11,29,58,.08);
+}
+.pricing-table th, .pricing-table td {
+  padding:16px 20px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+.pricing-table th {
+  background:var(--navy);
+  color:#fff;
+  font-weight:600;
+  font-size:.92rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+.pricing-table tr:last-child td { border-bottom:none; }
+.pricing-table tr:hover td { background:var(--foam); }
+.pricing-table .price {
+  color:var(--splash);
+  font-weight:700;
+  font-family:'Fraunces',Georgia,serif;
+}
+
+/* Spots / Marinas list */
+.spots-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  margin-top:32px;
+}
+.spot-card {
+  padding:24px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  border-left:4px solid var(--splash);
+}
+.spot-card h3 {
+  font-family:'Fraunces',Georgia,serif;
+  font-size:1.1rem;color:var(--navy);
+  margin-bottom:8px;
+}
+.spot-card p { font-size:.94rem; color:var(--muted); }
+
+/* FAQ */
+.city-faq { background:var(--foam); padding:80px 24px; }
+.city-faq .inner { max-width:780px; margin:0 auto; }
+.city-faq .faq-item {
+  background:#fff;
+  border-radius:14px;
+  margin-bottom:14px;
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.city-faq summary {
+  padding:18px 22px;
+  font-weight:600;font-size:1rem;
+  color:var(--navy);
+  cursor:pointer;
+  list-style:none;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.city-faq summary::-webkit-details-marker { display:none; }
+.city-faq summary::after {
+  content:"+";font-size:1.4rem;color:var(--splash);font-weight:300;
+  transition:transform .2s;
+}
+.city-faq details[open] summary::after { transform:rotate(45deg); }
+.city-faq .faq-body {
+  padding:0 22px 20px;
+  color:var(--ink);font-size:.96rem;line-height:1.65;
+}
+
+/* Final CTA */
+.city-cta {
+  text-align:center;
+  padding:96px 24px;
+  background:linear-gradient(135deg,var(--navy),var(--azure));
+  color:#fff;
+}
+.city-cta h2 {
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(1.8rem,3.5vw,2.4rem);
+  margin-bottom:18px;
+}
+.city-cta p { opacity:.9; margin-bottom:30px; max-width:560px; margin-left:auto; margin-right:auto; }
+.city-cta .cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+/* Footer */
+.city-footer {
+  background:var(--navy);
+  color:rgba(255,255,255,.7);
+  padding:48px 24px 32px;
+  text-align:center;
+  font-size:.9rem;
+}
+.city-footer .footer-nav {
+  display:flex;
+  gap:24px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:24px;
+}
+.city-footer .footer-nav a {
+  color:rgba(255,255,255,.8);
+  font-size:.92rem;
+}
+.city-footer .footer-nav a:hover { color:#fff; opacity:1; }
+.city-footer .other-cities {
+  margin:24px auto 0;
+  max-width:900px;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:24px;
+}
+.city-footer .other-cities-label {
+  font-size:.74rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:.6;
+  margin-bottom:14px;
+}
+.city-footer .other-cities-list {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:center;
+}
+.city-footer .other-cities-list a {
+  padding:6px 12px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50px;
+  font-size:.82rem;
+  color:rgba(255,255,255,.8);
+  transition:all .2s;
+}
+.city-footer .other-cities-list a:hover {
+  background:var(--splash);
+  border-color:var(--splash);
+  color:#fff;
+  opacity:1;
+}
+.city-footer .copyright { font-size:.78rem; opacity:.6; }
+
+@media (max-width:640px) {
+  .city-section { padding:56px 20px; }
+  .city-nav { padding:12px 16px; }
+  .city-hero { min-height:50vh; padding:60px 20px; }
+  .pricing-table { font-size:.86rem; }
+  .pricing-table th, .pricing-table td { padding:12px 14px; }
+}
+</content>
