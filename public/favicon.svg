@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#143a66"/>
+      <stop offset="1" stop-color="#0b1d3a"/>
+    </linearGradient>
+    <clipPath id="sq"><rect width="512" height="512" rx="115" ry="115"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="115" fill="url(#sky)"/>
+  <g clip-path="url(#sq)">
+    <!-- sun -->
+    <circle cx="372" cy="150" r="54" fill="#ffb703"/>
+    <!-- mainsail -->
+    <path d="M248 96 L248 330 L132 330 Z" fill="#ffffff"/>
+    <!-- jib -->
+    <path d="M268 150 L268 330 L378 330 Z" fill="#00b4d8"/>
+    <!-- mast -->
+    <rect x="248" y="92" width="8" height="240" rx="4" fill="#dfeaf2"/>
+    <!-- hull -->
+    <path d="M120 338 L392 338 C372 402 326 408 256 408 C186 408 140 402 120 338 Z" fill="#ffffff"/>
+    <!-- water -->
+    <path d="M-12 398 Q 78 378 168 398 T 348 398 T 528 398 L528 524 L-12 524 Z" fill="#00b4d8"/>
+    <path d="M-12 432 Q 78 452 168 432 T 348 432 T 528 432 L528 524 L-12 524 Z" fill="#0077b6"/>
+  </g>
+</svg>
