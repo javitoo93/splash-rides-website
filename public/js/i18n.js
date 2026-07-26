@@ -158,7 +158,65 @@ const i18n = (() => {
       "f30.cta": "Claim my founder spot",
       "f30.spots": "Limited to the first <b>30 owners</b> · No credit card required",
       "f30.successTitle": "You're in. Welcome aboard.",
-      "f30.successMsg": "Download Splash Pro and enter <b>FOUNDER30</b> at signup to lock in 0% commission for a year."
+      "f30.successMsg": "Download Splash Pro and enter <b>FOUNDER30</b> at signup to lock in 0% commission for a year.",
+      "f30.sending": "Sending…",
+      "f30.retry": "Try again",
+
+      // Renter Features header
+      "features.heading": "Built for the boating community",
+      "features.subheading": "Every booking, every payment, every captain — verified and secure.",
+
+      // Reviews
+      "reviews.label": "Real reviews",
+
+      // Hero misc
+      "hero.scroll": "Scroll",
+
+      // Popular Destinations
+      "dest.label": "Popular destinations",
+      "dest.heading": "Boat rentals from coast to coast",
+      "dest.subheading": "Wherever there's water, you'll find a boat on Splash Rides. Here are some of the most popular places people are booking.",
+      "dest.col1": "🇪🇸 Spain & Mediterranean",
+      "dest.col2": "🌴 USA & Florida",
+      "dest.col3": "🏝️ Caribbean & Puerto Rico",
+      "dest.col4": "🌎 Latin America & Mexico",
+      "dest.searches": "Popular searches",
+
+      // FAQ
+      "faq.label": "Frequently asked questions",
+      "faq.heading": "Everything you need to know",
+      "faq.subheading": "The quick answers most people ask before their first booking.",
+      "faq.q1": "Do I need a boating license to rent a boat?",
+      "faq.a1": "No. When you book a boat with a USCG-licensed captain on Splash Rides, the captain operates the vessel for you. No boating license is required. Bareboat charters (where you operate the boat yourself) have their own state-specific licensing rules.",
+      "faq.q2": "How much does it cost to rent a boat?",
+      "faq.a2": "Boat rental prices on Splash Rides vary by boat type, size, location, and trip duration. Pontoons typically start around \u0024100/hour, center consoles and bowriders \u0024150–\u0024300/hour, and larger yachts \u0024400+/hour. You only pay the listed price plus any captain gratuity — no hidden fees.",
+      "faq.q3": "When am I charged for my boat rental?",
+      "faq.a3": "Your card is authorized at booking but only charged 24 hours before your trip. If you cancel more than 24 hours before departure, you get a full refund.",
+      "faq.q4": "How do I list my boat on Splash Pro?",
+      "faq.a4": "Download the Splash Pro app, sign up as a boat owner, and add your boat in about 10 minutes: 4–6 photos, basic details (length, year, capacity), your hourly rate, and availability. Our team reviews each listing within 24 hours.",
+      "faq.q5": "How much can I earn renting out my boat?",
+      "faq.a5": "A 28-foot boat on Splash Pro typically earns \u00244,400+ per month at 16 trips/month (a weekend schedule). Earnings depend on boat size, location, and how often you make it available. Splash Pro takes a 20% commission; the rest is yours.",
+      "faq.q6": "Are all boats and captains insured?",
+      "faq.a6": "Yes. Every boat on Splash Rides must carry commercial marine liability insurance that meets its state's requirements. Captains are verified with a current USCG license and government ID before they can accept any booking.",
+      "faq.q7": "Where can I rent a boat with Splash Rides?",
+      "faq.a7": "Splash Rides operates nationwide in the United States, with active boats in Florida, California, Texas, the Great Lakes, the Northeast, and most coastal and lake regions. Open the app to see available boats near you.",
+      "faq.q8": "What if I need to cancel my boat rental?",
+      "faq.a8": "Cancel free up to 24 hours before your trip for a full refund. Within 24 hours of departure, cancellation policies depend on the boat owner's listed terms (moderate or strict). If the captain cancels for safety or weather, you always get a full refund.",
+      "faq.q9": "How is Splash Rides different from Boatsetter or GetMyBoat?",
+      "faq.a9": "Splash Rides focuses on a simpler booking experience and lower fees for boat owners. Renters get the same access to verified boats and USCG-licensed captains with no booking fees, and owners keep a higher share of every booking thanks to our 20% commission and current 0% founder promotion.",
+      "faq.q10": "Can I rent a boat for a sunset cruise, fishing trip, or party?",
+      "faq.a10": "Yes. Boats on Splash Rides can be booked for sunset cruises, deep sea fishing charters, family day trips, bachelor and bachelorette parties, birthdays, and corporate outings. Each listing shows what activities the boat is best for and what amenities are included.",
+      "faq.q11": "Where can I rent a boat in Florida?",
+      "faq.a11": "Splash Rides has boats available across Florida including Miami, Fort Lauderdale, Tampa Bay, St. Petersburg, Key West, Naples, Sarasota, Destin, Jacksonville, and Pensacola. Open the Splash Rides app to see availability for your date and location.",
+      "faq.q12": "What types of boats can I rent on Splash Rides?",
+      "faq.a12": "You can rent pontoons, center consoles, bowriders, deck boats, sailboats, catamarans, yachts, fishing boats, houseboats, and luxury cruisers. Filter by boat type, length, capacity, and price in the Splash Rides app.",
+      "faq.q13": "Is Splash Rides available outside the United States?",
+      "faq.a13": "Splash Rides launched in the United States and Puerto Rico, with expansion to other Caribbean destinations and Latin America (Colombia, Mexico, Dominican Republic) planned. Join the email list on the website to be notified when new countries go live.",
+
+      // Cookie banner
+      "cookie.text": "We use essential cookies to make Splash Rides work. We'd also like to use analytics cookies to understand how you use our site. <a href=\"/privacy-policy.html\">Privacy Policy</a>",
+      "cookie.decline": "Decline",
+      "cookie.accept": "Accept"
     },
 
     es: {
@@ -306,7 +364,65 @@ const i18n = (() => {
       "f30.cta": "Reclamar mi plaza de fundador",
       "f30.spots": "Limitado a los primeros <b>30 propietarios</b> · No se requiere tarjeta de crédito",
       "f30.successTitle": "Estás dentro. Bienvenido a bordo.",
-      "f30.successMsg": "Descarga Splash Pro e introduce <b>FOUNDER30</b> al registrarte para asegurar 0% de comisión durante un año."
+      "f30.successMsg": "Descarga Splash Pro e introduce <b>FOUNDER30</b> al registrarte para asegurar 0% de comisión durante un año.",
+      "f30.sending": "Enviando…",
+      "f30.retry": "Inténtalo de nuevo",
+
+      // Renter Features header
+      "features.heading": "Hecho para la comunidad náutica",
+      "features.subheading": "Cada reserva, cada pago, cada capitán — verificado y seguro.",
+
+      // Reviews
+      "reviews.label": "Reseñas reales",
+
+      // Hero misc
+      "hero.scroll": "Desliza",
+
+      // Popular Destinations
+      "dest.label": "Destinos populares",
+      "dest.heading": "Alquiler de barcos de costa a costa",
+      "dest.subheading": "Donde haya agua, encontrarás un barco en Splash Rides. Estos son algunos de los destinos más reservados.",
+      "dest.col1": "🇪🇸 España y Mediterráneo",
+      "dest.col2": "🌴 EE. UU. y Florida",
+      "dest.col3": "🏝️ Caribe y Puerto Rico",
+      "dest.col4": "🌎 Latinoamérica y México",
+      "dest.searches": "Búsquedas populares",
+
+      // FAQ
+      "faq.label": "Preguntas frecuentes",
+      "faq.heading": "Todo lo que necesitas saber",
+      "faq.subheading": "Las respuestas rápidas que la mayoría busca antes de su primera reserva.",
+      "faq.q1": "¿Necesito licencia de navegación para alquilar un barco?",
+      "faq.a1": "No. Cuando reservas un barco con un capitán con licencia en Splash Rides, el capitán pilota la embarcación por ti. No se necesita licencia de navegación. Los alquileres sin patrón (donde tú mismo pilotas el barco) tienen sus propias reglas de licencia según la zona.",
+      "faq.q2": "¿Cuánto cuesta alquilar un barco?",
+      "faq.a2": "Los precios de alquiler en Splash Rides varían según el tipo de barco, tamaño, ubicación y duración del viaje. Las pontonas suelen empezar sobre los \u0024100/hora, las lanchas y center consoles entre \u0024150 y \u0024300/hora, y los yates más grandes desde \u0024400/hora. Solo pagas el precio indicado más la propina del capitán — sin cargos ocultos.",
+      "faq.q3": "¿Cuándo se me cobra el alquiler del barco?",
+      "faq.a3": "Tu tarjeta se autoriza al reservar pero solo se cobra 24 horas antes del viaje. Si cancelas con más de 24 horas de antelación, recibes un reembolso total.",
+      "faq.q4": "¿Cómo publico mi barco en Splash Pro?",
+      "faq.a4": "Descarga la app Splash Pro, regístrate como propietario y añade tu barco en unos 10 minutos: 4–6 fotos, datos básicos (eslora, año, capacidad), tu tarifa por hora y disponibilidad. Nuestro equipo revisa cada anuncio en 24 horas.",
+      "faq.q5": "¿Cuánto puedo ganar alquilando mi barco?",
+      "faq.a5": "Un barco de 28 pies en Splash Pro suele generar más de \u00244.400 al mes con 16 viajes mensuales (un calendario de fines de semana). Las ganancias dependen del tamaño del barco, la ubicación y la frecuencia con que lo pongas disponible. Splash Pro cobra una comisión del 20%; el resto es tuyo.",
+      "faq.q6": "¿Están asegurados todos los barcos y capitanes?",
+      "faq.a6": "Sí. Todo barco en Splash Rides debe tener un seguro de responsabilidad civil que cumpla con los requisitos locales. Los capitanes se verifican con una licencia vigente e identificación oficial antes de poder aceptar reservas.",
+      "faq.q7": "¿Dónde puedo alquilar un barco con Splash Rides?",
+      "faq.a7": "Splash Rides está disponible en España, Colombia, Puerto Rico y Estados Unidos, con barcos en zonas costeras y lagos. Abre la app para ver los barcos disponibles cerca de ti.",
+      "faq.q8": "¿Qué pasa si necesito cancelar mi alquiler?",
+      "faq.a8": "Cancela gratis hasta 24 horas antes de tu viaje y recibe un reembolso total. Dentro de las 24 horas previas a la salida, la política de cancelación depende de las condiciones que haya fijado el propietario (moderada o estricta). Si el capitán cancela por seguridad o mal tiempo, siempre recibes un reembolso total.",
+      "faq.q9": "¿En qué se diferencia Splash Rides de otras plataformas de alquiler?",
+      "faq.a9": "Splash Rides se centra en una experiencia de reserva más sencilla y en comisiones más bajas para los propietarios. Los clientes tienen el mismo acceso a barcos verificados y capitanes con licencia sin cargos de reserva, y los propietarios se quedan con una mayor parte de cada reserva gracias a nuestra comisión del 20% y a la promoción fundador del 0% actual.",
+      "faq.q10": "¿Puedo alquilar un barco para una puesta de sol, pesca o una fiesta?",
+      "faq.a10": "Sí. Los barcos en Splash Rides se pueden reservar para paseos al atardecer, pesca deportiva, excursiones familiares, despedidas de soltero y soltera, cumpleaños y eventos de empresa. Cada anuncio indica para qué actividades es mejor el barco y qué comodidades incluye.",
+      "faq.q11": "¿Dónde puedo alquilar un barco en España o Cartagena?",
+      "faq.a11": "Splash Rides tiene barcos en España (Ibiza, Mallorca, Barcelona, Marbella, Valencia) y en Cartagena y Santa Marta (Colombia), además de Puerto Rico y Florida. Abre la app Splash Rides para ver la disponibilidad según tu fecha y ubicación.",
+      "faq.q12": "¿Qué tipos de barcos puedo alquilar en Splash Rides?",
+      "faq.a12": "Puedes alquilar pontonas, center consoles, lanchas, yates, veleros, catamaranes, barcos de pesca y cruceros de lujo. Filtra por tipo de barco, eslora, capacidad y precio en la app Splash Rides.",
+      "faq.q13": "¿Splash Rides está disponible fuera de Estados Unidos?",
+      "faq.a13": "Sí. Splash Rides opera en España, Colombia, Puerto Rico y Estados Unidos, con planes de expansión a más destinos del Caribe y Latinoamérica (México, República Dominicana). Apúntate a la lista de correo en la web para enterarte cuando se activen nuevos países.",
+
+      // Cookie banner
+      "cookie.text": "Usamos cookies esenciales para que Splash Rides funcione. También nos gustaría usar cookies de análisis para entender cómo usas nuestro sitio. <a href=\"/privacy-policy.html\">Política de Privacidad</a>",
+      "cookie.decline": "Rechazar",
+      "cookie.accept": "Aceptar"
     }
   };
 
@@ -445,8 +561,14 @@ const i18n = (() => {
 
   // ─── Initialize ───────────────────────────────────────────────────
   function init() {
+    var urlLang = null;
+    try {
+      var p = new URLSearchParams(window.location.search).get('lang');
+      if (p === 'es' || p === 'en') urlLang = p;
+    } catch(e) {}
     var saved = localStorage.getItem('splash_lang');
-    currentLang = saved || detectLanguage();
+    currentLang = urlLang || saved || detectLanguage();
+    if (urlLang) { try { localStorage.setItem('splash_lang', urlLang); } catch(e) {} }
     applyTranslations();
     applyCurrencies();
   }
