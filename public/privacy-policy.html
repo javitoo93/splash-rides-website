@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) with Consent Mode v2.
+     EEA/UK/CH visitors: ads/analytics storage denied until they Accept the cookie banner.
+     Everyone else: granted by default. Choice stored in localStorage 'splash_cookies'. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'
+  });
+  (function(){
+    var c = null; try { c = localStorage.getItem('splash_cookies'); } catch (e) {}
+    if (c === 'accept' || c === 'decline') {
+      var v = c === 'accept' ? 'granted' : 'denied';
+      gtag('consent', 'update', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+    }
+  })();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18309350236"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'AW-18309350236');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Splash Rides</title>
