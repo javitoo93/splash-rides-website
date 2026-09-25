@@ -27,6 +27,11 @@
 <script>
   gtag('js', new Date());
   gtag('config', 'AW-18309350236');
+  // Conversion: click on the Splash Pro (owner app) App Store link.
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="apps.apple.com"][href*="id6768137397"]') : null;
+    if (a) gtag('event', 'conversion', { send_to: 'AW-18309350236/AcnUCK_OgoUdENyGyppE', transport_type: 'beacon' });
+  }, true);
 </script>
 
 <meta charset="UTF-8">
