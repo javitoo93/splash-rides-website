@@ -1570,8 +1570,22 @@ html[lang="en"] .faq-legacy-es{display:none}
   var qs=new URLSearchParams(window.location.search);
   var sessionChoice=null;
   try{ sessionChoice=sessionStorage.getItem(SESSION_KEY); }catch(e){}
-  var initialOwnerIntent=qs.has('owner')||qs.get('ref')==='ig'||qs.get('utm_campaign')==='founder30'||qs.get('utm_content')==='founder30';
-  if(initialOwnerIntent){
+  // Any owner-targeted campaign (e.g. Google Ads utm_campaign=owners_test)
+  // must land in Owner mode — otherwise paid owner clicks see the renter page.
+  var utmCampaign=(qs.get('utm_campaign')||'').toLowerCase();
+  var initialOwnerIntent=qs.has('owner')||qs.get('ref')==='ig'||utmCampaign==='founder30'||utmCampaign.indexOf('owner')===0||qs.get('utm_content')==='founder30';
+  if(qs.get('signup')==='success'){
+    // Landing page after a successful FOUNDER30 signup. Google Ads counts a
+    // visit to /?owner=1&signup=success as the "Submit lead form" conversion,
+    // so the form sends people here instead of only swapping the popup body.
+    setAudience('owner', {silent:true});
+    body.style.display='none';
+    done.style.display='block';
+    shown=true;
+    overlay.classList.add('show');
+    document.body.style.overflow='hidden';
+    markDismissed();
+  } else if(initialOwnerIntent){
     setAudience('owner', {silent:true});
     // Owner-intent landing: show popup after a short delay (not silent
     // because the popup is the whole point of the link), but skip the
@@ -1619,6 +1633,12 @@ html[lang="en"] .faq-legacy-es{display:none}
         body.style.display='none';
         done.style.display='block';
         markDismissed();
+        // Reload on the conversion URL (Google Ads "Submit lead form" =
+        // page load of /?owner=1&signup=success). Keep the language choice.
+        try{
+          var next='/?owner=1&signup=success'+(qs.get('lang')?'&lang='+encodeURIComponent(qs.get('lang')):'');
+          setTimeout(function(){ window.location.replace(next); }, 300);
+        }catch(e){}
       })
       .catch(function(err){
         console.error('[F30] submit failed:', err);
