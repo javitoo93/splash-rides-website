@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+<meta name="theme-color" content="#0b1d3a">
+<!-- Consent, analytics, forms and affiliate links: see /js/site.js -->
+<script src="/js/site.js"></script>
+<title>List Your Boat on Splash | We Set Up Your Listing for You</title>
+<meta name="description" content="Own a boat or run charters? Tell us about it and Splash builds your listing for you. 0% commission for a year for the first 30 owners.">
+<link rel="canonical" href="https://splash-inc.com/list-your-boat">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="alternate" hreflang="en" href="https://splash-inc.com/list-your-boat">
+<link rel="alternate" hreflang="es" href="https://splash-inc.com/publica-tu-barco">
+<link rel="alternate" hreflang="x-default" href="https://splash-inc.com/list-your-boat">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://splash-inc.com/list-your-boat">
+<meta property="og:title" content="List Your Boat on Splash | We Set Up Your Listing for You">
+<meta property="og:description" content="Own a boat or run charters? Tell us about it and Splash builds your listing for you. 0% commission for a year for the first 30 owners.">
+<meta property="og:image" content="https://splash-inc.com/logo.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/city.css">
+<link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does it cost to list my boat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Listing is free and there is no monthly fee. The first 30 owners who sign up with code FOUNDER30 pay 0% commission for 365 days. After that Splash keeps 20% of each booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need from me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Photos of the boat, its basic details, your prices and when it is available. You also set up payouts yourself, because Stripe has to confirm your identity, and you send us the documents needed to verify your account. We tell you exactly which documents apply to your boat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I offer trips with a captain, self-drive rentals, or both?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You choose how each boat is rented, and you can change it later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does my listing go live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once your account is verified. Listings we build for you start switched off, so nothing is public until you have checked it and turned it on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I already list my boat on another site. Can you use that?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Send us the link and we will build your Splash listing from it, then you review it before it goes live."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="city-nav">
+  <a href="/" class="logo">Splash<span>Rides</span></a>
+  <div class="nav-right">
+    <a class="lang-switch" href="/publica-tu-barco" hreflang="es" lang="es">Español</a>
+    <a href="#form" class="nav-cta">Get started</a>
+  </div>
+</nav>
+
+<section class="lp-hero">
+  <div class="inner">
+    <div>
+      <div class="eyebrow">For boat owners and charter operators</div>
+      <h1>List your boat. We'll set it up for you.</h1>
+      <p class="subtitle">Send us your photos and details and we build the listing. You stay in charge of price, calendar and who comes aboard.</p>
+      <ul class="lp-points"><li>Free to list, no monthly fee</li><li>0% commission for your first year with code FOUNDER30 (first 30 owners)</li><li>You set your own prices and availability</li><li>Payouts straight to your bank through Stripe</li></ul>
+    </div>
+    <div class="sp-card" id="form">
+      <form class="sp-form" data-splash-form="owner-lead">
+        <div>
+          <h2>Tell us about your boat</h2>
+          <p class="card-sub">Takes a minute. We reply by email within one working day.</p>
+        </div>
+        <div>
+          <label for="ol-name">Your name</label>
+          <input id="ol-name" type="text" name="name" autocomplete="name" required minlength="2" maxlength="120">
+        </div>
+        <div>
+          <label for="ol-email">Email</label>
+          <input id="ol-email" type="email" name="email" autocomplete="email" inputmode="email" required maxlength="254">
+        </div>
+        <div class="row2">
+          <div>
+            <label for="ol-phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
+            <input id="ol-phone" type="tel" name="phone" autocomplete="tel" maxlength="32">
+          </div>
+          <div>
+            <label for="ol-city">Where is the boat?</label>
+            <input id="ol-city" type="text" name="city" placeholder="City or marina" required minlength="2" maxlength="120">
+          </div>
+        </div>
+        <div>
+          <label for="ol-boat">Type of boat</label>
+          <select id="ol-boat" name="boat_type" required>
+            <option value="" disabled selected>Choose one</option><option value="motorboat">Motorboat</option><option value="sailboat">Sailboat</option><option value="catamaran">Catamaran</option><option value="yacht">Yacht</option><option value="pontoon">Pontoon</option><option value="jetski">Jet ski</option><option value="other">Something else</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>How would you rent it?</legend>
+          <div class="sp-choice"><label><input type="radio" name="trip_type" value="captained" required><span>With captain</span></label><label><input type="radio" name="trip_type" value="bareboat" required><span>Self-drive</span></label><label><input type="radio" name="trip_type" value="both" required><span>Both</span></label></div>
+        </fieldset>
+        <div class="sp-hp" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <p class="sp-error" data-form-error role="alert" hidden></p>
+        <button class="sp-btn" type="submit">Set up my listing</button>
+        <p class="sp-fine">By sending this you agree that Splash can contact you about listing your boat. See our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+      </form>
+      <div class="sp-success" data-form-success="owner-lead" hidden>
+        <h2>Got it, thank you.</h2>
+        <p>We'll email you within one working day with exactly what we need to build your listing.</p>
+        <p>To get a head start, download Splash Pro and create your free account with code <span class="code">FOUNDER30</span>.</p>
+        <a href="https://apps.apple.com/app/id6768137397" class="app-btn">Download Splash Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section">
+  <h2>How it works</h2>
+  <p class="lead">Most owners stall on the paperwork. So we do the legwork with you.</p>
+  <div class="steps"><div class="step"><h3>Tell us about your boat</h3><p>Fill in the form above. We email you back within one working day.</p><span class="who">You · 1 minute</span></div><div class="step"><h3>Create your free account</h3><p>Download Splash Pro and sign up with code FOUNDER30. That gives us somewhere to build your listing.</p><span class="who">You · 2 minutes</span></div><div class="step"><h3>We build the listing</h3><p>Email us your photos, boat details and prices, or a link to a listing you already have elsewhere. We write it up and file your documents for review.</p><span class="who">Splash</span></div><div class="step"><h3>Get paid</h3><p>Finish payout setup in the app (Stripe will ask for ID). Once your account is verified, switch the listing on and take bookings.</p><span class="who">You</span></div></div>
+</section>
+
+<section class="city-section" style="padding-top:0">
+  <h2>What it costs</h2>
+  <div class="offer">
+    <div class="big">0%</div>
+    <div><p>commission for 365 days for the first 30 owners who sign up with code <strong>FOUNDER30</strong>.</p><small>After that, Splash keeps 20% of each booking and you keep 80%. Listing is always free.</small></div>
+  </div>
+</section>
+
+<section class="city-faq">
+  <div class="inner">
+    <h2 style="font-family:'Fraunces',serif;color:var(--navy);margin-bottom:30px;text-align:center;">Questions</h2>
+    <details class="faq-item">
+      <summary>What does it cost to list my boat?</summary>
+      <div class="faq-body">Listing is free and there is no monthly fee. The first 30 owners who sign up with code FOUNDER30 pay 0% commission for 365 days. After that Splash keeps 20% of each booking.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What do you need from me?</summary>
+      <div class="faq-body">Photos of the boat, its basic details, your prices and when it is available. You also set up payouts yourself, because Stripe has to confirm your identity, and you send us the documents needed to verify your account. We tell you exactly which documents apply to your boat.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Can I offer trips with a captain, self-drive rentals, or both?</summary>
+      <div class="faq-body">Yes. You choose how each boat is rented, and you can change it later.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When does my listing go live?</summary>
+      <div class="faq-body">Once your account is verified. Listings we build for you start switched off, so nothing is public until you have checked it and turned it on.</div>
+    </details>
+    <details class="faq-item">
+      <summary>I already list my boat on another site. Can you use that?</summary>
+      <div class="faq-body">Yes. Send us the link and we will build your Splash listing from it, then you review it before it goes live.</div>
+    </details>
+  </div>
+</section>
+
+<section class="city-cta">
+  <h2>Ready when you are</h2>
+  <p>Tell us about your boat and we will take it from there.</p>
+  <div class="cta-row"><a href="#form" class="app-btn">Start my listing</a></div>
+</section>
+
+<footer class="city-footer">
+  <div class="footer-nav">
+    <a href="/">Home</a>
+    <a href="/list-your-boat">List your boat</a>
+    <a href="/waitlist">Waitlist</a>
+    <a href="/terms-of-service.html">Terms</a>
+    <a href="/privacy-policy.html">Privacy</a>
+    <a href="#" data-cookie-settings>Cookie settings</a>
+  </div>
+  <div class="other-cities">
+    <div class="other-cities-label">Guides</div>
+    <div class="other-cities-list">
+      <a href="/guides/ibiza-boat-rental-guide">Ibiza boat rental guide</a>
+      <a href="/guides/boat-trips-cartagena">Boat trips in Cartagena</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Splash Rides Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

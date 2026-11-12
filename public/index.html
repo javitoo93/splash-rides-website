@@ -891,6 +891,7 @@ html[lang="en"] .faq-legacy-es{display:none}
         <li data-i18n="owners.point6">List from any state — Splash Pro works nationwide</li>
       </ul>
       <a href="#download" class="pro-badge" data-i18n="owners.cta">Download Splash Pro →</a>
+      <a href="/list-your-boat" data-lang-href-es="/publica-tu-barco" data-i18n="owners.concierge" style="display:block;margin-top:14px;color:#ffb703;font-weight:600;font-size:.95rem">Or let us set it up for you →</a>
     </div>
     <div class="reveal">
       <div class="earnings-box">
@@ -1175,11 +1176,13 @@ html[lang="en"] .faq-legacy-es{display:none}
       <a href="#renters" data-i18n="footer.browseBoats">Browse Boats</a>
       <a href="#safety" data-i18n="footer.safety">Safety</a>
       <a href="#download" data-i18n="footer.downloadSplash">Download Splash</a>
+      <a href="/waitlist" data-lang-href-es="/lista-de-espera" data-i18n="footer.waitlist">Ibiza &amp; Cartagena Waitlist</a>
     </div>
     <div class="fcol">
       <h5 data-i18n="footer.owners">Owners</h5>
       <a href="#owners" data-i18n="footer.listYourBoat">List Your Boat</a>
       <a href="#owners" data-i18n="footer.earnings">Earnings</a>
+      <a href="/list-your-boat" data-lang-href-es="/publica-tu-barco" data-i18n="footer.concierge">We Set It Up for You</a>
       <a href="#download" data-i18n="footer.downloadPro">Download Splash Pro</a>
     </div>
     <div class="fcol">
@@ -1198,6 +1201,12 @@ html[lang="en"] .faq-legacy-es{display:none}
 
 <!-- i18n script -->
 <script src="js/i18n.js"></script>
+<script>
+// Links with data-lang-href-es go to the Spanish page when the site is shown in Spanish.
+document.addEventListener('DOMContentLoaded',function(){
+  try{ if(i18n.getLanguage()==='es') document.querySelectorAll('[data-lang-href-es]').forEach(function(a){a.href=a.getAttribute('data-lang-href-es');}); }catch(e){}
+});
+</script>
 
 <!-- ANIMATION & INTERACTION SCRIPT -->
 <script>
