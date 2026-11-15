@@ -17,6 +17,7 @@ const i18n = (() => {
       // Nav
       "nav.renters": "For Renters",
       "nav.owners": "For Owners",
+      "nav.listBoat": "List your boat",
       "nav.safety": "Safety",
       "nav.download": "Download",
       "nav.cta": "Get the App",
@@ -226,6 +227,7 @@ const i18n = (() => {
       // Nav
       "nav.renters": "Para Clientes",
       "nav.owners": "Para Propietarios",
+      "nav.listBoat": "Publica tu barco",
       "nav.safety": "Seguridad",
       "nav.download": "Descargar",
       "nav.cta": "Obtener la App",

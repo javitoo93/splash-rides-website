@@ -399,6 +399,10 @@ nav.scrolled .nav-right a{color:var(--muted)}
 nav.scrolled .nav-right a:hover{color:var(--azure)}
 .nav-cta{background:var(--splash)!important;color:#fff!important;padding:10px 22px;border-radius:50px;font-weight:600;transition:.3s}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,180,216,.4)}
+.nav-list{background:var(--sun);color:var(--navy)!important;padding:10px 20px;border-radius:50px;font-weight:700!important;transition:.3s;white-space:nowrap}
+.nav-list:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,183,3,.4)}
+/* Narrow desktop: keep the two buttons, drop the text links (the audience toggle switches sections) */
+@media(min-width:901px) and (max-width:1180px){.nav-right{gap:16px}.nav-right a:not(.nav-cta):not(.nav-list){display:none}}
 .lang-toggle{cursor:pointer;font-size:.82rem;font-weight:600;padding:6px 14px;border-radius:50px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.9);transition:.25s;letter-spacing:.5px}
 .lang-toggle:hover{background:rgba(255,255,255,.15)}
 nav.scrolled .lang-toggle{border-color:var(--muted);color:var(--muted)}
@@ -766,6 +770,7 @@ html[lang="en"] .faq-legacy-es{display:none}
     <a href="#renters" data-i18n="nav.renters" class="nav-link-renter">Rent a Boat</a>
     <a href="#owners" data-i18n="nav.owners" class="nav-link-owner">List Your Boat</a>
     <a href="#safety" data-i18n="nav.safety">Safety</a>
+    <a href="/list-your-boat" data-lang-href-es="/publica-tu-barco" class="nav-list" data-i18n="nav.listBoat">List your boat</a>
     <button class="lang-toggle" id="langToggle" onclick="i18n.toggleLanguage(); this.textContent = i18n.getLanguage() === 'en' ? 'ES 🇪🇸' : 'EN 🇺🇸'">ES 🇪🇸</button>
     <a href="#download" class="nav-cta" data-i18n="nav.cta">Get the App</a>
   </div>
@@ -1201,12 +1206,8 @@ html[lang="en"] .faq-legacy-es{display:none}
 
 <!-- i18n script -->
 <script src="js/i18n.js"></script>
-<script>
-// Links with data-lang-href-es go to the Spanish page when the site is shown in Spanish.
-document.addEventListener('DOMContentLoaded',function(){
-  try{ if(i18n.getLanguage()==='es') document.querySelectorAll('[data-lang-href-es]').forEach(function(a){a.href=a.getAttribute('data-lang-href-es');}); }catch(e){}
-});
-</script>
+<!-- Floating "List your boat" button + language-aware links -->
+<script src="/js/owner-cta.js" defer></script>
 
 <!-- ANIMATION & INTERACTION SCRIPT -->
 <script>
